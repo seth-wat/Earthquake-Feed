@@ -1,5 +1,7 @@
 package wat.seth.dev.capstoneproject;
 
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.Toolbar;
 import java.util.ArrayList;
 
 import wat.seth.dev.capstoneproject.data.Earthquake;
+import wat.seth.dev.capstoneproject.db.Contract;
 import wat.seth.dev.capstoneproject.utils.JsonUtils;
 import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 
@@ -29,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
                 if (mEarthquakes == null) {
                     return null;
                 } else {
-                    Log.v(TAG, mEarthquakes.get(0).getPlace());
+                    Uri uri =  getContentResolver().insert(Contract.QuakeEntry.ACCESS_URI,
+                            mEarthquakes.get(0).toContentValues());
+
+                    Cursor c = getContentResolver().query(Contract.QuakeEntry.ACCESS_URI,
+                            null, null, null, null, null);
+                    ArrayList<Earthquake> myQuakes = Earthquake.fromCursor(c);
+                    Log.v(TAG, String.valueOf(myQuakes.size()));
                 }
                 return null;
             }

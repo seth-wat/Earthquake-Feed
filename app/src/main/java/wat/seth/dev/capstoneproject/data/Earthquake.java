@@ -1,7 +1,14 @@
 package wat.seth.dev.capstoneproject.data;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
+
+import java.util.ArrayList;
+
+import wat.seth.dev.capstoneproject.db.Contract;
 
 /**
  * Created by seth-wat on 12/12/2017.
@@ -11,14 +18,14 @@ public class Earthquake {
 
 
     @ParcelConstructor
-    public Earthquake(String id, int timeZone, double mag, String place, long time, int felt, double mni, double longitude, double latitude, double depth) {
+    public Earthquake(String id, int timeZone, double mag, String place, long time, int felt, double mmi, double longitude, double latitude, double depth) {
         this.id = id;
         this.timeZone = timeZone;
         this.mag = mag;
         this.place = place;
         this.time = time;
         this.felt = felt;
-        this.mni = mni;
+        this.mmi = mmi;
         this.longitude = longitude;
         this.latitude = latitude;
         this.depth = depth;
@@ -30,10 +37,46 @@ public class Earthquake {
     String place;
     long time;
     int felt;
-    double mni; //intensity or shake
+    double mmi; //intensity or shake
     double longitude;
     double latitude;
     double depth;
+
+    public ContentValues toContentValues() {
+        ContentValues cv = new ContentValues();
+        cv.put(Contract.QuakeEntry.COLUMN_QUAKE_ID, id);
+        cv.put(Contract.QuakeEntry.COLUMN_TIME_ZONE, timeZone);
+        cv.put(Contract.QuakeEntry.COLUMN_MAG, mag);
+        cv.put(Contract.QuakeEntry.COLUMN_PLACE, place);
+        cv.put(Contract.QuakeEntry.COLUMN_TIME, time);
+        cv.put(Contract.QuakeEntry.COLUMN_FELT, felt);
+        cv.put(Contract.QuakeEntry.COLUMN_MMI, mmi);
+        cv.put(Contract.QuakeEntry.COLUMN_LONG, longitude);
+        cv.put(Contract.QuakeEntry.COLUMN_LAT, latitude);
+        cv.put(Contract.QuakeEntry.COLUMN_DEPTH, depth);
+        return cv;
+    }
+
+    public static ArrayList<Earthquake> fromCursor(Cursor c) {
+        ArrayList<Earthquake> earthquakes = new ArrayList<>();
+        while (c.moveToNext()) {
+            String id = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_QUAKE_ID));
+            int timeZone = c.getInt(c.getColumnIndex(Contract.QuakeEntry.COLUMN_TIME_ZONE));
+            double mag = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_MAG));
+            String place = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_PLACE));
+            long time = c.getLong(c.getColumnIndex(Contract.QuakeEntry.COLUMN_TIME));
+            int felt = c.getInt(c.getColumnIndex(Contract.QuakeEntry.COLUMN_FELT));
+            double mmi = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_MMI));
+            double longtidue = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_LONG));
+            double latitude = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_LAT));
+            double depth = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_DEPTH));
+
+            Earthquake eq = new Earthquake(id, timeZone, mag, place, time, felt, mmi, longtidue, latitude, depth);
+            earthquakes.add(eq);
+        }
+
+        return  earthquakes;
+    }
 
     public double getMag() {
         return mag;
@@ -67,12 +110,12 @@ public class Earthquake {
         this.felt = felt;
     }
 
-    public double getMni() {
-        return mni;
+    public double getMmi() {
+        return mmi;
     }
 
-    public void setMni(double mni) {
-        this.mni = mni;
+    public void setMmi(double mmi) {
+        this.mmi = mmi;
     }
 
     public double getLongitude() {

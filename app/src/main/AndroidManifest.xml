@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name=".db.QuakeContentProvider"
+            android:authorities="wat.seth.dev.capstoneproject"
+            android:exported="false" />
     </application>
 
 </manifest>
