@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--list_item-->
+    <dimen name="mag_drawable_hw">54dp</dimen>
+    <dimen name="mag_drawable_margin">8dp</dimen>
+
+    <dimen name="mag_text_size">20sp</dimen>
+    <dimen name="details_margin_start">16dp</dimen>
+    <dimen name="place_text_size">20sp</dimen>
+</resources>

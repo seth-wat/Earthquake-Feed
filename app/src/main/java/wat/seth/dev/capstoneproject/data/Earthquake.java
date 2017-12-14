@@ -32,6 +32,9 @@ public class Earthquake {
     }
 
     String id;
+
+
+
     int timeZone;
     double mag;
     String place;
@@ -78,6 +81,21 @@ public class Earthquake {
         return  earthquakes;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(int timeZone) {
+        this.timeZone = timeZone;
+    }
     public double getMag() {
         return mag;
     }

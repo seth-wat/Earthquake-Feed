@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">capstoneproject</string>
+    <string name="app_name">Earthquake Feed</string>
+    <string name="mag_content_desc">Colored circle representing magnitude.</string>
+    <!--Tabs for view pager-->
+    <string name="recent_tab">Recent</string>
+    <string name="saved_tab">Saved</string>
 </resources>

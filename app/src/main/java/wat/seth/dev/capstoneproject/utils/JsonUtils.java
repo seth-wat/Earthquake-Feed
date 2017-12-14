@@ -52,7 +52,11 @@ public class JsonUtils {
                 JSONArray coordinates = quake.getJSONObject(GEOMETRY).getJSONArray(COORDINATES);
 
                 String id = quake.getString(ID);
-                int timeZone = properties.getInt(TIME_ZONE);
+                int timeZone = 0;
+                if (!properties.isNull(TIME_ZONE)) {
+                    timeZone = properties.getInt(TIME_ZONE);
+                }
+
                 double mag = 0;
                 if (!properties.isNull(MAG)) {
                     mag = properties.getDouble(MAG);
