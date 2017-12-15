@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.adapters.QuakeListAdapter;
@@ -25,12 +28,15 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
     private QuakeListAdapter mAdapter;
     private RecyclerView rv;
     private int loaderId;
+    public static final String EXTRA_LOADER_ID = "extra_loader_id";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v("asd", "I ran");
         mAdapter = new QuakeListAdapter(getContext());
+        if (savedInstanceState != null && savedInstanceState.get(EXTRA_LOADER_ID) != null) {
+            loaderId = savedInstanceState.getInt(EXTRA_LOADER_ID);
+        }
         getActivity().getSupportLoaderManager().initLoader(
                 loaderId, null, this);
     }
@@ -64,5 +70,11 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
         QuakeListFragment qf = new QuakeListFragment();
         qf.loaderId = id;
         return qf;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(EXTRA_LOADER_ID, loaderId);
     }
 }
