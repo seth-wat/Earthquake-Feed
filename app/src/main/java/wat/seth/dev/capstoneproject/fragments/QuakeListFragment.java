@@ -7,6 +7,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +22,17 @@ import wat.seth.dev.capstoneproject.loaders.ApiFetchLoader;
  */
 
 public class QuakeListFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Earthquake>> {
-    QuakeListAdapter mAdapter;
-    RecyclerView rv;
+    private QuakeListAdapter mAdapter;
+    private RecyclerView rv;
+    private int loaderId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("asd", "I ran");
         mAdapter = new QuakeListAdapter(getContext());
         getActivity().getSupportLoaderManager().initLoader(
-                ApiFetchLoader.FETCH_FROM_API, null, this);
+                loaderId, null, this);
     }
 
     @Nullable
@@ -55,5 +58,11 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onLoaderReset(Loader loader) {
 
+    }
+
+    public static QuakeListFragment instantiate(int id) {
+        QuakeListFragment qf = new QuakeListFragment();
+        qf.loaderId = id;
+        return qf;
     }
 }

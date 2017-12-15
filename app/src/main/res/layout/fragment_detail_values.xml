@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mag_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_from_side"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/mag_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Mag" />
+
+    <TextView
+        android:id="@+id/mag_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/mag_title"
+        app:layout_constraintTop_toBottomOf="@id/mag_title"
+        tools:text="9.8" />
+
+    <TextView
+        android:id="@+id/felt_by_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/felt_by_title"
+        app:layout_constraintLeft_toLeftOf="@id/mag_title"
+        app:layout_constraintTop_toBottomOf="@id/mag_value"
+        tools:text="Felt By" />
+
+    <TextView
+        android:id="@+id/felt_by_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/mag_title"
+        app:layout_constraintTop_toBottomOf="@id/felt_by_title"
+        tools:text="120" />
+
+    <TextView
+        android:id="@+id/location_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/location_title"
+        app:layout_constraintLeft_toLeftOf="@id/mag_title"
+        app:layout_constraintTop_toBottomOf="@id/felt_by_value"
+        tools:text="Lat, Long" />
+
+    <TextView
+        android:id="@+id/lat_long_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/mag_title"
+        app:layout_constraintTop_toBottomOf="@id/location_title"
+        tools:text="-129.09, 987.12312" />
+
+    <TextView
+        android:id="@+id/detal_divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/depth_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_from_side"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/depth_title"
+        app:layout_constraintLeft_toRightOf="@id/detal_divider"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Depth" />
+
+    <TextView
+        android:id="@+id/depth_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/depth_title"
+        app:layout_constraintTop_toBottomOf="@id/depth_title"
+        tools:text="1293 km" />
+
+    <TextView
+        android:id="@+id/mmi_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/mmi_title"
+        app:layout_constraintLeft_toLeftOf="@id/depth_title"
+        app:layout_constraintTop_toBottomOf="@id/depth_value"
+        tools:text="MMI" />
+
+    <TextView
+        android:id="@+id/mmi_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/depth_title"
+        app:layout_constraintTop_toBottomOf="@id/mmi_title"
+        tools:text="8.2" />
+
+    <TextView
+        android:id="@+id/time_title"
+        style="@style/HeaderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_title_top"
+        android:text="@string/time_title"
+        app:layout_constraintLeft_toLeftOf="@id/depth_title"
+        app:layout_constraintTop_toBottomOf="@id/mmi_value"
+        tools:text="Time" />
+
+    <TextView
+        android:id="@+id/time_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_value_top"
+        app:layout_constraintLeft_toLeftOf="@id/depth_title"
+        app:layout_constraintTop_toBottomOf="@id/time_title"
+        tools:text="8:02 PM GMT" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/facebook_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin_detail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/google_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin_detail"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/twitter_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin_detail"
+        app:layout_constraintLeft_toRightOf="@id/detal_divider"
+        app:layout_constraintRight_toLeftOf="@id/detal_divider"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>
