@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--detail activity-->
+    <dimen name="map_fragment_h">-1px</dimen>
+</resources>

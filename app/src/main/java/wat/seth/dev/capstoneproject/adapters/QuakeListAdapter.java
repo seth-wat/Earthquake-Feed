@@ -1,6 +1,7 @@
 package wat.seth.dev.capstoneproject.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.parceler.Parcel;
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
+
+import wat.seth.dev.capstoneproject.DetailActivity;
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.data.Earthquake;
 
@@ -32,12 +39,20 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Earthquake earthquake = earthquakes.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final Earthquake earthquake = earthquakes.get(position);
         holder.mag.setText(String.valueOf(earthquake.getMag()));
         holder.place.setText(String.valueOf(earthquake.getPlace()));
         String time = String.valueOf(earthquake.getTime()) + " UTC";
         holder.time.setText(time);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra(DetailActivity.EARTHQUAKE_EXTRA, Parcels.wrap(earthquakes.get(position)));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

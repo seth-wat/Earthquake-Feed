@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.fragments.QuakeListFragment;
@@ -26,9 +27,11 @@ public class LaunchScreenPagerAdapter extends FragmentPagerAdapter {
         switch(position) {
             case 0:
                 return QuakeListFragment.instantiate(ApiFetchLoader.FETCH_FROM_API);
+
             case 1:
                 return QuakeListFragment.instantiate(ApiFetchLoader.FETCH_FROM_PROVIDER);
             default:
+
                 return null;
         }
     }

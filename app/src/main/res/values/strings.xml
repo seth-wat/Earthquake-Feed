@@ -4,4 +4,13 @@
     <!--Tabs for view pager-->
     <string name="recent_tab">Recent</string>
     <string name="saved_tab">Saved</string>
+
+    <!--Detail Titles-->
+    <string name="mag_title">Magnitude</string>
+    <string name="felt_by_title">Felt By</string>
+    <string name="location_title">Lat, Long</string>
+    <string name="depth_title">Depth</string>
+    <string name="mmi_title">MMI</string>
+    <string name="time_title">Time</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
