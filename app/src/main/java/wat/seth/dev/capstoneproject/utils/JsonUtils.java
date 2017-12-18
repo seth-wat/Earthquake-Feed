@@ -78,8 +78,8 @@ public class JsonUtils {
                 double longitude = 0;
                 double depth = 0;
                 for (int j = 0; j < coordinates.length(); j++) {
-                    latitude = coordinates.getDouble(0);
-                    longitude = coordinates.getDouble(1);
+                    longitude = coordinates.getDouble(0);
+                    latitude = coordinates.getDouble(1);
                     depth = coordinates.getDouble(2);
                 }
                 Earthquake singleQuake = new Earthquake(

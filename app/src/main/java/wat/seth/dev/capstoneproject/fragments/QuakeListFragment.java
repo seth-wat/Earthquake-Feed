@@ -1,7 +1,10 @@
 package wat.seth.dev.capstoneproject.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -13,8 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.parceler.Parcel;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
+
+import wat.seth.dev.capstoneproject.MapActivity;
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.adapters.QuakeListAdapter;
 import wat.seth.dev.capstoneproject.data.Earthquake;
@@ -27,6 +33,7 @@ import wat.seth.dev.capstoneproject.loaders.ApiFetchLoader;
 public class QuakeListFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Earthquake>> {
     private QuakeListAdapter mAdapter;
     private RecyclerView rv;
+    FloatingActionButton fab;
     private int loaderId;
     public static final String EXTRA_LOADER_ID = "extra_loader_id";
 
@@ -48,6 +55,7 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
         rv = view.findViewById(R.id.my_rv);
         rv.setLayoutManager(new GridLayoutManager(getContext(), 1));
         rv.setAdapter(mAdapter);
+        fab = view.findViewById(R.id.world_map_fab);
         return view;
     }
 
@@ -57,8 +65,17 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<Earthquake>> loader, ArrayList<Earthquake> data) {
+    public void onLoadFinished(Loader<ArrayList<Earthquake>> loader, final ArrayList<Earthquake> data) {
         mAdapter.setEarthquakes(data);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Parcelable p = Parcels.wrap(data);
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                intent.putExtra(MapActivity.MAP_EARTHQUAKES_EXTRA, p);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
     @Override

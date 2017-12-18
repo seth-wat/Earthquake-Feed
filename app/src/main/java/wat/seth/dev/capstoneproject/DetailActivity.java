@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -24,13 +25,17 @@ import wat.seth.dev.capstoneproject.fragments.DetailValuesFragment;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     Earthquake earthquake;
+    GoogleMap gm;
+    CameraPosition cameraPosition;
     public static final String EARTHQUAKE_EXTRA = "earthquake_extra";
+    public static final String MAP_CAMERA_POSITION = "map_camera_position";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        earthquake = (Earthquake) Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
+        earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
 
         getSupportActionBar().setSubtitle(earthquake.getPlace());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,11 +52,23 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        gm = googleMap;
         LatLng sydney = new LatLng(-34, 151);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        LatLng location = new LatLng(earthquake.getLongitude(), earthquake.getLatitude());
+        LatLng location = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
         googleMap.addMarker(new MarkerOptions().position(location));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7.f));
 
+        if (cameraPosition != null) {
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        } else {
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7.f));
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(MAP_CAMERA_POSITION, Parcels.wrap(cameraPosition));
     }
 }

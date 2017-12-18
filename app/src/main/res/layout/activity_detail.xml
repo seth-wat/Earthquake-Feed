@@ -12,12 +12,14 @@
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/map_fragment_h" />
+        android:layout_height="@dimen/map_fragment_h"
+        android:layout_weight="@integer/map_fragment_weight"/>
 
     <FrameLayout
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/detail_fragment_h"
+        android:layout_weight="@integer/detail_fragment_weight">
 
     </FrameLayout>
 </LinearLayout>

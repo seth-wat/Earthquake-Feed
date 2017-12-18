@@ -20,7 +20,10 @@
     <dimen name="fab_margin_detail">10dp</dimen>
 
     <!--detail activity-->
-    <dimen name="map_fragment_h">250dp</dimen>
+    <dimen name="map_fragment_h">0dp</dimen>
+    <dimen name="detail_fragment_h">0dp</dimen>
+    <integer name="map_fragment_weight">6</integer>
+    <integer name="detail_fragment_weight">8</integer>
 
 
 </resources>
