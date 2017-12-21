@@ -46,4 +46,17 @@ public class Database extends SQLiteOpenHelper {
         return context.getContentResolver().query(
                 Contract.QuakeEntry.ACCESS_URI, null, null, null, null);
     }
+
+    public static final Cursor fetchQuake(Context context, String place, String time) {
+        return context.getContentResolver().query(Contract.QuakeEntry.ACCESS_URI,
+                null,
+                Contract.QuakeEntry.COLUMN_PLACE + "=? AND " + Contract.QuakeEntry.COLUMN_TIME + "=?",
+                new String[]{place, time}, null);
+    }
+
+    public static final int deleteQuake(Context context, String place, String time) {
+        return context.getContentResolver().delete(Contract.QuakeEntry.ACCESS_URI,
+                Contract.QuakeEntry.COLUMN_PLACE + "=? AND " + Contract.QuakeEntry.COLUMN_TIME + "=?",
+                new String[]{place, time});
+    }
 }

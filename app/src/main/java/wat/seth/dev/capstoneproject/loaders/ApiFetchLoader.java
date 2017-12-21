@@ -20,6 +20,7 @@ public class ApiFetchLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
     public static final int FETCH_FROM_API = 8907;
     public static final int FETCH_FROM_PROVIDER = 8908;
 
+
     public ApiFetchLoader(Context context) {
         super(context);
     }
@@ -44,4 +45,5 @@ public class ApiFetchLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
         }
 
     }
+
 }

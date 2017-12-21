@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#00796B</color>
     <color name="colorPrimaryDark">#00695C</color>
-    <color name="colorAccent">#40C4FF</color>
+    <color name="colorAccent">#FFD600</color>
     <color name="primaryLight">#4DB6AC</color>
 
     <color name="mag_display">#F4511E</color>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryLight">
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-
+        android:id="@+id/cardview_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_view_h"
-        app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/card_view_margin_l_r"
         android:layout_marginStart="@dimen/card_view_margin_l_r"
-        android:layout_marginEnd="@dimen/card_view_margin_l_r">
+        app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,65 +21,73 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/mag_title"
-                style="@style/HeaderDetail"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_from_side"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/mag_title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Mag" />
+                android:text="INFORMATION"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/mag_value"
+            <LinearLayout
+                android:id="@+id/left_side_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/mag_title"
-                app:layout_constraintTop_toBottomOf="@id/mag_title"
-                tools:text="9.8" />
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/title"
+                app:layout_constraintLeft_toRightOf="@id/detal_divider"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
 
-            <TextView
-                android:id="@+id/felt_by_title"
-                style="@style/HeaderDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/felt_by_title"
-                app:layout_constraintLeft_toLeftOf="@id/mag_title"
-                app:layout_constraintTop_toBottomOf="@id/mag_value"
-                tools:text="Felt By" />
+                <TextView
+                    android:id="@+id/mag_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mag_title"
+                    tools:text="Mag" />
 
-            <TextView
-                android:id="@+id/felt_by_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/mag_title"
-                app:layout_constraintTop_toBottomOf="@id/felt_by_title"
-                tools:text="120" />
+                <TextView
+                    android:id="@+id/mag_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="9.8" />
 
-            <TextView
-                android:id="@+id/location_title"
-                style="@style/HeaderDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/location_title"
-                app:layout_constraintLeft_toLeftOf="@id/mag_title"
-                app:layout_constraintTop_toBottomOf="@id/felt_by_value"
-                tools:text="Lat, Long" />
+                <TextView
+                    android:id="@+id/felt_by_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_title_top"
+                    android:text="@string/felt_by_title"
+                    tools:text="Felt By" />
 
-            <TextView
-                android:id="@+id/location_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/mag_title"
-                app:layout_constraintTop_toBottomOf="@id/location_title"
-                tools:text="-129.09, 987.12312" />
+                <TextView
+                    android:id="@+id/felt_by_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="120" />
+
+                <TextView
+                    android:id="@+id/location_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_title_top"
+                    android:text="@string/location_title"
+                    tools:text="Lat, Long" />
+
+                <TextView
+                    android:id="@+id/location_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="-129.09, 987.12312" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/detal_divider"
@@ -89,74 +97,111 @@
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/depth_title"
-                style="@style/HeaderDetail"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_from_side"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/depth_title"
+                android:layout_marginStart="@dimen/right_detail_stat_m_start"
+                android:orientation="vertical"
                 app:layout_constraintLeft_toRightOf="@id/detal_divider"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Depth" />
+                app:layout_constraintTop_toTopOf="@id/left_side_detail">
 
-            <TextView
-                android:id="@+id/depth_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/depth_title"
-                app:layout_constraintTop_toBottomOf="@id/depth_title"
-                tools:text="1293 km" />
+                <TextView
+                    android:id="@+id/depth_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/depth_title"
+                    tools:text="Depth" />
 
-            <TextView
-                android:id="@+id/mmi_title"
-                style="@style/HeaderDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/mmi_title"
-                app:layout_constraintLeft_toLeftOf="@id/depth_title"
-                app:layout_constraintTop_toBottomOf="@id/depth_value"
-                tools:text="MMI" />
+                <TextView
+                    android:id="@+id/depth_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="1293 km" />
 
-            <TextView
-                android:id="@+id/mmi_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/depth_title"
-                app:layout_constraintTop_toBottomOf="@id/mmi_title"
-                tools:text="8.2" />
+                <TextView
+                    android:id="@+id/mmi_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_title_top"
+                    android:text="@string/mmi_title"
+                    tools:text="MMI" />
 
-            <TextView
-                android:id="@+id/time_title"
-                style="@style/HeaderDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_title_top"
-                android:text="@string/time_title"
-                app:layout_constraintLeft_toLeftOf="@id/depth_title"
-                app:layout_constraintTop_toBottomOf="@id/mmi_value"
-                tools:text="Time" />
+                <TextView
+                    android:id="@+id/mmi_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="8.2" />
 
-            <TextView
-                android:id="@+id/time_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_value_top"
-                app:layout_constraintLeft_toLeftOf="@id/depth_title"
-                app:layout_constraintTop_toBottomOf="@id/time_title"
-                tools:text="8:02 PM GMT" />
+                <TextView
+                    android:id="@+id/time_title"
+                    style="@style/HeaderDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_title_top"
+                    android:text="@string/time_title"
+                    tools:text="Time" />
+
+                <TextView
+                    android:id="@+id/time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_value_top"
+                    tools:text="8:02 PM GMT" />
+            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/detail_options_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_more_horiz_black_24dp"
         android:layout_margin="@dimen/fab_margin_detail"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:src="@drawable/ic_add_black_24dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/fab_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/child_fab_left_m"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/cardview_container"
+        app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
+        app:layout_constraintLeft_toRightOf="@id/detail_options_fab"
+        app:layout_constraintTop_toBottomOf="@id/detail_options_fab">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/twitter_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin_detail"
+            android:src="@drawable/ic_twitter_logo_silhouette"
+            android:visibility="invisible"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/save_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin_detail"
+            android:src="@drawable/ic_save_black_24dp"
+            android:visibility="invisible"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin_detail"
+            android:src="@drawable/ic_search_black_24dp"
+            android:visibility="invisible"
+            app:fabSize="mini" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

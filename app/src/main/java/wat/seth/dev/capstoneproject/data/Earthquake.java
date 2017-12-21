@@ -32,9 +32,6 @@ public class Earthquake {
     }
 
     String id;
-
-
-
     int timeZone;
     double mag;
     String place;

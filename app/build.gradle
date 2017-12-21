@@ -13,14 +13,20 @@ android {
     buildTypes {
         buildTypes.each {
             it.buildConfigField 'String', 'MAPS_API_KEY', googlemapsapikey
+            it.buildConfigField 'String', 'TWITTER_API_KEY', twitterapikey
+            it.buildConfigField 'String', 'TWITTER_SECRET', twittersecret
         }
         release {
             minifyEnabled false
             resValue 'string', 'MAPS_API_KEY', googlemapsapikey
+            resValue 'string', 'TWITTER_API_KEY', twitterapikey
+            resValue 'string', 'TWITTER_SECRET', twittersecret
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             resValue 'string', 'MAPS_API_KEY', googlemapsapikey
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_KEY', twitterapikey
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_SECRET', twittersecret
         }
     }
 }
@@ -42,5 +48,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.twitter.sdk.android:twitter:3.1.1'
+
 
 }

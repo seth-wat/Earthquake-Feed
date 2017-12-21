@@ -13,11 +13,13 @@
 
     <!--details fragment-->
     <dimen name="card_view_margin_l_r">10dp</dimen>
-    <dimen name="card_view_h">200dp</dimen>
+    <dimen name="card_view_h">220dp</dimen>
     <dimen name="margin_from_side">16dp</dimen>
     <dimen name="margin_title_top">10dp</dimen>
     <dimen name="margin_value_top">2dp</dimen>
-    <dimen name="fab_margin_detail">10dp</dimen>
+    <dimen name="fab_margin_detail">8dp</dimen>
+    <dimen name="child_fab_left_m">16dp</dimen>
+    <dimen name="right_detail_stat_m_start">24dp</dimen>
 
     <!--detail activity-->
     <dimen name="map_fragment_h">0dp</dimen>
