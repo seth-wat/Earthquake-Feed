@@ -7,6 +7,9 @@ import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import wat.seth.dev.capstoneproject.db.Contract;
 
@@ -18,10 +21,11 @@ public class Earthquake {
 
 
     @ParcelConstructor
-    public Earthquake(String id, int timeZone, double mag, String place, long time, int felt, double mmi, double longitude, double latitude, double depth) {
+    public Earthquake(String id, int timeZone, double mag, String magType, String place, long time, int felt, double mmi, double longitude, double latitude, double depth) {
         this.id = id;
         this.timeZone = timeZone;
         this.mag = mag;
+        this.magType = magType;
         this.place = place;
         this.time = time;
         this.felt = felt;
@@ -34,6 +38,7 @@ public class Earthquake {
     String id;
     int timeZone;
     double mag;
+    String magType;
     String place;
     long time;
     int felt;
@@ -42,11 +47,13 @@ public class Earthquake {
     double latitude;
     double depth;
 
+
     public ContentValues toContentValues() {
         ContentValues cv = new ContentValues();
         cv.put(Contract.QuakeEntry.COLUMN_QUAKE_ID, id);
         cv.put(Contract.QuakeEntry.COLUMN_TIME_ZONE, timeZone);
         cv.put(Contract.QuakeEntry.COLUMN_MAG, mag);
+        cv.put(Contract.QuakeEntry.COLUMN_MAG_TYPE, magType);
         cv.put(Contract.QuakeEntry.COLUMN_PLACE, place);
         cv.put(Contract.QuakeEntry.COLUMN_TIME, time);
         cv.put(Contract.QuakeEntry.COLUMN_FELT, felt);
@@ -63,6 +70,7 @@ public class Earthquake {
             String id = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_QUAKE_ID));
             int timeZone = c.getInt(c.getColumnIndex(Contract.QuakeEntry.COLUMN_TIME_ZONE));
             double mag = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_MAG));
+            String magType = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_MAG_TYPE));
             String place = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_PLACE));
             long time = c.getLong(c.getColumnIndex(Contract.QuakeEntry.COLUMN_TIME));
             int felt = c.getInt(c.getColumnIndex(Contract.QuakeEntry.COLUMN_FELT));
@@ -71,7 +79,7 @@ public class Earthquake {
             double latitude = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_LAT));
             double depth = c.getDouble(c.getColumnIndex(Contract.QuakeEntry.COLUMN_DEPTH));
 
-            Earthquake eq = new Earthquake(id, timeZone, mag, place, time, felt, mmi, longtidue, latitude, depth);
+            Earthquake eq = new Earthquake(id, timeZone, mag, magType, place, time, felt, mmi, longtidue, latitude, depth);
             earthquakes.add(eq);
         }
 
@@ -157,5 +165,134 @@ public class Earthquake {
         this.depth = depth;
     }
 
+    public String getMagType() {
+        return magType;
+    }
+
+    public void setMagType(String magType) {
+        this.magType = magType;
+    }
+
+
+    /*
+    Below methods called to display values to UI.
+     */
+
+
+    public String getReadableMag() {
+        return String.valueOf(mag) + " " + magType;
+    }
+
+    public String getReadableMmi() {
+        if (mmi == 0.0) {
+            return String.valueOf(mmi).substring(0, 1) + " mmi";
+        }
+
+        return String.valueOf(mmi) + " mmi";
+    }
+    public String getReadableDepth(boolean imperial) {
+        if (!imperial) {
+            return String.valueOf(depth) + " km";
+        }
+        double kiloToMi = 0.62137119;
+        double depthMi = depth * kiloToMi;
+        String depthString = String.valueOf(depthMi);
+        String formattedDepth = depthString.substring(0, depthString.indexOf(".") + 3);
+        return formattedDepth + " mi";
+    }
+
+    public String getReadableFelt() {
+        if (felt == 0) {
+            return "No people";
+        }
+        if (felt == 1) {
+            return String.valueOf(felt) + " person";
+        }
+
+        return String.valueOf(felt + " people");
+    }
+    public String getReadablePlace() {
+
+        String placeName = place.substring(place.indexOf("f") + 2, place.length());
+        return placeName;
+    }
+
+    public String getReadablePlaceDistance(boolean imperial) {
+        String suffix = imperial ? "miles" : "km";
+
+        int distanceEndIndex = place.indexOf("k") - 1 == 0 ? 1 : place.indexOf("k");
+        String distanceString = place.substring(0, distanceEndIndex) + ".0";
+        String direction = place.substring(place.indexOf("m") + 2, place.indexOf("o") - 1);
+
+        if (!imperial) {
+            StringBuilder sB = new StringBuilder();
+            sB.append(distanceString);
+            sB.append(" ");
+            sB.append(suffix);
+            sB.append(" ");
+            sB.append(direction);
+            return new String(sB);
+        }
+
+        double kiloToMi = 0.62137119;
+        double miles = Double.valueOf(distanceString) * kiloToMi;
+
+        String stringMiles = String.valueOf(miles);
+        String displayMiles = stringMiles.substring(0, stringMiles.indexOf(".") + 2);
+
+        if (miles == 0.0) {
+            displayMiles = "";
+            suffix = "";
+        }
+
+        StringBuilder sB = new StringBuilder();
+        sB.append(displayMiles);
+        sB.append(" ");
+        sB.append(suffix);
+        sB.append(" ");
+        sB.append(direction);
+
+        return new String(sB);
+    }
+
+    public String getReadableTime() {
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(time);
+        /*
+        Corrects time display to two digits.
+        Corrects month display
+         */
+        int displayHour = date.get(Calendar.HOUR) == 0 ? 12 : date.get(Calendar.HOUR);
+        String displayMinute = date.get(Calendar.MINUTE) < 10 ?
+                "0" +  String.valueOf(date.get(Calendar.MINUTE)) : String.valueOf(date.get(Calendar.MINUTE));
+        String displaySecond = date.get(Calendar.SECOND) < 10 ?
+                "0" +  String.valueOf(date.get(Calendar.SECOND)) : String.valueOf(date.get(Calendar.SECOND));
+
+
+        StringBuilder sB = new StringBuilder();
+
+        sB.append(displayHour);
+        sB.append(":");
+        sB.append(displayMinute);
+        sB.append(" ");
+        sB.append(date.getDisplayName(Calendar.AM_PM, Calendar.SHORT, Locale.US));
+
+        return new String(sB);
+    }
+
+    public String getReadableDate() {
+
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(time);
+        String displayMonth = String.valueOf(date.get(Calendar.MONTH) + 1);
+        StringBuilder sB = new StringBuilder();
+        sB.append(displayMonth);
+        sB.append("-");
+        sB.append(date.get(Calendar.DAY_OF_MONTH));
+        sB.append("-");
+        sB.append(date.get(Calendar.YEAR));
+
+        return new String(sB);
+    }
 
 }

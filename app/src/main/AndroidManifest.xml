@@ -52,6 +52,7 @@
             android:value="@string/MAPS_API_KEY" />
 
         <activity android:name=".MapActivity" />
+        <activity android:name=".PreferenceActivity"></activity>
     </application>
 
 </manifest>

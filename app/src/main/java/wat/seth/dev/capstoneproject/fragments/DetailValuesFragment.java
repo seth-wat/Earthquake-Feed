@@ -87,14 +87,14 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         /*
         Populate views
          */
-        magValue.setText(String.valueOf(earthquake.getMag()));
-        feltByValue.setText(String.valueOf(earthquake.getFelt()));
+        magValue.setText(earthquake.getReadableMag());
+        feltByValue.setText(String.valueOf(earthquake.getReadableFelt()));
         String location = String.valueOf(earthquake.getLatitude()) + ", \n"
                 + String.valueOf(earthquake.getLongitude());
         locationValue.setText(location);
-        depthValue.setText(String.valueOf(earthquake.getDepth()));
-        mmiValue.setText(String.valueOf(earthquake.getMmi()));
-        timeValue.setText(String.valueOf(earthquake.getTime()));
+        depthValue.setText(String.valueOf(earthquake.getReadableDepth(true)));
+        mmiValue.setText(earthquake.getReadableMmi());
+        timeValue.setText(earthquake.getReadableDate() + "\n" + earthquake.getReadableTime());
 
         /*
         Handle FAB actions

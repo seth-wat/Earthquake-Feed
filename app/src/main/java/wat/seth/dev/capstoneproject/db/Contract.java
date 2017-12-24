@@ -19,6 +19,7 @@ public class Contract {
         public static final String COLUMN_QUAKE_ID = "quake_id";
         public static final String COLUMN_TIME_ZONE = "time_zone";
         public static final String COLUMN_MAG = "mag";
+        public static final String COLUMN_MAG_TYPE = "mag_type";
         public static final String COLUMN_PLACE = "place";
         public static final String COLUMN_TIME = "time";
         public static final String COLUMN_FELT = "felt";

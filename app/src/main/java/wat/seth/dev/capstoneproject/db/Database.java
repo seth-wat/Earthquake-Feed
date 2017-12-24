@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "saved.db";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -25,6 +25,7 @@ public class Database extends SQLiteOpenHelper {
                 Contract.QuakeEntry.COLUMN_QUAKE_ID + " TEXT NOT NULL, " +
                 Contract.QuakeEntry.COLUMN_TIME_ZONE + " INTEGER NOT NULL, " +
                 Contract.QuakeEntry.COLUMN_MAG + " REAL NOT NULL, " +
+                Contract.QuakeEntry.COLUMN_MAG_TYPE + " TEXT NOT NULL, " +
                 Contract.QuakeEntry.COLUMN_PLACE + " TEXT NOT NULL, " +
                 Contract.QuakeEntry.COLUMN_TIME + " INTEGER NOT NULL, " +
                 Contract.QuakeEntry.COLUMN_FELT + " INTEGER NOT NULL, " +

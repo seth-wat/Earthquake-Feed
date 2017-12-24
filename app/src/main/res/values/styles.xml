@@ -2,6 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <!-- Customize your theme here. -->
         <!--<item name="windowActionBar">false</item>-->
         <!--<item name="windowNoTitle">true</item>-->
@@ -10,9 +11,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="HeaderDetail" parent="AppTheme">
-        <item name="android:textSize">20sp</item>
+    <style name="HeaderDetail">
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ValueDetail">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
 </resources>

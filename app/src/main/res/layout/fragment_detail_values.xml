@@ -24,7 +24,8 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="INFORMATION"
+                android:text="Information"
+                android:textAllCaps="true"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="parent"
@@ -51,6 +52,7 @@
 
                 <TextView
                     android:id="@+id/mag_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"
@@ -67,6 +69,7 @@
 
                 <TextView
                     android:id="@+id/felt_by_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"
@@ -83,6 +86,7 @@
 
                 <TextView
                     android:id="@+id/location_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"
@@ -110,11 +114,13 @@
                     style="@style/HeaderDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/depth_title"
                     tools:text="Depth" />
 
                 <TextView
                     android:id="@+id/depth_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"
@@ -131,6 +137,7 @@
 
                 <TextView
                     android:id="@+id/mmi_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"
@@ -147,6 +154,7 @@
 
                 <TextView
                     android:id="@+id/time_value"
+                    style="@style/ValueDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_value_top"

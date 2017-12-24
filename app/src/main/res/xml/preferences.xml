@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="@string/notif"
+        android:title="@string/notif_title">
+        <CheckBoxPreference
+            android:key="@string/notif_toggle"
+            android:title="@string/notif_toggle_tittle"
+            android:summary="@string/notif_toggle_summary"
+            android:defaultValue="false"
+            />
+        <EditTextPreference
+            android:defaultValue="117, 119"
+            android:key="@string/notif_location"
+            android:summary="@string/notif_location_summary"
+            android:title="@string/notif_location_title" />
+        <android.support.v7.preference.DropDownPreference
+            android:entries="@array/range_list"
+            android:entryValues="@array/range_values"
+            android:key="@string/notif_miles"
+            android:summary="@string/notif_miles_summary"
+            android:title="@string/notif_miles_title" />
+        <EditTextPreference
+            android:inputType="numberDecimal"
+            android:digits="0123456789"
+            android:key="@string/notif_min_mag"
+            android:summary="@string/notif_min_mag_summary"
+            android:title="@string/notif_min_mag_title" />
+        <EditTextPreference
+            android:inputType="number"
+            android:digits="0123456789"
+            android:key="@string/notif_interval"
+            android:summary="@string/notif_interval_summary"
+            android:title="@string/notif_interval_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/search"
+        android:title="@string/search_title">
+        <EditTextPreference
+            android:inputType="numberDecimal"
+            android:digits="0123456789"
+            android:key="@string/search_min_mag"
+            android:summary="@string/search_min_mag_summary"
+            android:title="@string/search_min_mag_title" />
+        <EditTextPreference
+            android:inputType="numberDecimal"
+            android:digits="0123456789"
+            android:key="@string/search_max_mag"
+            android:summary="@string/search_max_magg_summary"
+            android:title="@string/search_max_mag_title" />
+        <EditTextPreference
+            android:key="@string/search_start_date"
+            android:summary="@string/search_start_date_summary"
+            android:title="@string/search_start_date_title" />
+        <EditTextPreference
+            android:key="@string/search_end_date"
+            android:summary="@string/search_end_date_summary"
+            android:title="@string/search_end_date_title" />
+        <EditTextPreference
+            android:key="@string/search_location"
+            android:summary="@string/search_location_summary"
+            android:title="@string/search_location_title" />
+        <EditTextPreference
+            android:key="@string/search_range"
+            android:summary="@string/search_range_summary"
+            android:title="@string/search_range_title" />
+        <EditTextPreference
+            android:key="@string/search_order_by"
+            android:summary="@string/search_order_by_summary"
+            android:title="@string/search_order_by_title" />
+        <EditTextPreference
+            android:key="@string/search_descending"
+            android:summary="@string/search_descending_summary"
+            android:title="@string/search_descending_title" />
+    </PreferenceCategory>
+</PreferenceScreen>

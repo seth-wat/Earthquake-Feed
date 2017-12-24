@@ -42,9 +42,9 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Earthquake earthquake = earthquakes.get(position);
         holder.mag.setText(String.valueOf(earthquake.getMag()));
-        holder.place.setText(String.valueOf(earthquake.getPlace()));
-        String time = String.valueOf(earthquake.getTime()) + " UTC";
-        holder.time.setText(time);
+        holder.place.setText(earthquake.getReadablePlace());
+        holder.placeDistance.setText(earthquake.getReadablePlaceDistance(true));
+        holder.time.setText(earthquake.getReadableDate() + " " + earthquake.getReadableTime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +70,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         ImageView magRep;
         TextView mag;
         TextView place;
+        TextView placeDistance;
         TextView time;
 
         public ViewHolder(View itemView) {
@@ -77,6 +78,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             magRep = itemView.findViewById(R.id.mag_representation);
             mag = itemView.findViewById(R.id.mag);
             place = itemView.findViewById(R.id.place);
+            placeDistance = itemView.findViewById(R.id.place_distance);
             time = itemView.findViewById(R.id.time);
         }
     }
