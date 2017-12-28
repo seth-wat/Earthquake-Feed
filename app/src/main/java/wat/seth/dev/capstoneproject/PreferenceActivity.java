@@ -11,9 +11,10 @@ public class PreferenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.preference_holder, new SettingsFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.preference_holder, new SettingsFragment())
+                    .commit();
+        }
     }
 }

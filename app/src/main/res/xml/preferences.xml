@@ -20,10 +20,9 @@
             android:key="@string/notif_miles"
             android:summary="@string/notif_miles_summary"
             android:title="@string/notif_miles_title" />
-        <EditTextPreference
-            android:inputType="numberDecimal"
-            android:digits="0123456789"
+        <wat.seth.dev.capstoneproject.dialogs.UnitPickerPreference
             android:key="@string/notif_min_mag"
+            android:defaultValue="1.2"
             android:summary="@string/notif_min_mag_summary"
             android:title="@string/notif_min_mag_title" />
         <EditTextPreference
