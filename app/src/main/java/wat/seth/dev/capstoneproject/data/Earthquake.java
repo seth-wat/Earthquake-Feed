@@ -2,6 +2,7 @@ package wat.seth.dev.capstoneproject.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
@@ -83,7 +84,7 @@ public class Earthquake {
             earthquakes.add(eq);
         }
 
-        return  earthquakes;
+        return earthquakes;
     }
 
     public String getId() {
@@ -101,6 +102,7 @@ public class Earthquake {
     public void setTimeZone(int timeZone) {
         this.timeZone = timeZone;
     }
+
     public double getMag() {
         return mag;
     }
@@ -176,6 +178,9 @@ public class Earthquake {
 
     /*
     Below methods called to display values to UI.
+
+    Methods manipulate raw place which contains string like:
+        "83km NNE of Sutton-Alpine, Alaska"
      */
 
 
@@ -190,6 +195,7 @@ public class Earthquake {
 
         return String.valueOf(mmi) + " mmi";
     }
+
     public String getReadableDepth(boolean imperial) {
         if (!imperial) {
             return String.valueOf(depth) + " km";
@@ -197,7 +203,12 @@ public class Earthquake {
         double kiloToMi = 0.62137119;
         double depthMi = depth * kiloToMi;
         String depthString = String.valueOf(depthMi);
-        String formattedDepth = depthString.substring(0, depthString.indexOf(".") + 3);
+        /*
+        String should only contain 2 places after decimal max.
+         */
+        int grabLastIndex = depthString.indexOf(".") + 3 > depthString.length() ?
+                depthString.length() : depthString.indexOf(".") + 3;
+        String formattedDepth = depthString.substring(0, grabLastIndex);
         return formattedDepth + " mi";
     }
 
@@ -211,14 +222,32 @@ public class Earthquake {
 
         return String.valueOf(felt + " people");
     }
-    public String getReadablePlace() {
 
+    public String getReadablePlace() {
+        if (!place.contains("km")) {
+            /*
+            Central Mid-Atlantic Ridge
+            fully qualified place edge case
+            */
+            return place;
+        }
+        Log.v("adfasd", "places : " + place);
         String placeName = place.substring(place.indexOf("f") + 2, place.length());
         return placeName;
     }
 
     public String getReadablePlaceDistance(boolean imperial) {
+
+        if (!place.contains("km")) {
+            /*
+            Central Mid-Atlantic Ridge
+            fully qualified place edge case
+            */
+            return "";
+        }
+
         String suffix = imperial ? "miles" : "km";
+
 
         int distanceEndIndex = place.indexOf("k") - 1 == 0 ? 1 : place.indexOf("k");
         String distanceString = place.substring(0, distanceEndIndex) + ".0";
@@ -264,9 +293,9 @@ public class Earthquake {
          */
         int displayHour = date.get(Calendar.HOUR) == 0 ? 12 : date.get(Calendar.HOUR);
         String displayMinute = date.get(Calendar.MINUTE) < 10 ?
-                "0" +  String.valueOf(date.get(Calendar.MINUTE)) : String.valueOf(date.get(Calendar.MINUTE));
+                "0" + String.valueOf(date.get(Calendar.MINUTE)) : String.valueOf(date.get(Calendar.MINUTE));
         String displaySecond = date.get(Calendar.SECOND) < 10 ?
-                "0" +  String.valueOf(date.get(Calendar.SECOND)) : String.valueOf(date.get(Calendar.SECOND));
+                "0" + String.valueOf(date.get(Calendar.SECOND)) : String.valueOf(date.get(Calendar.SECOND));
 
 
         StringBuilder sB = new StringBuilder();
