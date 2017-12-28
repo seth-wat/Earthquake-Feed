@@ -231,7 +231,6 @@ public class Earthquake {
             */
             return place;
         }
-        Log.v("adfasd", "places : " + place);
         String placeName = place.substring(place.indexOf("f") + 2, place.length());
         return placeName;
     }
