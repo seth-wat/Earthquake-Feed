@@ -5,5 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/preference_holder"
-    tools:context="wat.seth.dev.capstoneproject.PreferenceActivity">
+    tools:context="wat.seth.dev.capstoneproject.SettingsActivity">
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="wat.seth.dev.capstoneproject.fragments.SettingsFragment"
+        />
 </FrameLayout>
