@@ -16,7 +16,7 @@
 
     <!--Preferences-->
     <!--Notifications-->
-    <string name="notif">notif</string>
+    <string name="notif">wat.seth.dev.capstone.notif</string>
     <string name="notif_title">Notification Settings</string>
 
     <string name="notif_toggle">notif_toggle</string>
@@ -27,9 +27,9 @@
     <string name="notif_location_title">Location</string>
     <string name="notif_location_summary">Select a location to receive notifications for earthquakes.</string>
 
-    <string name="notif_miles">notif_miles</string>
-    <string name="notif_miles_title">Range</string>
-    <string name="notif_miles_summary">How many miles around selected location to search within.</string>
+    <string name="notif_range">wat.seth.dev.capstone.notif_range</string>
+    <string name="notif_range_title">Range</string>
+    <string name="notif_range_summary">How many miles around selected location to search within.</string>
 
     <string name="notif_min_mag">notif_min_mag</string>
     <string name="notif_min_mag_title">Magnitude</string>
@@ -76,7 +76,7 @@
     <string name="search_descending_summary">Changes the default sorting of results from ascending to descending.</string>
 
 
-    <!--Range List-->
+    NotifRangeange List-->
     <string name="range_exact">Exact Location</string>
     <string name="range_50">50 miles</string>
     <string name="range_100">100 miles</string>

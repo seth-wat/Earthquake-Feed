@@ -14,13 +14,11 @@
             android:key="@string/notif_location"
             android:summary="@string/notif_location_summary"
             android:title="@string/notif_location_title" />
-        <android.support.v7.preference.DropDownPreference
-            android:entries="@array/range_list"
-            android:entryValues="@array/range_values"
-            android:key="@string/notif_miles"
-            android:summary="@string/notif_miles_summary"
-            android:title="@string/notif_miles_title" />
-        <wat.seth.dev.capstoneproject.dialogs.UnitPickerPreference
+        <EditTextPreference
+            android:key="@string/notif_range"
+            android:summary="@string/notif_range_summary"
+            android:title="@string/notif_range_title" />
+        <EditTextPreference
             android:key="@string/notif_min_mag"
             android:defaultValue="1.2"
             android:summary="@string/notif_min_mag_summary"
