@@ -22,18 +22,22 @@
     <string name="notif_toggle">notif_toggle</string>
     <string name="notif_toggle_tittle">Notifications</string>
     <string name="notif_toggle_summary">Select to enable notifications.</string>
+    <string name="notif_toggle_default_value">false</string>
 
     <string name="notif_location">notif_location</string>
     <string name="notif_location_title">Location</string>
     <string name="notif_location_summary">Select a location to receive notifications for earthquakes.</string>
+    <string name="notif_location_default_value">118, 119</string>
 
     <string name="notif_range">wat.seth.dev.capstone.notif_range</string>
     <string name="notif_range_title">Range</string>
     <string name="notif_range_summary">How many miles around selected location to search within.</string>
+    <string name="notif_range_default_value">10</string>
 
     <string name="notif_min_mag">notif_min_mag</string>
     <string name="notif_min_mag_title">Magnitude</string>
     <string name="notif_min_mag_summary">Only send alerts for earthquakes equal or greater than this magnitude.</string>
+    <string name="notif_min_mag_default_value">5.0</string>
 
     <string name="notif_interval">notif_interval</string>
     <string name="notif_interval_title">Interval</string>
@@ -44,19 +48,21 @@
     <string name="search_title">Search Settings</string>
 
     <string name="search_min_mag">search_min_mag</string>
-    <string name="search_min_mag_title">Minimum magnitude</string>
+    <string name="search_min_mag_title">Min Magnitude</string>
     <string name="search_min_mag_summary">Only show results above this magnitude.</string>
+    <string name="search_min_mag_default_value">0</string>
 
     <string name="search_max_mag">search_max_mag</string>
-    <string name="search_max_mag_title">Maximum magnitude</string>
-    <string name="search_max_magg_summary">Show no results with a magnitude greater than this value.</string>
+    <string name="search_max_mag_title">Max Magnitude</string>
+    <string name="search_max_mag_summary">Show no results with a magnitude greater than this value.</string>
+    <string name="search_max_mag_default_value">10.0</string>
 
     <string name="search_start_date">search_start_date</string>
-    <string name="search_start_date_title">Start date</string>
+    <string name="search_start_date_title">Start Date</string>
     <string name="search_start_date_summary">Only show earthquakes occurring on or after this date.</string>
 
     <string name="search_end_date">search_end_date</string>
-    <string name="search_end_date_title">End date</string>
+    <string name="search_end_date_title">End Date</string>
     <string name="search_end_date_summary">Only show earthquakes occurring on or before this date</string>
 
     <string name="search_location">search_location</string>
@@ -65,18 +71,25 @@
 
     <string name="search_range">search_range</string>
     <string name="search_range_title">Range</string>
-    <string name="search_range_summary">Only show results within this range from the selected location. 0 is global.</string>
+    <string name="search_range_summary">Only show results within this range from the selected location.</string>
+
+    <string name="search_max_results">search_max_results</string>
+    <string name="search_max_results_title">Max Results</string>
+    <string name="search_max_results_summary">Maximum number of results to load at one time.</string>
+    <string name="search_max_results_default_value">25</string>
 
     <string name="search_order_by">search_order_by</string>
-    <string name="search_order_by_title">Order by</string>
+    <string name="search_order_by_title">Order By</string>
     <string name="search_order_by_summary">Order results by date or magnitude</string>
+    <string name="search_order_by_default_value">Date</string>
 
-    <string name="search_descending">search_descending</string>
-    <string name="search_descending_title">Sort descending</string>
-    <string name="search_descending_summary">Changes the default sorting of results from ascending to descending.</string>
+    <string name="search_sort_by">search_descending</string>
+    <string name="search_sort_by_title">Sort By</string>
+    <string name="search_sort_by_summary">Switch between sorting results ascending, lowest to highest; or
+     descending, highest to lowest.</string>
+    <string name="search_sort_by_default_value">Descending</string>
 
 
-    NotifRangeange List-->
     <string name="range_exact">Exact Location</string>
     <string name="range_50">50 miles</string>
     <string name="range_100">100 miles</string>
@@ -85,4 +98,8 @@
     <string name="range_250">250 miles</string>
     <string name="range_500">500 miles</string>
     <string name="range_1000">1000 miles</string>
+
+    <string name="mag_suffix">mag</string>
+    <string name="range_suffix_imperial">mi</string>
+    <string name="range_suffix_metric">km</string>
 </resources>
