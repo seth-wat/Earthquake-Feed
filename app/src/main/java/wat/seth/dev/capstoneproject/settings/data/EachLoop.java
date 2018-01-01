@@ -8,9 +8,12 @@ import android.widget.TextView;
  */
 
 public abstract class EachLoop {
+    /*
+    Any class that will be used with the OnTouchListener provided
+    by HandleIt should extend this class.
+     */
     public static final String TYPE_INCREMENT = "type_increment";
     public static final String TYPE_DECREMENT = "type_decrement";
-    //Determines what action to take in eachLoop()
     private String type;
 
     //Method to execute while the button is pressed/touched

@@ -12,13 +12,14 @@ import wat.seth.dev.capstoneproject.R;
  */
 
 public class NotifRange extends EachLoop {
-    //See parent class for documentation.
+    /*
+    Class controls updating notif_range shared preference, it's related view,
+    and provides behavior to execute on touch events.
+    */
     private int range;
     private int incrementStep;
     private int decrementStep;
-    //View to finish the value with
     private TextView displayView;
-    //Activity to get SharedPreferences and Resources.
     private Activity activity;
 
     public NotifRange(Activity activity, TextView textView, int incrementStep, int decrementStep) {
@@ -27,27 +28,6 @@ public class NotifRange extends EachLoop {
         init();
         this.incrementStep = incrementStep;
         this.decrementStep = decrementStep;
-    }
-
-    private int incrementRange(int range, int step) {
-        int value = range + step;
-        if (value > 500) value = 500;
-        this.range = value;
-        return value;
-    }
-
-    private int decrementRange(int range, int step) {
-        int value = range - step;
-        if (value < 0) value = 0;
-        this.range = value;
-        return value;
-    }
-
-    public void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        String stringValue = sharedPref.getString(activity.getString(R.string.notif_range), "0");
-        range = Integer.valueOf(stringValue);
-        displayView.setText(String.valueOf(range));
     }
 
     @Override
@@ -71,6 +51,28 @@ public class NotifRange extends EachLoop {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(activity.getString(R.string.notif_range), String.valueOf(range));
         editor.commit();
+    }
+
+    private int incrementRange(int range, int step) {
+        int value = range + step;
+        if (value > 500) value = 500;
+        this.range = value;
+        return value;
+    }
+
+    private int decrementRange(int range, int step) {
+        int value = range - step;
+        if (value < 0) value = 0;
+        this.range = value;
+        return value;
+    }
+
+    private void init() {
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String stringValue = sharedPref.getString(activity.getString(R.string.notif_range),
+                activity.getString(R.string.notif_range_default_value));
+        range = Integer.valueOf(stringValue);
+        displayView.setText(String.valueOf(range));
     }
 
 

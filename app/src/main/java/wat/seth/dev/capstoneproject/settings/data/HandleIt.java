@@ -20,11 +20,10 @@ public class HandleIt {
     int wait;
 
     /*
-    This view
-
-    run() gets called on ACTION_DOWN
-    stop() gets called on ACTION_UP
+    This class provides access to a touch listener that executes a method of the interface EachLoop
+    while the View is touched and held.
      */
+
     public HandleIt(EachLoop e, int ms, String type) {
         toDo = e;
         wait = ms;
@@ -58,24 +57,6 @@ public class HandleIt {
 
     }
 
-    public void run() {
-        /*
-        Was just touched so any running recursion should stop,
-        we should prepare to start a new recursive loop.
-         */
-        toDo.setType(type);
-        initialCheck = true;
-        nextCheck = false;
-        toDo.eachLoop();
-        handler.removeCallbacks(first);
-        handler.postDelayed(first, wait);
-    }
-
-    public void stop() {
-        initialCheck = false;
-        nextCheck = false;
-    }
-
     public View.OnTouchListener getTouchListener() {
         return new View.OnTouchListener() {
             @Override
@@ -91,5 +72,24 @@ public class HandleIt {
             }
         };
     }
+
+    private void run() {
+        /*
+        Was just touched so any running recursion should stop,
+        we should prepare to start a new recursive loop.
+         */
+        toDo.setType(type);
+        initialCheck = true;
+        nextCheck = false;
+        toDo.eachLoop();
+        handler.removeCallbacks(first);
+        handler.postDelayed(first, wait);
+    }
+
+    private void stop() {
+        initialCheck = false;
+        nextCheck = false;
+    }
+
 
 }

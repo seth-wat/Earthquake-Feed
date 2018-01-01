@@ -12,13 +12,14 @@ import wat.seth.dev.capstoneproject.R;
  */
 
 public class NotifMag extends EachLoop {
-    //See parent class for documentation.
+    /*
+    Class controls updating notif_min_mag shared preference, it's related view,
+    and provides behavior to execute on touch events.
+    */
     private double mag;
     private double incrementStep;
     private double decrementStep;
-    //View to finish the value with
     private TextView displayView;
-    //Activity to get SharedPreferences and Resources.
     private Activity activity;
 
     public NotifMag(Activity activity, TextView textView, double incrementStep, double decrementStep) {
@@ -27,27 +28,6 @@ public class NotifMag extends EachLoop {
         init();
         this.incrementStep = incrementStep;
         this.decrementStep = decrementStep;
-    }
-
-    private double incrementRange(double range, double step) {
-        double value = range + step;
-        if (value > 10) value = 10;
-        this.mag = value;
-        return value;
-    }
-
-    private double decrementRange(double range, double step) {
-        double value = range - step;
-        if (value < 0) value = 0;
-        this.mag = value;
-        return value;
-    }
-
-    public void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        String stringValue = sharedPref.getString(activity.getString(R.string.notif_min_mag), "0");
-        mag = Double.valueOf(stringValue);
-        displayView.setText(String.format("%.1f", mag));
     }
 
     @Override
@@ -72,4 +52,27 @@ public class NotifMag extends EachLoop {
         editor.putString(activity.getString(R.string.notif_min_mag), String.valueOf(mag));
         editor.commit();
     }
+
+    private double incrementRange(double range, double step) {
+        double value = range + step;
+        if (value > 10) value = 10;
+        this.mag = value;
+        return value;
+    }
+
+    private double decrementRange(double range, double step) {
+        double value = range - step;
+        if (value < 0) value = 0;
+        this.mag = value;
+        return value;
+    }
+
+    private void init() {
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String stringValue = sharedPref.getString(activity.getString(R.string.notif_min_mag),
+                activity.getString(R.string.notif_min_mag_default_value));
+        mag = Double.valueOf(stringValue);
+        displayView.setText(String.format("%.1f", mag));
+    }
+
 }
