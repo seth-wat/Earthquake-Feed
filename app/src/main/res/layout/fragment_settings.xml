@@ -1,383 +1,717 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primaryLight">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/notification_container"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/primaryLight">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/notification_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/notification_title"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="8dp"
-                android:text="Notification Settings"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
-            <FrameLayout
-                android:id="@+id/first_notif_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/notif_toggle_switch"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notif_toggle_switch">
+                <FrameLayout
+                    android:id="@+id/divider"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/notif_title_notif"
+                    android:id="@+id/notification_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:padding="8dp"
+                    android:text="Notification Settings"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Notification toggle-->
+                <TextView
+                    android:id="@+id/notif_title_toggle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notifications"
-                    android:theme="@style/SettingTitleText" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/first_notif_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/SettingValueContainer"
-                app:layout_constraintLeft_toLeftOf="@id/first_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/notif_toggle_switch">
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/notif_toggle_switch"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_toggle_switch" />
 
                 <TextView
-                    android:id="@+id/notif_desc_notif"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/notif_title_summary"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
                     android:text="@string/notif_toggle_summary"
-                    android:theme="@style/SettingValueText" />
-            </FrameLayout>
+                    android:theme="@style/SettingValueContainer"
+                    app:layout_constraintLeft_toLeftOf="@id/notif_title_toggle"
+                    app:layout_constraintTop_toBottomOf="@id/notif_title_toggle" />
 
-            <FrameLayout
-                android:id="@+id/second_notif_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/location_button"
-                app:layout_constraintLeft_toLeftOf="@id/first_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/location_button">
-
-                <TextView
-                    android:id="@+id/notif_title_loc"
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/notif_toggle_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Location"
-                    android:theme="@style/SettingTitleText" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/second_notif_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/SettingValueContainer"
-                app:layout_constraintLeft_toLeftOf="@id/second_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/location_button">
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notification_title" />
+                <!--end notification toggle-->
+                <FrameLayout
+                    android:id="@+id/first_split"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_title_summary" />
+                <!--start notification location-->
 
                 <TextView
-                    android:id="@+id/notif_desc_loc"
+                    android:id="@+id/notif_location_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/notif_location_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/notif_location_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_location_button" />
+
+                <TextView
+                    android:id="@+id/notif_location_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
                     android:text="@string/notif_location_summary"
-                    android:theme="@style/SettingValueText" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/third_notif_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/range_value_text_view"
-                app:layout_constraintLeft_toLeftOf="@id/second_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/range_value_text_view">
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/notif_location_title"
+                    app:layout_constraintTop_toBottomOf="@id/notif_location_title" />
 
                 <TextView
-                    android:id="@+id/notif_title_range"
+                    android:id="@+id/notif_location_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Range"
-                    android:theme="@style/SettingTitleText" />
-            </FrameLayout>
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/notif_location_button"
+                    app:layout_constraintLeft_toRightOf="@id/divider"
+                    app:layout_constraintTop_toBottomOf="@id/notif_location_button"
+                    tools:text="112 31st Ave ..." />
 
-            <FrameLayout
-                android:id="@+id/third_notif_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/SettingValueContainer"
-                app:layout_constraintLeft_toLeftOf="@id/third_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/range_down_button">
+                <ImageView
+                    android:id="@+id/notif_location_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/first_split" />
+                <!--end notification location-->
+                <FrameLayout
+                    android:id="@+id/second_split"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_location_summary" />
+                <!--start notification range-->
+                <TextView
+                    android:id="@+id/notif_range_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notif_range_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/notif_range_down_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_range_down_button" />
 
                 <TextView
-
-                    android:id="@+id/notif_desc_range"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/notif_range_summary"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
                     android:text="@string/notif_range_summary"
-                    android:theme="@style/SettingValueText" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fourth_notif_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/mag_value_text_view"
-                app:layout_constraintLeft_toLeftOf="@id/third_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/mag_value_text_view">
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/notif_range_title"
+                    app:layout_constraintTop_toBottomOf="@id/notif_range_down_button" />
 
                 <TextView
-                    android:id="@+id/notif_title_mag"
+                    android:id="@+id/notif_range_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Magnitude"
-                    android:theme="@style/SettingTitleText" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fourth_notif_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/SettingValueContainer"
-                app:layout_constraintLeft_toLeftOf="@id/fourth_notif_title"
-                app:layout_constraintTop_toBottomOf="@id/mag_value_text_view">
+                    android:minEms="2"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/notif_range_down_button"
+                    app:layout_constraintLeft_toRightOf="@id/divider"
+                    app:layout_constraintTop_toBottomOf="@id/notif_range_down_button"
+                    tools:text="1.2" />
 
                 <TextView
-                    android:id="@+id/notif_desc_mag"
+                    android:id="@+id/notif_range_suffix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/range_suffix_imperial"
+                    app:layout_constraintBottom_toBottomOf="@id/notif_range_value"
+                    app:layout_constraintLeft_toRightOf="@id/notif_range_value" />
+
+                <Button
+                    android:id="@+id/notif_range_down_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_remove_circle_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/second_split" />
+
+                <Button
+                    android:id="@+id/notif_range_up_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:background="@drawable/ic_add_circle_black_24dp"
+                    app:layout_constraintRight_toLeftOf="@id/notif_range_down_button"
+                    app:layout_constraintTop_toTopOf="@id/notif_range_down_button" />
+                <!--end notification range-->
+                <FrameLayout
+                    android:id="@+id/third_split"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_range_summary" />
+                <!--start notification magnitude-->
+                <TextView
+                    android:id="@+id/notif_mag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notif_min_mag_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/notif_mag_down_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notif_mag_down_button" />
+
+                <TextView
+                    android:id="@+id/notif_mag_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:paddingBottom="@dimen/spacer_margin"
                     android:text="@string/notif_min_mag_summary"
-                    android:theme="@style/SettingValueText" />
-            </FrameLayout>
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/notif_mag_title"
+                    app:layout_constraintTop_toBottomOf="@id/notif_mag_down_button" />
 
-            <FrameLayout
-                android:id="@+id/notif_divider"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintRight_toLeftOf="parent" />
+                <TextView
+                    android:id="@+id/notif_mag_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minEms="2"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/notif_mag_down_button"
+                    app:layout_constraintLeft_toRightOf="@id/divider"
+                    app:layout_constraintTop_toBottomOf="@id/notif_mag_down_button"
+                    tools:text="1.2" />
 
-            <!--Notifications ON/OFF-->
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/notif_toggle_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notification_title" />
+                <TextView
+                    android:id="@+id/notif_mag_suffix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mag_suffix"
+                    app:layout_constraintBottom_toBottomOf="@id/notif_mag_value"
+                    app:layout_constraintLeft_toRightOf="@id/notif_mag_value" />
 
-            <!--Location-->
-            <ImageView
-                android:id="@+id/location_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_location_on_black_24dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/first_notif_desc" />
+                <Button
+                    android:id="@+id/notif_mag_down_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_remove_circle_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/third_split" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="112 31st Ave ..."
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/location_button"
-                app:layout_constraintLeft_toRightOf="@id/notif_divider"
-                app:layout_constraintTop_toBottomOf="@id/location_button" />
+                <Button
+                    android:id="@+id/notif_mag_up_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:background="@drawable/ic_add_circle_black_24dp"
+                    app:layout_constraintRight_toLeftOf="@id/notif_mag_down_button"
+                    app:layout_constraintTop_toTopOf="@id/notif_mag_down_button" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
 
-            NotifRangeange-->
-            <TextView
-                android:id="@+id/range_value_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minEms="2"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@id/notif_divider"
-                app:layout_constraintTop_toBottomOf="@id/second_notif_desc" />
 
-            <TextView
-                android:id="@+id/range_title_suffix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mi"
-                app:layout_constraintBottom_toBottomOf="@id/range_value_text_view"
-                app:layout_constraintLeft_toRightOf="@id/range_value_text_view" />
-
-            <Button
-                android:id="@+id/range_up_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/ic_add_circle_black_24dp"
-                app:layout_constraintBottom_toTopOf="@id/range_value_text_view"
-                app:layout_constraintRight_toLeftOf="@id/range_down_button"
-                app:layout_constraintTop_toBottomOf="@id/range_value_text_view" />
-
-            <Button
-                android:id="@+id/range_down_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_remove_circle_black_24dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/range_up_button" />
-
-            NotifMag-Mag-->
-            <TextView
-                android:id="@+id/mag_value_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:minEms="2"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="@id/notif_divider"
-                app:layout_constraintTop_toBottomOf="@id/third_notif_desc" />
-
-            <TextView
-                android:id="@+id/mag_title_suffix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mag"
-                app:layout_constraintBottom_toBottomOf="@id/mag_value_text_view"
-                app:layout_constraintLeft_toRightOf="@id/mag_value_text_view" />
-
-            <Button
-                android:id="@+id/mag_up_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/ic_add_circle_black_24dp"
-                app:layout_constraintBottom_toTopOf="@id/mag_value_text_view"
-                app:layout_constraintRight_toLeftOf="@id/mag_down_button"
-                app:layout_constraintTop_toBottomOf="@id/mag_value_text_view" />
-
-            <Button
-                android:id="@+id/mag_down_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_remove_circle_black_24dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/mag_up_button" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
-    >
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/search_cotainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notification_container">
-
-        <android.support.constraint.ConstraintLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/search_cotainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
 
-            <FrameLayout
-                android:id="@+id/search_divider"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintRight_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notification_container">
 
-            <TextView
-                android:id="@+id/search_title"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="8dp"
-                android:text="Search Settings"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!---->
-            <TextView
-                android:id="@+id/min_mag_search_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search_min_mag_title"
-                android:theme="@style/SettingTitleText"
-                app:layout_constraintBottom_toTopOf="@id/min_mag_up_search_button"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/min_mag_up_search_button" />
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/min_mag_search_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="32dp"
-                android:text="@string/search_min_mag_summary"
-                android:theme="@style/SettingValueContainer"
-                app:layout_constraintLeft_toLeftOf="@id/min_mag_search_title"
-                app:layout_constraintTop_toBottomOf="@id/min_mag_up_search_button" />
+                <FrameLayout
+                    android:id="@+id/search_divider"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintRight_toLeftOf="parent" />
 
-            <TextView
-                android:id="@+id/min_mag_search_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:minEms="2"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@id/search_divider"
-                app:layout_constraintTop_toBottomOf="@id/search_title" />
+                <TextView
+                    android:id="@+id/search_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:padding="8dp"
+                    android:text="Search Settings"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!-- start search min mag-->
+                <TextView
+                    android:id="@+id/search_min_mag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_min_mag_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_min_mag_down_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_min_mag_down_button" />
 
+                <TextView
+                    android:id="@+id/search_min_mag_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:paddingBottom="@dimen/spacer_margin"
+                    android:text="@string/search_min_mag_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_min_mag_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_min_mag_down_button" />
 
-            <TextView
-                android:id="@+id/min_mag_search_suffix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mag"
-                app:layout_constraintBottom_toBottomOf="@id/min_mag_search_value"
-                app:layout_constraintLeft_toRightOf="@id/min_mag_search_value" />
+                <TextView
+                    android:id="@+id/search_min_mag_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minEms="2"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_min_mag_down_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_min_mag_down_button"
+                    tools:text="1.2" />
 
-            <Button
-                android:id="@+id/min_mag_up_search_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/ic_add_circle_black_24dp"
-                app:layout_constraintBottom_toTopOf="@id/min_mag_search_value"
-                app:layout_constraintRight_toLeftOf="@id/min_mag_down_search_button"
-                app:layout_constraintTop_toBottomOf="@id/min_mag_search_value" />
+                <TextView
+                    android:id="@+id/search_min_mag_suffix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mag_suffix"
+                    app:layout_constraintBottom_toBottomOf="@id/search_min_mag_value"
+                    app:layout_constraintLeft_toRightOf="@id/search_min_mag_value" />
 
+                <Button
+                    android:id="@+id/search_min_mag_down_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_remove_circle_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_title" />
 
-            <Button
-                android:id="@+id/min_mag_down_search_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_remove_circle_black_24dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/min_mag_up_search_button" />
-            <!---->
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+                <Button
+                    android:id="@+id/search_min_mag_up_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:background="@drawable/ic_add_circle_black_24dp"
+                    app:layout_constraintRight_toLeftOf="@id/search_min_mag_down_button"
+                    app:layout_constraintTop_toTopOf="@id/search_min_mag_down_button" />
+                <!--end search min mag-->
+                <FrameLayout
+                    android:id="@+id/first_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_min_mag_summary" />
+                <!--start notification magnitude-->
+                <TextView
+                    android:id="@+id/search_max_mag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_max_mag_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_max_mag_down_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_mag_down_button" />
+
+                <TextView
+                    android:id="@+id/search_max_mag_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:paddingBottom="@dimen/spacer_margin"
+                    android:text="@string/search_max_mag_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_max_mag_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_mag_down_button" />
+
+                <TextView
+                    android:id="@+id/search_max_mag_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minEms="2"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_max_mag_down_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_mag_down_button"
+                    tools:text="1.2" />
+
+                <TextView
+                    android:id="@+id/search_max_mag_suffix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mag_suffix"
+                    app:layout_constraintBottom_toBottomOf="@id/search_max_mag_value"
+                    app:layout_constraintLeft_toRightOf="@id/search_max_mag_value" />
+
+                <Button
+                    android:id="@+id/search_max_mag_down_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_remove_circle_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/first_split_search" />
+
+                <Button
+                    android:id="@+id/search_max_mag_up_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:background="@drawable/ic_add_circle_black_24dp"
+                    app:layout_constraintRight_toLeftOf="@id/search_max_mag_down_button"
+                    app:layout_constraintTop_toTopOf="@id/search_max_mag_down_button" />
+                <!--end max mag-->
+                <FrameLayout
+                    android:id="@+id/second_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_mag_summary" />
+                <!--start search start date-->
+                <TextView
+                    android:id="@+id/search_start_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_start_date_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_start_date_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_start_date_button" />
+
+                <TextView
+                    android:id="@+id/search_start_date_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:text="@string/search_start_date_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_start_date_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_start_date_title" />
+
+                <TextView
+                    android:id="@+id/search_start_date_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_start_date_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_start_date_button"
+                    tools:text="112 31st Ave ..." />
+
+                <Button
+                    android:id="@+id/search_start_date_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_today_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/second_split_search" />
+                <!--search start date end-->
+                <FrameLayout
+                    android:id="@+id/third_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_start_date_summary" />
+                <!--start search end date-->
+                <TextView
+                    android:id="@+id/search_end_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_end_date_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_end_date_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_end_date_button" />
+
+                <TextView
+                    android:id="@+id/search_end_date_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:text="@string/search_end_date_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_end_date_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_end_date_title" />
+
+                <TextView
+                    android:id="@+id/search_end_date_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_end_date_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_end_date_button"
+                    tools:text="112 31st Ave ..." />
+
+                <Button
+                    android:id="@+id/search_end_date_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_today_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/third_split_search" />
+                <!--search end date end-->
+                <FrameLayout
+                    android:id="@+id/fourth_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_end_date_summary" />
+                <!--start search max results-->
+                <TextView
+                    android:id="@+id/search_max_results_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_max_results_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_max_results_down_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_results_down_button" />
+
+                <TextView
+                    android:id="@+id/search_max_results_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:paddingBottom="@dimen/spacer_margin"
+                    android:text="@string/search_max_results_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_max_results_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_results_down_button" />
+
+                <TextView
+                    android:id="@+id/search_max_results_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minEms="2"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_max_results_down_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_results_down_button"
+                    tools:text="1.2" />
+
+                <Button
+                    android:id="@+id/search_max_results_down_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_remove_circle_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fourth_split_search" />
+
+                <Button
+                    android:id="@+id/search_max_results_up_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:background="@drawable/ic_add_circle_black_24dp"
+                    app:layout_constraintRight_toLeftOf="@id/search_max_results_down_button"
+                    app:layout_constraintTop_toTopOf="@id/search_max_results_down_button" />
+                <!--search max results end-->
+                <FrameLayout
+                    android:id="@+id/fifth_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_max_results_summary" />
+                <!--start search order by-->
+                <TextView
+                    android:id="@+id/search_order_by_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_order_by_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_order_by_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_order_by_button" />
+
+                <TextView
+                    android:id="@+id/search_order_by_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:text="@string/search_order_by_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_order_by_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_order_by_title" />
+
+                <TextView
+                    android:id="@+id/search_order_by_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_order_by_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_order_by_button"
+                    tools:text="Date" />
+
+                <Button
+                    android:id="@+id/search_order_by_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_swap_horiz_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fifth_split_search" />
+                <!--search order by end-->
+                <FrameLayout
+                    android:id="@+id/sixth_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_order_by_summary" />
+                <!--start search sort by-->
+                <TextView
+                    android:id="@+id/search_sort_by_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_sort_by_title"
+                    android:theme="@style/SettingTitleText"
+                    app:layout_constraintBottom_toTopOf="@id/search_sort_by_button"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_sort_by_button" />
+
+                <TextView
+                    android:id="@+id/search_sort_by_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/summary_margin_end"
+                    android:layout_marginStart="@dimen/summary_margin_start"
+                    android:text="@string/search_sort_by_summary"
+                    android:textSize="@dimen/summary_text_size"
+                    app:layout_constraintLeft_toLeftOf="@id/search_sort_by_title"
+                    app:layout_constraintTop_toBottomOf="@id/search_sort_by_title" />
+
+                <TextView
+                    android:id="@+id/search_sort_by_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/summary_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/search_sort_by_button"
+                    app:layout_constraintLeft_toRightOf="@id/search_divider"
+                    app:layout_constraintTop_toBottomOf="@id/search_sort_by_button"
+                    tools:text="Date" />
+
+                <Button
+                    android:id="@+id/search_sort_by_button"
+                    android:layout_width="@dimen/location_button_wh"
+                    android:layout_height="@dimen/location_button_wh"
+                    android:layout_marginEnd="@dimen/button_end_margin"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@drawable/ic_swap_horiz_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sixth_split_search" />
+                <!--search sort by end-->
+                <FrameLayout
+                    android:id="@+id/seventh_split_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacer_margin"
+                    android:background="@color/darkerGrey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_sort_by_summary" />
+                <!--start search sort by-->
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_cotainer" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

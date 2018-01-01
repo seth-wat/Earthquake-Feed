@@ -27,5 +27,16 @@
     <integer name="map_fragment_weight">6</integer>
     <integer name="detail_fragment_weight">8</integer>
 
+    <!--preferences-->
+    <dimen name="spacer_margin">8dp</dimen>
+    <dimen name="summary_margin_bottom">20dp</dimen>
+    <dimen name="summary_margin_start">32dp</dimen>
+    <dimen name="summary_margin_end">16dp</dimen>
+    <dimen name="summary_text_size">16sp</dimen>
+
+    <dimen name="button_end_margin">16dp</dimen>
+    <dimen name="button_top_margin">8dp</dimen>
+
+    <dimen name="location_button_wh">32dp</dimen>
 
 </resources>

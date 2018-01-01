@@ -6,4 +6,6 @@
     <color name="primaryLight">#4DB6AC</color>
 
     <color name="mag_display">#F4511E</color>
+    <color name="darkerGrey">@android:color/darker_gray</color>
+    <color name="drawableAccent">#FFFFD600</color>
 </resources>
