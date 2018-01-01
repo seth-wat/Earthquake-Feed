@@ -30,28 +30,6 @@ public class SearchNumResults extends EachLoop {
         this.decrementStep = decrementStep;
     }
 
-    private int incrementRange(int results, int step) {
-        int value = results + step;
-        if (value > 150) value = 150;
-        this.results = value;
-        return value;
-    }
-
-    private int decrementRange(int results, int step) {
-        int value = results - step;
-        if (value < 0) value = 0;
-        this.results = value;
-        return value;
-    }
-
-    private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        String stringValue = sharedPref.getString(activity.getString(R.string.search_max_results),
-                activity.getString(R.string.search_max_results_default_value));
-        results = Integer.valueOf(stringValue);
-        displayView.setText(String.valueOf(results));
-    }
-
     @Override
     public void eachLoop() {
         if (getType() == TYPE_INCREMENT) {
@@ -75,5 +53,26 @@ public class SearchNumResults extends EachLoop {
         editor.commit();
     }
 
+    private int incrementRange(int results, int step) {
+        int value = results + step;
+        if (value > 150) value = 150;
+        this.results = value;
+        return value;
+    }
+
+    private int decrementRange(int results, int step) {
+        int value = results - step;
+        if (value < 0) value = 0;
+        this.results = value;
+        return value;
+    }
+
+    private void init() {
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String stringValue = sharedPref.getString(activity.getString(R.string.search_max_results),
+                activity.getString(R.string.search_max_results_default_value));
+        results = Integer.valueOf(stringValue);
+        displayView.setText(String.valueOf(results));
+    }
 
 }

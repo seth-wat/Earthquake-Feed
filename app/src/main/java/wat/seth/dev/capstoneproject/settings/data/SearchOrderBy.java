@@ -41,6 +41,10 @@ public class SearchOrderBy {
 
     }
 
+    public View.OnClickListener getClickListener() {
+        return clickListener;
+    }
+
     private void init() {
         SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
         current = sharedPref.getString(activity.getString(R.string.search_order_by),
@@ -62,10 +66,6 @@ public class SearchOrderBy {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(activity.getString(R.string.search_order_by), current);
         editor.commit();
-    }
-
-    public View.OnClickListener getClickListener() {
-        return clickListener;
     }
 
 

@@ -31,28 +31,6 @@ public class SearchMaxMag extends EachLoop {
         this.decrementStep = decrementStep;
     }
 
-    private double incrementRange(double range, double step) {
-        double value = range + step;
-        if (value > 10) value = 10;
-        this.mag = value;
-        return value;
-    }
-
-    private double decrementRange(double range, double step) {
-        double value = range - step;
-        if (value < 0) value = 0;
-        this.mag = value;
-        return value;
-    }
-
-    private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        String stringValue = sharedPref.getString(activity.getString(R.string.search_max_mag),
-                activity.getString(R.string.search_max_mag_default_value));
-        mag = Double.valueOf(stringValue);
-        displayView.setText(String.format("%.1f", mag));
-    }
-
     @Override
     public void eachLoop() {
         if (getType() == TYPE_INCREMENT) {
@@ -75,4 +53,27 @@ public class SearchMaxMag extends EachLoop {
         editor.putString(activity.getString(R.string.search_max_mag), String.valueOf(mag));
         editor.commit();
     }
+
+    private double incrementRange(double range, double step) {
+        double value = range + step;
+        if (value > 10) value = 10;
+        this.mag = value;
+        return value;
+    }
+
+    private double decrementRange(double range, double step) {
+        double value = range - step;
+        if (value < 0) value = 0;
+        this.mag = value;
+        return value;
+    }
+
+    private void init() {
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        String stringValue = sharedPref.getString(activity.getString(R.string.search_max_mag),
+                activity.getString(R.string.search_max_mag_default_value));
+        mag = Double.valueOf(stringValue);
+        displayView.setText(String.format("%.1f", mag));
+    }
+
 }
