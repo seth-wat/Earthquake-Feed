@@ -1,4 +1,8 @@
-package wat.seth.dev.capstoneproject.settings.data;
+package wat.seth.dev.capstoneproject.handlers;
+
+/**
+ * Created by seth-wat on 1/1/2018.
+ */
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,26 +13,23 @@ import android.widget.TextView;
 
 import wat.seth.dev.capstoneproject.R;
 
-/**
- * Created by seth-wat on 1/1/2018.
- */
-
-public class SearchOrderBy {
+public class SearchSortBy {
     /*
-    Class updates search_order_by shared preference, it's related view,
+    Class controls updating search_sort_by shared preference, it's related view,
     and provides access to a click listener.
 
-    search_order_by holds one of two String values.
-    */
-    public static final String DATE_VALUE = "time";
-    public static final String MAG_VALUE = "magnitude";
+    search_sort_by holds one of two String values.
+     */
+
+    public static final String ASC_VALUE = "-asc";
+    public static final String DESC_VALUE = "";
 
     private String current;
     private TextView displayView;
     private Activity activity;
     private View.OnClickListener clickListener;
 
-    public SearchOrderBy(TextView displayView, Activity activity) {
+    public SearchSortBy(TextView displayView, Activity activity) {
         this.displayView = displayView;
         this.activity = activity;
         init();
@@ -48,16 +49,16 @@ public class SearchOrderBy {
 
     private void init() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
-        current = sharedPref.getString(activity.getString(R.string.search_order_by),
-                activity.getString(R.string.search_order_by_default_value));
+        current = sharedPref.getString(activity.getString(R.string.search_sort_by),
+                activity.getString(R.string.search_sort_by_default_value));
         display();
     }
 
     private void toggle() {
-        if (current.equals(DATE_VALUE)) {
-            current = MAG_VALUE;
+        if (current.equals(ASC_VALUE)) {
+            current = DESC_VALUE;
         } else {
-            current = DATE_VALUE;
+            current = ASC_VALUE;
         }
         display();
     }
@@ -65,17 +66,17 @@ public class SearchOrderBy {
     private void update() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(activity.getString(R.string.search_order_by), current);
+        editor.putString(activity.getString(R.string.search_sort_by), current);
         editor.commit();
     }
 
     private void display() {
-        if (current.equals(DATE_VALUE)) {
-            displayView.setText("date");
+        if (current.isEmpty()) {
+            displayView.setText("descending");
         } else {
-            displayView.setText(MAG_VALUE);
+            displayView.setText("ascending");
         }
     }
 
-
 }
+

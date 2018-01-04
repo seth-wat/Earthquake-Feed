@@ -1,28 +1,28 @@
 package wat.seth.dev.capstoneproject.fragments;
 
-import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import wat.seth.dev.capstoneproject.R;
-import wat.seth.dev.capstoneproject.settings.data.HandleIt;
-import wat.seth.dev.capstoneproject.settings.data.NotifMag;
-import wat.seth.dev.capstoneproject.settings.data.NotifRange;
-import wat.seth.dev.capstoneproject.settings.data.SearchMaxMag;
-import wat.seth.dev.capstoneproject.settings.data.SearchMinMag;
-import wat.seth.dev.capstoneproject.settings.data.DatePick;
-import wat.seth.dev.capstoneproject.settings.data.SearchNumResults;
-import wat.seth.dev.capstoneproject.settings.data.SearchOrderBy;
-import wat.seth.dev.capstoneproject.settings.data.SearchSortBy;
+import wat.seth.dev.capstoneproject.handlers.HandleIt;
+import wat.seth.dev.capstoneproject.handlers.NotifMag;
+import wat.seth.dev.capstoneproject.handlers.NotifRange;
+import wat.seth.dev.capstoneproject.handlers.SearchMaxMag;
+import wat.seth.dev.capstoneproject.handlers.SearchMinMag;
+import wat.seth.dev.capstoneproject.handlers.DatePick;
+import wat.seth.dev.capstoneproject.handlers.SearchNumResults;
+import wat.seth.dev.capstoneproject.handlers.SearchOrderBy;
+import wat.seth.dev.capstoneproject.handlers.SearchSortBy;
 
 /**
  * Created by seth-wat on 12/22/2017.
@@ -148,7 +148,7 @@ public class SettingsFragment extends Fragment {
          */
         SearchSortBy searchSortBy = new SearchSortBy(searchSortByView, getActivity());
         searchSortbyButton.setOnClickListener(searchSortBy.getClickListener());
-
+        
         return view;
     }
 

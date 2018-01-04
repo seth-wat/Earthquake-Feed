@@ -1,8 +1,7 @@
-package wat.seth.dev.capstoneproject.settings.data;
+package wat.seth.dev.capstoneproject.handlers;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
 import android.view.View;

@@ -1,7 +1,6 @@
-package wat.seth.dev.capstoneproject.settings.data;
+package wat.seth.dev.capstoneproject.handlers;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
 import android.widget.TextView;
@@ -9,21 +8,21 @@ import android.widget.TextView;
 import wat.seth.dev.capstoneproject.R;
 
 /**
- * Created by seth-wat on 12/29/2017.
+ * Created by seth-wat on 1/1/2018.
  */
 
-public class NotifRange extends EachLoop {
+public class SearchNumResults extends EachLoop {
     /*
-    Class controls updating notif_range shared preference, it's related view,
+    Class controls updating search_max_results shared preference, it's related view,
     and provides behavior to execute on touch events.
     */
-    private int range;
+    private int results;
     private int incrementStep;
     private int decrementStep;
     private TextView displayView;
     private Activity activity;
 
-    public NotifRange(Activity activity, TextView textView, int incrementStep, int decrementStep) {
+    public SearchNumResults(Activity activity, TextView textView, int incrementStep, int decrementStep) {
         displayView = textView;
         this.activity = activity;
         init();
@@ -34,15 +33,15 @@ public class NotifRange extends EachLoop {
     @Override
     public void eachLoop() {
         if (getType() == TYPE_INCREMENT) {
-            if (range == 500) return;
-            incrementRange(range, incrementStep);
+            if (results == 500) return;
+            incrementRange(results, incrementStep);
             displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
-            displayView.setText(String.valueOf(range));
+            displayView.setText(String.valueOf(results));
         } else {
-            if (range == 0) return;
-            decrementRange(range, decrementStep);
+            if (results == 0) return;
+            decrementRange(results, decrementStep);
             displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
-            displayView.setText(String.valueOf(range));
+            displayView.setText(String.valueOf(results));
         }
     }
 
@@ -50,31 +49,30 @@ public class NotifRange extends EachLoop {
     public void finish() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(activity.getString(R.string.notif_range), String.valueOf(range));
+        editor.putString(activity.getString(R.string.search_max_results), String.valueOf(results));
         editor.commit();
     }
 
-    private int incrementRange(int range, int step) {
-        int value = range + step;
-        if (value > 500) value = 500;
-        this.range = value;
+    private int incrementRange(int results, int step) {
+        int value = results + step;
+        if (value > 150) value = 150;
+        this.results = value;
         return value;
     }
 
-    private int decrementRange(int range, int step) {
-        int value = range - step;
+    private int decrementRange(int results, int step) {
+        int value = results - step;
         if (value < 0) value = 0;
-        this.range = value;
+        this.results = value;
         return value;
     }
 
     private void init() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
-        String stringValue = sharedPref.getString(activity.getString(R.string.notif_range),
-                activity.getString(R.string.notif_range_default_value));
-        range = Integer.valueOf(stringValue);
-        displayView.setText(String.valueOf(range));
+        String stringValue = sharedPref.getString(activity.getString(R.string.search_max_results),
+                activity.getString(R.string.search_max_results_default_value));
+        results = Integer.valueOf(stringValue);
+        displayView.setText(String.valueOf(results));
     }
-
 
 }

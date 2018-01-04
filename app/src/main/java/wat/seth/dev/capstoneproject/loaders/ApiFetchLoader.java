@@ -11,7 +11,7 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.db.Database;
 import wat.seth.dev.capstoneproject.utils.JsonUtils;
 import wat.seth.dev.capstoneproject.utils.NetworkUtils;
-import wat.seth.dev.capstoneproject.settings.data.QueryBuilder;
+import wat.seth.dev.capstoneproject.handlers.QueryBuilder;
 
 /**
  * Created by seth-wat on 12/14/2017.

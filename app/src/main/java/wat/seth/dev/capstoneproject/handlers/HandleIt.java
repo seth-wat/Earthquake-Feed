@@ -1,4 +1,4 @@
-package wat.seth.dev.capstoneproject.settings.data;
+package wat.seth.dev.capstoneproject.handlers;
 
 import android.os.Handler;
 import android.view.MotionEvent;
