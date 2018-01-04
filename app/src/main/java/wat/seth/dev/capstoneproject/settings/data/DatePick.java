@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
     public static final String TYPE_START_DATE = "type_start_date";
     public static final String TYPE_END_DATE = "type_end_date";
     private final String defaultValue = "0";
-
+    private String type;
     private String key;
     private Calendar rightNow;
     private Activity activity;
@@ -35,6 +36,7 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
     private View.OnClickListener clickListener;
 
     public DatePick(TextView displayView, Activity activity, String type) {
+        this.type = type;
         if (type == TYPE_START_DATE) {
             key = activity.getString(R.string.search_start_date);
         } else {
@@ -52,14 +54,14 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
     }
 
     private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String stringValue = sharedPref.getString(key, defaultValue);
         if (stringValue == defaultValue) {
             /*
             This initializes the shared preference if it has never
             been set.
              */
-            month = rightNow.get(Calendar.MONTH);
+            month = rightNow.get(Calendar.MONTH) + 1;
             day = rightNow.get(Calendar.DAY_OF_MONTH);
             year = rightNow.get(Calendar.YEAR);
         } else {
@@ -68,10 +70,10 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
             String stored in shared pref.
              */
             int firstIndex = stringValue.indexOf("-");
-            month = Integer.valueOf(stringValue.substring(0, firstIndex));
+            year = Integer.valueOf(stringValue.substring(0, firstIndex));
             int nextIndex = stringValue.indexOf("-", firstIndex + 1);
-            day = Integer.valueOf(stringValue.substring(firstIndex + 1, nextIndex));
-            year = Integer.valueOf(stringValue.substring(nextIndex + 1));
+            month = Integer.valueOf(stringValue.substring(firstIndex + 1, nextIndex));
+            day = Integer.valueOf(stringValue.substring(nextIndex + 1)) - 1;
         }
 
         displayView.setText(getDisplayDate());
@@ -82,7 +84,7 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
             @Override
             public void onClick(View view) {
                 final DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        activity, DatePick.this, y, m, d);
+                        activity, DatePick.this, y, m - 1, d);
                 datePickerDialog.getDatePicker().setMaxDate(rightNow.getTimeInMillis());
                 datePickerDialog.show();
             }
@@ -91,25 +93,37 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
 
     private String getDisplayDate() {
         //Formats string to display/store
+        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
+        String monthString = month  < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(year);
+        stringBuilder.append("-");
+        stringBuilder.append(monthString);
+        stringBuilder.append("-");
+        stringBuilder.append(dayString);
+        return new String(stringBuilder);
+    }
+    private String getSaveDate() {
+        //Formats string to display/store
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(year);
+        stringBuilder.append("-");
         stringBuilder.append(month + 1);
         stringBuilder.append("-");
-        stringBuilder.append(day);
-        stringBuilder.append("-");
-        stringBuilder.append(year);
+        stringBuilder.append(day + 1);
         return new String(stringBuilder);
     }
     @Override
     public void onDateSet(DatePicker datePicker, int y, int m, int d) {
         //Update UI and SharedPreferences
-        month = m;
+        month = m + 1;
         day = d;
         year = y;
-        String value = getDisplayDate();
         displayView.setText(getDisplayDate());
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        day = day + 1;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(key, value);
+        editor.putString(key, getDisplayDate());
         editor.commit();
     }
 }

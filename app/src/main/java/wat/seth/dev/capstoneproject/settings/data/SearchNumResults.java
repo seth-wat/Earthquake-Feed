@@ -3,6 +3,7 @@ package wat.seth.dev.capstoneproject.settings.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
 import android.widget.TextView;
 
 import wat.seth.dev.capstoneproject.R;
@@ -47,7 +48,7 @@ public class SearchNumResults extends EachLoop {
 
     @Override
     public void finish() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(activity.getString(R.string.search_max_results), String.valueOf(results));
         editor.commit();
@@ -68,7 +69,7 @@ public class SearchNumResults extends EachLoop {
     }
 
     private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String stringValue = sharedPref.getString(activity.getString(R.string.search_max_results),
                 activity.getString(R.string.search_max_results_default_value));
         results = Integer.valueOf(stringValue);

@@ -3,6 +3,7 @@ package wat.seth.dev.capstoneproject.settings.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
 import android.widget.TextView;
 
 import wat.seth.dev.capstoneproject.R;
@@ -48,9 +49,9 @@ public class SearchMaxMag extends EachLoop {
 
     @Override
     public void finish() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(activity.getString(R.string.search_max_mag), String.valueOf(mag));
+        editor.putString(activity.getString(R.string.search_max_mag), String.format("%.1f", mag));
         editor.commit();
     }
 
@@ -69,7 +70,7 @@ public class SearchMaxMag extends EachLoop {
     }
 
     private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         String stringValue = sharedPref.getString(activity.getString(R.string.search_max_mag),
                 activity.getString(R.string.search_max_mag_default_value));
         mag = Double.valueOf(stringValue);

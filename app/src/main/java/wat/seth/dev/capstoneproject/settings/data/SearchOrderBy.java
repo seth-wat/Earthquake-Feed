@@ -3,6 +3,7 @@ package wat.seth.dev.capstoneproject.settings.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,8 +20,8 @@ public class SearchOrderBy {
 
     search_order_by holds one of two String values.
     */
-    public static final String DATE_VALUE = "Date";
-    public static final String MAG_VALUE = "Magnitude";
+    public static final String DATE_VALUE = "time";
+    public static final String MAG_VALUE = "magnitude";
 
     private String current;
     private TextView displayView;
@@ -46,26 +47,34 @@ public class SearchOrderBy {
     }
 
     private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         current = sharedPref.getString(activity.getString(R.string.search_order_by),
                 activity.getString(R.string.search_order_by_default_value));
-        displayView.setText(current);
+        display();
     }
 
     private void toggle() {
-        if (current == DATE_VALUE) {
+        if (current.equals(DATE_VALUE)) {
             current = MAG_VALUE;
         } else {
             current = DATE_VALUE;
         }
-        displayView.setText(current);
+        display();
     }
 
     private void update() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(activity.getString(R.string.search_order_by), current);
         editor.commit();
+    }
+
+    private void display() {
+        if (current.equals(DATE_VALUE)) {
+            displayView.setText("date");
+        } else {
+            displayView.setText(MAG_VALUE);
+        }
     }
 
 

@@ -7,6 +7,7 @@ package wat.seth.dev.capstoneproject.settings.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,8 +21,8 @@ public class SearchSortBy {
     search_sort_by holds one of two String values.
      */
 
-    public static final String ASC_VALUE = "Ascending";
-    public static final String DESC_VALUE = "Descending";
+    public static final String ASC_VALUE = "-asc";
+    public static final String DESC_VALUE = "";
 
     private String current;
     private TextView displayView;
@@ -47,26 +48,34 @@ public class SearchSortBy {
     }
 
     private void init() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         current = sharedPref.getString(activity.getString(R.string.search_sort_by),
                 activity.getString(R.string.search_sort_by_default_value));
-        displayView.setText(current);
+        display();
     }
 
     private void toggle() {
-        if (current == ASC_VALUE) {
+        if (current.equals(ASC_VALUE)) {
             current = DESC_VALUE;
         } else {
             current = ASC_VALUE;
         }
-        displayView.setText(current);
+        display();
     }
 
     private void update() {
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(activity.getString(R.string.search_sort_by), current);
         editor.commit();
+    }
+
+    private void display() {
+        if (current.isEmpty()) {
+            displayView.setText("descending");
+        } else {
+            displayView.setText("ascending");
+        }
     }
 
 }
