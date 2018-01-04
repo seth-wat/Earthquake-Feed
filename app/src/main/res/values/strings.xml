@@ -22,7 +22,7 @@
     <string name="notif_toggle">notif_toggle</string>
     <string name="notif_toggle_tittle">Notifications</string>
     <string name="notif_toggle_summary">Select to enable notifications.</string>
-    <string name="notif_toggle_default_value">false</string>
+    <string name="notif_toggle_default_value">f</string>
 
     <string name="notif_location">notif_location</string>
     <string name="notif_location_title">Location</string>
@@ -60,10 +60,13 @@
     <string name="search_start_date">search_start_date</string>
     <string name="search_start_date_title">Start Date</string>
     <string name="search_start_date_summary">Only show earthquakes occurring on or after this date.</string>
+    <string name="search_start_date_default_value"></string>
+
 
     <string name="search_end_date">search_end_date</string>
     <string name="search_end_date_title">End Date</string>
     <string name="search_end_date_summary">Only show earthquakes occurring on or before this date</string>
+    <string name="search_end_date_default_value"></string>
 
     <string name="search_location">search_location</string>
     <string name="search_location_title">Location</string>
@@ -81,13 +84,13 @@
     <string name="search_order_by">search_order_by</string>
     <string name="search_order_by_title">Order By</string>
     <string name="search_order_by_summary">Order results by date or magnitude</string>
-    <string name="search_order_by_default_value">Date</string>
+    <string name="search_order_by_default_value">time</string>
 
     <string name="search_sort_by">search_descending</string>
     <string name="search_sort_by_title">Sort By</string>
     <string name="search_sort_by_summary">Switch between sorting results ascending, lowest to highest; or
      descending, highest to lowest.</string>
-    <string name="search_sort_by_default_value">Descending</string>
+    <string name="search_sort_by_default_value"></string>
 
 
     <string name="range_exact">Exact Location</string>
@@ -102,4 +105,12 @@
     <string name="mag_suffix">mag</string>
     <string name="range_suffix_imperial">mi</string>
     <string name="range_suffix_metric">km</string>
+
+    <!--query params-->
+    <string name="end_time">endtime</string>
+    <string name="start_time">starttime</string>
+    <string name="max_mag">maxmagnitude</string>
+    <string name="min_mag">minmagnitude</string>
+    <string name="order_by">orderby</string>
+    <string name="max_results">limit</string>
 </resources>
