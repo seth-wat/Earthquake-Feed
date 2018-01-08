@@ -1,16 +1,18 @@
 package wat.seth.dev.capstoneproject.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.parceler.Parcel;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import wat.seth.dev.capstoneproject.DetailActivity;
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.data.Earthquake;
+import wat.seth.dev.capstoneproject.utils.ColorUtils;
 
 /**
  * Created by seth-wat on 12/14/2017.
@@ -26,9 +29,11 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
     ArrayList<Earthquake> earthquakes = new ArrayList<>();
     Context mContext = null;
+    Activity activity;
 
-    public QuakeListAdapter(Context context) {
+    public QuakeListAdapter(Context context, Activity activity) {
         mContext = context;
+        this.activity = activity;
     }
 
     @Override
@@ -45,6 +50,8 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         holder.place.setText(earthquake.getReadablePlace());
         holder.placeDistance.setText(earthquake.getReadablePlaceDistance(true));
         holder.time.setText(earthquake.getReadableDate() + " " + earthquake.getReadableTime());
+
+        holder.magRep.setColorFilter(ColorUtils.setMagColor(earthquake.getMag(), mContext));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,11 +74,11 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView magRep;
         TextView mag;
         TextView place;
         TextView placeDistance;
         TextView time;
+        ImageView magRep;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -80,6 +87,9 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             place = itemView.findViewById(R.id.place);
             placeDistance = itemView.findViewById(R.id.place_distance);
             time = itemView.findViewById(R.id.time);
+            magRep = itemView.findViewById(R.id.mag_representation);
         }
     }
+
+
 }

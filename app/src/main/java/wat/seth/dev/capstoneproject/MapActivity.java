@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -18,6 +19,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 import wat.seth.dev.capstoneproject.data.Earthquake;
+import wat.seth.dev.capstoneproject.utils.ColorUtils;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener {
@@ -55,7 +57,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         for (int i = 0; i < earthquakes.size(); i++) {
             Earthquake e = earthquakes.get(i);
             loc = new LatLng(e.getLatitude(), e.getLongitude());
-            Marker m = googleMap.addMarker(new MarkerOptions().position(loc).title(e.getPlace()));
+
+            MarkerOptions markerOptions = new MarkerOptions().position(loc).title(e.getPlace());
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(ColorUtils.getMarkerColor(e.getMag())));
+            Marker m = googleMap.addMarker(markerOptions);
+
             m.setTag(earthquakes.get(i));
         }
 
