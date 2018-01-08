@@ -11,9 +11,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.twitter.sdk.android.core.Twitter;
@@ -26,6 +31,7 @@ import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
 import wat.seth.dev.capstoneproject.loaders.SaveLoader;
+import wat.seth.dev.capstoneproject.utils.ColorUtils;
 import wat.seth.dev.capstoneproject.utils.ExpandingFabUtil;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
@@ -35,10 +41,15 @@ import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 public class DetailValuesFragment extends Fragment implements LoaderManager.LoaderCallbacks {
     public static final String SAVED_QUAKE = "saved_quake";
+    public static final String SHOWN = "shown";
+
     private Earthquake earthquake;
 
     private boolean saved = false; //Tracks state of earthquake in db.
+    private boolean shown = false;
 
+    private CardView cardView;
+    private LinearLayout fabContainer;
     private FloatingActionButton mainFab;
     private FloatingActionButton saveFab;
     private FloatingActionButton twitterFab;
@@ -56,7 +67,8 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         super.onCreate(savedInstanceState);
         Twitter.initialize(getContext());
         /*
-        Check if the earthquake is saved in the db.
+        Check if the earthquake is saved in the db so saveFab
+        can be initialized correctly.
          */
         getActivity().getSupportLoaderManager().initLoader(SaveLoader.CHECK, null, this);
 
@@ -65,11 +77,18 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail_values, container, false);
 
         if (savedInstanceState != null && savedInstanceState.getParcelable(SAVED_QUAKE) != null) {
             earthquake = Parcels.unwrap(savedInstanceState.getParcelable(SAVED_QUAKE));
+            //is FAB expanded?
+            shown = savedInstanceState.getBoolean(SHOWN);
         }
+
+        View view = inflater.inflate(R.layout.fragment_detail_values, container, false);
+
+        //Initialize animations.
+        final Animation fromRight = AnimationUtils.loadAnimation(getContext(), R.anim.enter_from_right);
+        final Animation exitRight = AnimationUtils.loadAnimation(getContext(), R.anim.exit_from_left);
 
         TextView magValue = view.findViewById(R.id.mag_value);
         TextView feltByValue = view.findViewById(R.id.felt_by_value);
@@ -77,7 +96,12 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         TextView depthValue = view.findViewById(R.id.depth_value);
         TextView mmiValue = view.findViewById(R.id.mmi_value);
         TextView timeValue = view.findViewById(R.id.time_value);
+        ImageView magRep = view.findViewById(R.id.mag_rep_value);
+        ImageView depthRep = view.findViewById(R.id.depth_rep_value);
+        ImageView mmiRep = view.findViewById(R.id.mmi_rep_value);
 
+        cardView = view.findViewById(R.id.cardview_container);
+        fabContainer = view.findViewById(R.id.fab_container);
         mainFab = view.findViewById(R.id.detail_options_fab);
         twitterFab = view.findViewById(R.id.twitter_fab);
         saveFab = view.findViewById(R.id.save_fab);
@@ -89,18 +113,25 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
          */
         magValue.setText(earthquake.getReadableMag());
         feltByValue.setText(String.valueOf(earthquake.getReadableFelt()));
-        String location = String.valueOf(earthquake.getLatitude()) + ", \n"
+        String location = String.valueOf(earthquake.getLatitude()) + ", "
                 + String.valueOf(earthquake.getLongitude());
         locationValue.setText(location);
         depthValue.setText(String.valueOf(earthquake.getReadableDepth(true)));
         mmiValue.setText(earthquake.getReadableMmi());
-        timeValue.setText(earthquake.getReadableDate() + "\n" + earthquake.getReadableTime());
+        timeValue.setText(earthquake.getReadableLongDate() + " " + earthquake.getReadableTime());
+
+        /*
+        Show visual representations
+         */
+        magRep.setColorFilter(ColorUtils.setMagColor(earthquake.getMag(), getContext()));
+        depthRep.setColorFilter(ColorUtils.setDepthColor(earthquake.getDepth(), getContext()));
+        mmiRep.setColorFilter(ColorUtils.setMagColor(earthquake.getMmi(), getContext()));
 
         /*
         Handle FAB actions
          */
 
-        fabUtil = new ExpandingFabUtil(false);
+        fabUtil = new ExpandingFabUtil(shown);
         fabUtil.appendFab(twitterFab);
         fabUtil.appendFab(saveFab);
         fabUtil.appendFab(searchFab);
@@ -137,9 +168,19 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!shown) {
+                    fabContainer.startAnimation(fromRight);
+                    shown = true;
+                } else {
+                   fabContainer.startAnimation(exitRight);
+                   shown = false;
+                }
                 fabUtil.animateFabs();
             }
         });
+
+        //Start animation.
+        cardView.startAnimation(fromRight);
 
         return view;
     }
@@ -196,6 +237,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         super.onSaveInstanceState(outState);
         Parcelable p = Parcels.wrap(earthquake);
         outState.putParcelable(SAVED_QUAKE, p);
+        outState.putBoolean(SHOWN, shown);
     }
 
     public static DetailValuesFragment instantiate(Earthquake e, TakeSnapShot capture) {
