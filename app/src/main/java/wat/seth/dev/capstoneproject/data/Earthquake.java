@@ -213,14 +213,7 @@ public class Earthquake {
     }
 
     public String getReadableFelt() {
-        if (felt == 0) {
-            return "No people";
-        }
-        if (felt == 1) {
-            return String.valueOf(felt) + " person";
-        }
-
-        return String.valueOf(felt + " people");
+        return String.valueOf(felt);
     }
 
     public String getReadablePlace() {
@@ -320,6 +313,19 @@ public class Earthquake {
         sB.append("-");
         sB.append(date.get(Calendar.YEAR));
 
+        return new String(sB);
+    }
+
+    public String getReadableLongDate() {
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(time);
+        String displayMonth = String.valueOf(date.get(Calendar.MONTH) + 1);
+        StringBuilder sB = new StringBuilder();
+        sB.append(date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()));
+        sB.append(" ");
+        sB.append(date.get(Calendar.DAY_OF_MONTH));
+        sB.append(", ");
+        sB.append(date.get(Calendar.YEAR));
         return new String(sB);
     }
 
