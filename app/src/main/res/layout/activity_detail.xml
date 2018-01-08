@@ -4,16 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryLight"
     android:orientation="vertical"
     tools:context="wat.seth.dev.capstoneproject.DetailActivity">
 
-
-    <fragment
-        android:id="@+id/map_fragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <FrameLayout
+        android:id="@+id/map_cotainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/map_fragment_h"
-        android:layout_weight="@integer/map_fragment_weight"/>
+        android:layout_weight="@integer/map_fragment_weight">
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/detail_container"

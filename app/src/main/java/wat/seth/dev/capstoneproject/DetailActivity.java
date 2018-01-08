@@ -4,11 +4,18 @@ import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -19,6 +26,7 @@ import org.parceler.Parcels;
 import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.fragments.DetailValuesFragment;
 import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
+import wat.seth.dev.capstoneproject.utils.ColorUtils;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback, TakeSnapShot,
@@ -32,11 +40,15 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     CameraPosition cameraPosition;
     String socialType;
 
+    FrameLayout mapContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        mapContainer = findViewById(R.id.map_cotainer);
+
         Twitter.initialize(this);
 
         earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
@@ -49,23 +61,28 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
          */
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
-
         /*
         Add detail fragment
          */
         DetailValuesFragment f = DetailValuesFragment.instantiate(earthquake, this);
+
+
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.detail_container, f)
                 .commit();
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        gm = googleMap;
+        //Slide map into view
+        Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.enter_from_top);
+        mapContainer.startAnimation(fromTop);
 
+        gm = googleMap;
         LatLng location = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
-        googleMap.addMarker(new MarkerOptions().position(location));
+        MarkerOptions markerOptions = new MarkerOptions().position(location);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(ColorUtils.getMarkerColor(earthquake.getMag())));
+        googleMap.addMarker(markerOptions);
         /*
         cameraPosition holds saved state
          */
@@ -74,7 +91,6 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         } else {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7.f));
         }
-
 
     }
 
