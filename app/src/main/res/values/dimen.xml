@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="divider">1dp</dimen>
     <!--main_activity-->
     <dimen name="tab_ele">4dp</dimen>
     <!--list_item-->
@@ -12,6 +14,10 @@
     <dimen name="place_text_size">20sp</dimen>
 
     <!--details fragment-->
+    <dimen name="rep_wh">10dp</dimen>
+    <dimen name="value_start_no_rep_margin">30dp</dimen>
+    <dimen name="time_margin_bottom">8dp</dimen>
+    <dimen name="spacer_margin_value">4dp</dimen>
     <dimen name="card_view_margin_l_r">10dp</dimen>
     <dimen name="card_view_h">220dp</dimen>
     <dimen name="margin_from_side">16dp</dimen>
@@ -38,5 +44,7 @@
     <dimen name="button_top_margin">8dp</dimen>
 
     <dimen name="location_button_wh">32dp</dimen>
+
+
 
 </resources>

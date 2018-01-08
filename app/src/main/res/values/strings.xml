@@ -113,4 +113,6 @@
     <string name="min_mag">minmagnitude</string>
     <string name="order_by">orderby</string>
     <string name="max_results">limit</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

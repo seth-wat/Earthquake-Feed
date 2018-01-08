@@ -11,6 +11,7 @@
         android:layout_height="@dimen/card_view_h"
         android:layout_marginEnd="@dimen/card_view_margin_l_r"
         android:layout_marginStart="@dimen/card_view_margin_l_r"
+        android:transitionGroup="true"
         app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,145 +22,165 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:id="@+id/time_value"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Information"
-                android:textAllCaps="true"
-                android:textSize="16sp"
+                android:layout_marginBottom="@dimen/time_margin_bottom"
+                android:background="@color/colorPrimary"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="parent"
-                app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="8:02 PM GMT" />
 
-            <LinearLayout
-                android:id="@+id/left_side_detail"
+            <ImageView
+                android:id="@+id/mag_rep_value"
+                android:layout_width="@dimen/rep_wh"
+                android:layout_height="@dimen/rep_wh"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:src="@drawable/mag_oval"
+                app:layout_constraintBottom_toTopOf="@id/mag_value"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mag_value" />
+
+            <TextView
+                android:id="@+id/mag_value"
+                style="@style/ValueDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@id/title"
-                app:layout_constraintLeft_toRightOf="@id/detal_divider"
-                app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="parent">
+                android:layout_marginStart="@dimen/spacer_margin_value"
+                android:layout_marginTop="@dimen/standard_margin"
+                app:layout_constraintLeft_toRightOf="@id/mag_rep_value"
+                app:layout_constraintTop_toBottomOf="@id/time_value"
+                tools:text="9.8" />
 
-                <TextView
-                    android:id="@+id/mag_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mag_title"
-                    tools:text="Mag" />
+            <TextView
+                android:id="@+id/mag_title"
+                style="@style/HeaderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mag_title"
+                app:layout_constraintLeft_toLeftOf="@id/mag_value"
+                app:layout_constraintTop_toBottomOf="@id/mag_value"
+                tools:text="Mag" />
 
-                <TextView
-                    android:id="@+id/mag_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="9.8" />
+            <TextView
+                android:id="@+id/felt_by_value"
+                style="@style/ValueDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/value_start_no_rep_margin"
+                android:layout_marginTop="@dimen/margin_title_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mag_title"
+                tools:text="120" />
 
-                <TextView
-                    android:id="@+id/felt_by_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_title_top"
-                    android:text="@string/felt_by_title"
-                    tools:text="Felt By" />
+            <TextView
+                android:id="@+id/felt_by_title"
+                style="@style/HeaderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/felt_by_title"
+                app:layout_constraintLeft_toLeftOf="@id/felt_by_value"
+                app:layout_constraintTop_toBottomOf="@id/felt_by_value"
+                tools:text="Felt By" />
 
-                <TextView
-                    android:id="@+id/felt_by_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="120" />
+            <TextView
+                android:id="@+id/location_value"
+                style="@style/ValueDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/value_start_no_rep_margin"
+                android:layout_marginTop="@dimen/margin_title_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/felt_by_title"
+                tools:text="-129.09, 987.12312" />
 
-                <TextView
-                    android:id="@+id/location_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_title_top"
-                    android:text="@string/location_title"
-                    tools:text="Lat, Long" />
+            <TextView
+                android:id="@+id/location_title"
+                style="@style/HeaderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location_title"
+                app:layout_constraintLeft_toLeftOf="@id/location_value"
+                app:layout_constraintTop_toBottomOf="@id/location_value"
+                tools:text="Lat, Long" />
 
-                <TextView
-                    android:id="@+id/location_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="-129.09, 987.12312" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/detal_divider"
-                android:layout_width="1dp"
+                android:layout_width="@dimen/divider"
                 android:layout_height="match_parent"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/depth_rep_value"
+                android:layout_width="@dimen/rep_wh"
+                android:layout_height="@dimen/rep_wh"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:src="@drawable/mag_oval"
+                app:layout_constraintBottom_toTopOf="@id/depth_value"
+                app:layout_constraintLeft_toLeftOf="@id/detal_divider"
+                app:layout_constraintTop_toBottomOf="@id/depth_value" />
+
+            <TextView
+                android:id="@+id/depth_value"
+                style="@style/ValueDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/right_detail_stat_m_start"
-                android:orientation="vertical"
-                app:layout_constraintLeft_toRightOf="@id/detal_divider"
-                app:layout_constraintTop_toTopOf="@id/left_side_detail">
+                android:layout_marginStart="@dimen/spacer_margin_value"
+                android:layout_marginTop="@dimen/standard_margin"
+                app:layout_constraintLeft_toRightOf="@id/depth_rep_value"
+                app:layout_constraintTop_toBottomOf="@id/time_value"
+                tools:text="1293 km" />
 
-                <TextView
-                    android:id="@+id/depth_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/depth_title"
+                style="@style/HeaderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/depth_title"
+                app:layout_constraintLeft_toLeftOf="@id/depth_value"
 
-                    android:text="@string/depth_title"
-                    tools:text="Depth" />
+                app:layout_constraintTop_toBottomOf="@id/depth_value"
+                tools:text="Depth" />
 
-                <TextView
-                    android:id="@+id/depth_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="1293 km" />
+            <ImageView
+                android:id="@+id/mmi_rep_value"
+                android:layout_width="@dimen/rep_wh"
+                android:layout_height="@dimen/rep_wh"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:src="@drawable/mag_oval"
+                app:layout_constraintBottom_toTopOf="@id/mmi_value"
+                app:layout_constraintLeft_toLeftOf="@id/detal_divider"
+                app:layout_constraintTop_toBottomOf="@id/mmi_value" />
 
-                <TextView
-                    android:id="@+id/mmi_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_title_top"
-                    android:text="@string/mmi_title"
-                    tools:text="MMI" />
+            <TextView
+                android:id="@+id/mmi_value"
+                style="@style/ValueDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_margin_value"
+                android:layout_marginTop="@dimen/margin_title_top"
+                app:layout_constraintLeft_toRightOf="@id/mmi_rep_value"
+                app:layout_constraintTop_toBottomOf="@id/depth_title"
+                tools:text="8.2" />
 
-                <TextView
-                    android:id="@+id/mmi_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="8.2" />
+            <TextView
+                android:id="@+id/mmi_title"
+                style="@style/HeaderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mmi_title"
+                app:layout_constraintLeft_toLeftOf="@id/mmi_value"
 
-                <TextView
-                    android:id="@+id/time_title"
-                    style="@style/HeaderDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_title_top"
-                    android:text="@string/time_title"
-                    tools:text="Time" />
+                app:layout_constraintTop_toBottomOf="@id/mmi_value"
+                tools:text="MMI" />
 
-                <TextView
-                    android:id="@+id/time_value"
-                    style="@style/ValueDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_value_top"
-                    tools:text="8:02 PM GMT" />
-            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
@@ -178,7 +199,7 @@
         android:id="@+id/fab_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/child_fab_left_m"
+        android:layout_marginStart="@dimen/child_fab_left_m"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/cardview_container"
         app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
