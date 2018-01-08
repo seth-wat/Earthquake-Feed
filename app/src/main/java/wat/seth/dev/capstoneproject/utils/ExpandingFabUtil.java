@@ -13,7 +13,8 @@ public class ExpandingFabUtil {
     ArrayList<FloatingActionButton> fabList = new ArrayList<>();
     ArrayList<AlphaAnimation> animations = new ArrayList<>();
     boolean isShown;
-    public static final int DURATION = 1000;
+    public static final int DURATION = 550;
+    public static final int DELAY = 80;
 
     public ExpandingFabUtil(boolean b) {
         isShown = b;
@@ -26,14 +27,14 @@ public class ExpandingFabUtil {
     public void animateFabs() {
 
         if (!isShown) {
-            int delay = 100;
+            int delay = DELAY;
             for (int i = 0; i < fabList.size(); i++) {
                 AlphaAnimation a = new AlphaAnimation(0, 1);
                 a.setDuration(DURATION);
                 a.setStartOffset(delay);
                 a.setFillAfter(true);
                 animations.add(i, a);
-                delay += 100;
+                delay += DELAY;
             }
 
             for (int i = 0; i < fabList.size(); i++) {
@@ -41,14 +42,14 @@ public class ExpandingFabUtil {
             }
             isShown = !isShown;
         } else {
-            int delay = 100 * fabList.size();
+            int delay = DELAY * fabList.size();
             for (int i = 0; i < fabList.size(); i++) {
                 AlphaAnimation a = new AlphaAnimation(1, 0);
                 a.setDuration(DURATION);
                 a.setStartOffset(delay);
                 a.setFillAfter(true);
                 animations.add(i, a);
-                delay -= 100;
+                delay -= DELAY;
             }
 
             for (int i = 0; i < fabList.size(); i++) {
