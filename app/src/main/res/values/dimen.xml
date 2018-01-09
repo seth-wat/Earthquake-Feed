@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="guide">0dp</dimen>
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="divider">1dp</dimen>
     <!--main_activity-->
@@ -34,6 +35,7 @@
     <integer name="detail_fragment_weight">8</integer>
 
     <!--preferences-->
+    <dimen name="ad_margin">100dp</dimen>
     <dimen name="spacer_margin">8dp</dimen>
     <dimen name="summary_margin_bottom">20dp</dimen>
     <dimen name="summary_margin_start">32dp</dimen>
@@ -44,7 +46,6 @@
     <dimen name="button_top_margin">8dp</dimen>
 
     <dimen name="location_button_wh">32dp</dimen>
-
 
 
 </resources>

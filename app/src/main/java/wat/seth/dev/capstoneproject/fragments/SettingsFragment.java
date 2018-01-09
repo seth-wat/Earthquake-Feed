@@ -41,8 +41,6 @@ public class SettingsFragment extends Fragment {
         /*
         All the views that display preference values.
          */
-        TextView rangeTextView = view.findViewById(R.id.notif_range_value);
-        TextView magTextView = view.findViewById(R.id.notif_mag_value);
         TextView searchMinMagView = view.findViewById(R.id.search_min_mag_value);
         TextView searchMaxMagView = view.findViewById(R.id.search_max_mag_value);
         TextView searchStartDateView = view.findViewById(R.id.search_start_date_value);
@@ -54,11 +52,6 @@ public class SettingsFragment extends Fragment {
         /*
         All the buttons that update preferences.
          */
-        SwitchCompat notifToggleSwitch = view.findViewById(R.id.notif_toggle_switch);
-        Button rangeUpButton = view.findViewById(R.id.notif_range_up_button);
-        Button rangeDownButton = view.findViewById(R.id.notif_range_down_button);
-        Button magUpButton = view.findViewById(R.id.notif_mag_up_button);
-        Button magDownButton = view.findViewById(R.id.notif_mag_down_button);
         Button searchMinMagUpButton = view.findViewById(R.id.search_min_mag_up_button);
         Button searchMinMagDownButton = view.findViewById(R.id.search_min_mag_down_button);
         Button searchMaxMagUpButton = view.findViewById(R.id.search_max_mag_up_button);
@@ -74,26 +67,6 @@ public class SettingsFragment extends Fragment {
         Each SharedPreference has a custom class that handles updating the preference values and UI.
         All SharedPreferences that both increment and decrement make use of the HandleIt class.
         Handle it allows for continuous updating while a button is pressed.
-
-
-        notification range
-         */
-        NotifRange range = new NotifRange(getActivity(), rangeTextView, 25, 25);
-        HandleIt handleRangeDecrement = new HandleIt(range, 1000, NotifRange.TYPE_DECREMENT);
-        HandleIt handleRangeIncrement = new HandleIt(range, 1000, NotifRange.TYPE_INCREMENT);
-
-        rangeDownButton.setOnTouchListener(handleRangeDecrement.getTouchListener());
-        rangeUpButton.setOnTouchListener(handleRangeIncrement.getTouchListener());
-
-        /*
-        notification mag
-         */
-        NotifMag mag = new NotifMag(getActivity(), magTextView, 0.1, 0.1);
-        HandleIt handleMagDecrement = new HandleIt(mag, 1000, NotifMag.TYPE_DECREMENT);
-        HandleIt handleMagIncrement = new HandleIt(mag, 1000, NotifMag.TYPE_INCREMENT);
-
-        magDownButton.setOnTouchListener(handleMagDecrement.getTouchListener());
-        magUpButton.setOnTouchListener(handleMagIncrement.getTouchListener());
 
         /*
         search min mag
@@ -148,7 +121,7 @@ public class SettingsFragment extends Fragment {
          */
         SearchSortBy searchSortBy = new SearchSortBy(searchSortByView, getActivity());
         searchSortbyButton.setOnClickListener(searchSortBy.getClickListener());
-        
+
         return view;
     }
 
