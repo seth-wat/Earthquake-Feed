@@ -64,7 +64,7 @@ public class HandleIt {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     run();
 
-                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                } else  {
                     stop();
                     toDo.finish();
                 }
