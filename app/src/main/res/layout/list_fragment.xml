@@ -1,26 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <android.support.v7.widget.RecyclerView
-        android:transitionGroup="true"
+        android:id="@+id/my_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_rv"/>
+        android:transitionGroup="true" />
+
+    <FrameLayout
+        android:id="@+id/error_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGrey"
+
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/lightGrey"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/error_image_wh"
+                android:id="@+id/error_image_view"
+                android:layout_height="128dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_error_outline_black_24dp" />
+
+            <TextView
+                android:id="@+id/error_display_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/darkerGrey"
+                android:text="@string/failed_to_load"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+
+            <Button
+                android:id="@+id/error_retry_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Try again" />
+        </LinearLayout>
+    </FrameLayout>
+
     <ProgressBar
         android:id="@+id/list_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/world_map_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/world_map_fab"
         android:layout_gravity="bottom|right"
         android:layout_margin="8dp"
-        android:src="@drawable/ic_map_black_24dp"
-        />
+        android:src="@drawable/ic_map_black_24dp" />
 </FrameLayout>
