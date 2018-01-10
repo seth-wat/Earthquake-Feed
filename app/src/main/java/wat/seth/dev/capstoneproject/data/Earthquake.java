@@ -66,6 +66,9 @@ public class Earthquake {
     }
 
     public static ArrayList<Earthquake> fromCursor(Cursor c) {
+        if (c == null) {
+            return null;
+        }
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
         while (c.moveToNext()) {
             String id = c.getString(c.getColumnIndex(Contract.QuakeEntry.COLUMN_QUAKE_ID));
@@ -83,7 +86,9 @@ public class Earthquake {
             Earthquake eq = new Earthquake(id, timeZone, mag, magType, place, time, felt, mmi, longtidue, latitude, depth);
             earthquakes.add(eq);
         }
-
+        if (earthquakes.size() == 0) {
+            return null;
+        }
         return earthquakes;
     }
 
