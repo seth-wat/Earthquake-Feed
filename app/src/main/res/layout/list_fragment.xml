@@ -29,6 +29,7 @@
                 android:layout_width="@dimen/error_image_wh"
                 android:id="@+id/error_image_view"
                 android:layout_height="128dp"
+                android:contentDescription="@null"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_error_outline_black_24dp" />
 
@@ -45,6 +46,7 @@
                 android:id="@+id/error_retry_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/cd_retry"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/colorAccent"
                 android:text="Try again" />
@@ -62,6 +64,7 @@
         android:id="@+id/world_map_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/cd_world_map"
         android:layout_gravity="bottom|right"
         android:layout_margin="8dp"
         android:src="@drawable/ic_map_black_24dp" />

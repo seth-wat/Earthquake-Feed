@@ -78,6 +78,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+                android:contentDescription="@string/cd_decrease_min_mag"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_min_mag_title" />
 
@@ -86,6 +87,7 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
+                android:contentDescription="@string/cd_increase_min_mag"
                 app:layout_constraintRight_toLeftOf="@id/search_min_mag_down_button"
                 app:layout_constraintTop_toTopOf="@id/search_min_mag_down_button" />
             <!--end search min mag-->
@@ -134,6 +136,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+                android:contentDescription="@string/cd_decrease_max_mag"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_max_mag_title" />
 
@@ -142,6 +145,7 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
+                android:contentDescription="@string/cd_increase_max_mag"
                 app:layout_constraintRight_toLeftOf="@id/search_max_mag_down_button"
                 app:layout_constraintTop_toTopOf="@id/search_max_mag_down_button" />
             <!--end max mag-->
@@ -190,6 +194,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_today_black_24dp"
+                android:contentDescription="@string/cd_start_date"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_start_date_title" />
             <!--search start date end-->
@@ -238,6 +243,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_today_black_24dp"
+                android:contentDescription="@string/cd_end_date"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_end_date_title" />
             <!--search end date end-->
@@ -286,6 +292,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+                android:contentDescription="@string/cd_decrease_max_results"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_max_results_title" />
 
@@ -294,6 +301,7 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
+                android:contentDescription="@string/cd_increase_max_results"
                 app:layout_constraintRight_toLeftOf="@id/search_max_results_down_button"
                 app:layout_constraintTop_toTopOf="@id/search_max_results_down_button" />
             <!--search max results end-->
@@ -342,6 +350,7 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_swap_horiz_black_24dp"
+                android:contentDescription="@string/cd_sort_by"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_order_by_title" />
             <!--search order by end-->
@@ -390,14 +399,15 @@
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/ic_swap_horiz_black_24dp"
+                android:contentDescription="@string/order_by"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_sort_by_title" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/consume_h"
-                app:layout_constraintTop_toBottomOf="@id/search_sort_by_button"
                 app:layout_constraintLeft_toLeftOf="parent"
-                />
+                app:layout_constraintTop_toBottomOf="@id/search_sort_by_button" />
             <!--start search sort by-->
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

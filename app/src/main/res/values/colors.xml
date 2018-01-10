@@ -7,8 +7,10 @@
 
     <color name="mag_display">#F4511E</color>
     <color name="darkerGrey">#a9a9a9</color>
+    <color name="lightGrey">#f1f1f1</color>
     <color name="white">#ffffff</color>
     <color name="drawableAccent">#FFFFD600</color>
+    <color name="transparent">#00FFFFFF</color>
 
     <color name="mag_0">#FFA726</color>
     <color name="mag_1">#FF9800</color>

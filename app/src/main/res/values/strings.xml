@@ -116,4 +116,25 @@
     <string name="max_results">limit</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <!--error view-->
+    <string name="failed_to_load">Failed to load earthquakes.</string>
+    <string name="no_saved">You have no saved earthquakes.</string>
+    <!--content description-->
+    <string name="cd_main_fab">More options</string>
+    <string name="cd_twitter">Twitter share</string>
+    <string name="cd_bookmark">Bookmark</string>
+    <string name="cd_search">Google search</string>
+    <string name="cd_increase_min_mag">Increase minimum magnitude</string>
+    <string name="cd_decrease_min_mag">Decrease minimum magnitude</string>
+    <string name="cd_increase_max_mag">Increase maximum magnitude</string>
+    <string name="cd_decrease_max_mag">Decrease maximum magnitude</string>
+    <string name="cd_start_date">Start date</string>
+    <string name="cd_end_date">End date</string>
+    <string name="cd_increase_max_results">Increase maximum results</string>
+    <string name="cd_decrease_max_results">Decrease maximum results</string>
+    <string name="cd_sort_by">Sort by</string>
+    <string name="cd_order_by">Order by</string>
+    <string name="cd_retry">Retry</string>
+    <string name="cd_world_map">World Map</string>
+    <string name="cd_settings">Settings</string>
 </resources>

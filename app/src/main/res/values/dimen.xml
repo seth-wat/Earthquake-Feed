@@ -9,7 +9,9 @@
     <dimen name="mag_drawable_hw">54dp</dimen>
     <dimen name="item_padding">10dp</dimen>
     <dimen name="mag_drawable_margin">8dp</dimen>
-
+    <dimen name="place_end_margin">8dp</dimen>
+    <dimen name="master_margin_tb">8dp</dimen>
+    <dimen name="master_margin_start">78dp</dimen>
     <dimen name="mag_text_size">20sp</dimen>
     <dimen name="details_margin_start">16dp</dimen>
     <dimen name="place_text_size">20sp</dimen>
@@ -48,6 +50,8 @@
     <dimen name="button_top_margin">8dp</dimen>
 
     <dimen name="location_button_wh">32dp</dimen>
+    <!--error view-->
+    <dimen name="error_image_wh">128dp</dimen>
 
 
 </resources>
