@@ -4,9 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -27,6 +24,8 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.fragments.DetailValuesFragment;
 import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
 import wat.seth.dev.capstoneproject.utils.ColorUtils;
+import wat.seth.dev.capstoneproject.utils.ErrorUtil;
+import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback, TakeSnapShot,
@@ -36,7 +35,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     public static final String MAP_CAMERA_POSITION = "map_camera_position";
 
     Earthquake earthquake;
-    GoogleMap gm;
+    GoogleMap gM;
     CameraPosition cameraPosition;
     String socialType;
 
@@ -47,8 +46,15 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getParcelable(MAP_CAMERA_POSITION) != null) {
+                cameraPosition = Parcels.unwrap(savedInstanceState.getParcelable(MAP_CAMERA_POSITION));
+            }
+        }
         mapContainer = findViewById(R.id.map_cotainer);
-
+        if (!NetworkUtils.hasInternet(this)) {
+            ErrorUtil.noInternet(mapContainer);
+        }
         Twitter.initialize(this);
 
         earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
@@ -66,10 +72,11 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
          */
         DetailValuesFragment f = DetailValuesFragment.instantiate(earthquake, this);
 
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.detail_container, f)
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.detail_container, f)
+                    .commit();
+        }
     }
 
     @Override
@@ -78,7 +85,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.enter_from_top);
         mapContainer.startAnimation(fromTop);
 
-        gm = googleMap;
+        gM = googleMap;
         LatLng location = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(location);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(ColorUtils.getMarkerColor(earthquake.getMag())));
@@ -93,6 +100,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         }
 
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -116,6 +124,17 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void captureMap(String type) {
         socialType = type;
-        gm.snapshot(this);
+        gM.snapshot(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cameraPosition = gM.getCameraPosition();
     }
 }

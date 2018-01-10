@@ -2,7 +2,9 @@ package wat.seth.dev.capstoneproject.fragments;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -47,6 +49,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
 
     private boolean saved = false; //Tracks state of earthquake in db.
     private boolean shown = false;
+    private boolean isExpanded = false;
 
     private CardView cardView;
     private LinearLayout fabContainer;
@@ -82,6 +85,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
             earthquake = Parcels.unwrap(savedInstanceState.getParcelable(SAVED_QUAKE));
             //is FAB expanded?
             shown = savedInstanceState.getBoolean(SHOWN);
+            isExpanded = shown;
         }
 
         View view = inflater.inflate(R.layout.fragment_detail_values, container, false);
@@ -131,7 +135,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         Handle FAB actions
          */
 
-        fabUtil = new ExpandingFabUtil(shown);
+        fabUtil = new ExpandingFabUtil(false);
         fabUtil.appendFab(twitterFab);
         fabUtil.appendFab(saveFab);
         fabUtil.appendFab(searchFab);
@@ -168,6 +172,13 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (isExpanded) {
+                    //Restore state of fab
+                    fabContainer.startAnimation(fromRight);
+                    isExpanded = false;
+                    fabUtil.animateFabs();
+                    return;
+                }
                 if (!shown) {
                     fabContainer.startAnimation(fromRight);
                     shown = true;
@@ -181,7 +192,9 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
 
         //Start animation.
         cardView.startAnimation(fromRight);
-
+        if (isExpanded && getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mainFab.performClick();
+        }
         return view;
     }
 
@@ -247,4 +260,8 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         return f;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }
