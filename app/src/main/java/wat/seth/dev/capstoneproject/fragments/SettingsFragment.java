@@ -1,22 +1,26 @@
 package wat.seth.dev.capstoneproject.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.CompoundButton;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.handlers.HandleIt;
 import wat.seth.dev.capstoneproject.handlers.NotifMag;
-import wat.seth.dev.capstoneproject.handlers.NotifRange;
 import wat.seth.dev.capstoneproject.handlers.SearchMaxMag;
 import wat.seth.dev.capstoneproject.handlers.SearchMinMag;
 import wat.seth.dev.capstoneproject.handlers.DatePick;
@@ -29,8 +33,19 @@ import wat.seth.dev.capstoneproject.handlers.SearchSortBy;
  */
 
 public class SettingsFragment extends Fragment {
+    private AdView mAdView;
+    private ProgressBar exitProgressBar;
+    private ProgressBar adviewProgressBar;
+    private ScrollView scrollView;
 
     public SettingsFragment() {
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MobileAds.initialize(getContext(), getString(R.string.ads_test_key));
 
     }
 
@@ -38,6 +53,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
         /*
         All the views that display preference values.
          */
@@ -62,6 +78,14 @@ public class SettingsFragment extends Fragment {
         Button searchMaxResultsDownButton = view.findViewById(R.id.search_max_results_down_button);
         Button searchOrderByButton = view.findViewById(R.id.search_order_by_button);
         Button searchSortbyButton = view.findViewById(R.id.search_sort_by_button);
+
+        /*
+        Non value related views
+         */
+        exitProgressBar = view.findViewById(R.id.exit_progress_bar);
+        mAdView = view.findViewById(R.id.adView);
+        adviewProgressBar = view.findViewById(R.id.adView_progress_bar);
+        scrollView = view.findViewById(R.id.scroll_settings);
 
         /*
         Each SharedPreference has a custom class that handles updating the preference values and UI.
@@ -122,8 +146,37 @@ public class SettingsFragment extends Fragment {
         SearchSortBy searchSortBy = new SearchSortBy(searchSortByView, getActivity());
         searchSortbyButton.setOnClickListener(searchSortBy.getClickListener());
 
+        /*
+        Animate scroll view
+         */
+        Animation fromTop = AnimationUtils.loadAnimation(getContext(), R.anim.enter_from_top);
+        scrollView.startAnimation(fromTop);
+
+        /*
+        Build and show add
+         */
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adviewProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+                exitProgressBar.setVisibility(View.VISIBLE);
+            }
+        });
         return view;
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        //If the user exited the app via add and returned progress bar should be hidden
+        exitProgressBar.setVisibility(View.INVISIBLE);
+    }
 }

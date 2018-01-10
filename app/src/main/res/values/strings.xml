@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Earthquake Feed</string>
     <string name="mag_content_desc">Colored circle representing magnitude.</string>
+    <string name="ads_test_key">ca-app-pub-3940256099942544~3347511713</string>
     <!--Tabs for view pager-->
     <string name="recent_tab">Recent</string>
     <string name="saved_tab">Saved</string>
