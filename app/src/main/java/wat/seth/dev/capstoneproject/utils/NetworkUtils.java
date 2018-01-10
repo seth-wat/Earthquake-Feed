@@ -3,6 +3,7 @@ package wat.seth.dev.capstoneproject.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.nio.charset.Charset;
  */
 
 public final class NetworkUtils {
-    private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
+    private static final String LOG = NetworkUtils.class.getSimpleName();
 
     public static final String BASE_QUERY = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake";
     public static final String WIDGET_QUERY = BASE_QUERY + "&orderby=magnitude&starttime=";
@@ -49,7 +50,7 @@ public final class NetworkUtils {
                 line = br.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(LOG, "Failed to get response: " + e.getMessage());
             return response.toString();
         } finally {
             if (urlConnection != null) urlConnection.disconnect();

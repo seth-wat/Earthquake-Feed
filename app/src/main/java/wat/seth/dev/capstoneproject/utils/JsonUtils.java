@@ -108,7 +108,7 @@ public class JsonUtils {
                 earthquakes.add(singleQuake);
             }
         } catch (JSONException e) {
-            Log.v(TAG, e.getMessage());
+            Log.e(TAG, "Failed to parse JSON: " + e.getMessage());
         }
 
         return earthquakes;
