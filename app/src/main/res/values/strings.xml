@@ -140,4 +140,6 @@
     <!--toolbars-->
     <string name="tb_world_map">World Map</string>
     <string name="tb_settings">Search Settings</string>
+    <!--widget-->
+    <string name="widget_title">Today\'s Largest Earthquake</string>
 </resources>
