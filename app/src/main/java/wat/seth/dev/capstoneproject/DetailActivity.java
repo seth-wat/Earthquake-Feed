@@ -2,9 +2,11 @@ package wat.seth.dev.capstoneproject;
 
 import android.graphics.Bitmap;
 import android.os.Parcelable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -141,5 +143,14 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onPause() {
         super.onPause();
         cameraPosition = gM.getCameraPosition();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
