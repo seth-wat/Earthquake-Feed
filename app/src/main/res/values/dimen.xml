@@ -4,7 +4,7 @@
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="divider">1dp</dimen>
     <!--main_activity-->
-    <dimen name="tab_ele">4dp</dimen>
+    <dimen name="ele">4dp</dimen>
     <!--list_item-->
     <dimen name="mag_drawable_hw">54dp</dimen>
     <dimen name="item_padding">10dp</dimen>

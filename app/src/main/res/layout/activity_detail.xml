@@ -4,10 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryLight"
     android:orientation="vertical"
     tools:context="wat.seth.dev.capstoneproject.DetailActivity">
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/detail_toolbar"
+        style="@style/ActionBarStyle"
+        app:titleTextColor="@color/white"
+        app:popupTheme="@style/AppTheme"
+        app:subtitleTextColor="@color/lightGrey" />
     <FrameLayout
         android:id="@+id/map_cotainer"
         android:layout_width="match_parent"

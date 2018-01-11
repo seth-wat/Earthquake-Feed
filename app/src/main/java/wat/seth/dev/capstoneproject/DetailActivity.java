@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -46,6 +47,10 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        setSupportActionBar((Toolbar) findViewById(R.id.detail_toolbar));
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (savedInstanceState != null) {
             if (savedInstanceState.getParcelable(MAP_CAMERA_POSITION) != null) {
                 cameraPosition = Parcels.unwrap(savedInstanceState.getParcelable(MAP_CAMERA_POSITION));

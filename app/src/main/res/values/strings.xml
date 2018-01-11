@@ -137,4 +137,7 @@
     <string name="cd_retry">Retry</string>
     <string name="cd_world_map">World Map</string>
     <string name="cd_settings">Settings</string>
+    <!--toolbars-->
+    <string name="tb_world_map">World Map</string>
+    <string name="tb_settings">Search Settings</string>
 </resources>

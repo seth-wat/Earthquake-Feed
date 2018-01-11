@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="wat.seth.dev.capstoneproject.MapActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/map_toolbar"
+        app:subtitle="@string/tb_world_map"
+        style="@style/ActionBarStyle"
+        app:titleTextColor="@color/white"
+        app:popupTheme="@style/AppTheme"
+        app:subtitleTextColor="@color/lightGrey" />
     <fragment
         android:id="@+id/world_map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
