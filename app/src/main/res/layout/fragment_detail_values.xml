@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLight">
+    android:background="@color/primaryLight"
+    android:focusable="false">
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/cardview_container"
@@ -11,6 +12,7 @@
         android:layout_height="@dimen/card_view_h"
         android:layout_marginEnd="@dimen/card_view_margin_l_r"
         android:layout_marginStart="@dimen/card_view_margin_l_r"
+        android:focusable="false"
         android:transitionGroup="true"
         app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +21,8 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusable="false">
 
             <TextView
                 android:id="@+id/time_value"
@@ -27,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/time_margin_bottom"
                 android:background="@color/colorPrimary"
+                android:focusable="false"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Small"
                 android:textColor="@color/white"
@@ -41,6 +45,7 @@
                 android:layout_height="@dimen/rep_wh"
                 android:layout_marginStart="@dimen/standard_margin"
                 android:contentDescription="@null"
+                android:focusable="false"
                 android:src="@drawable/mag_oval"
                 app:layout_constraintBottom_toTopOf="@id/mag_value"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -53,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacer_margin_value"
                 android:layout_marginTop="@dimen/standard_margin"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="@id/mag_rep_value"
                 app:layout_constraintTop_toBottomOf="@id/time_value"
                 tools:text="9.8" />
@@ -62,6 +68,7 @@
                 style="@style/HeaderDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="@string/mag_title"
                 app:layout_constraintLeft_toLeftOf="@id/mag_value"
                 app:layout_constraintTop_toBottomOf="@id/mag_value"
@@ -74,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/value_start_no_rep_margin"
                 android:layout_marginTop="@dimen/margin_title_top"
+                android:focusable="false"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mag_title"
                 tools:text="120" />
@@ -83,6 +91,7 @@
                 style="@style/HeaderDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="@string/felt_by_title"
                 app:layout_constraintLeft_toLeftOf="@id/felt_by_value"
                 app:layout_constraintTop_toBottomOf="@id/felt_by_value"
@@ -95,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/value_start_no_rep_margin"
                 android:layout_marginTop="@dimen/margin_title_top"
+                android:focusable="false"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/felt_by_title"
                 tools:text="-129.09, 987.12312" />
@@ -104,6 +114,7 @@
                 style="@style/HeaderDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="@string/location_title"
                 app:layout_constraintLeft_toLeftOf="@id/location_value"
                 app:layout_constraintTop_toBottomOf="@id/location_value"
@@ -114,6 +125,7 @@
                 android:id="@+id/detal_divider"
                 android:layout_width="@dimen/divider"
                 android:layout_height="match_parent"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -124,6 +136,7 @@
                 android:layout_height="@dimen/rep_wh"
                 android:layout_marginStart="@dimen/standard_margin"
                 android:contentDescription="@null"
+                android:focusable="false"
                 android:src="@drawable/mag_oval"
                 app:layout_constraintBottom_toTopOf="@id/depth_value"
                 app:layout_constraintLeft_toLeftOf="@id/detal_divider"
@@ -136,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacer_margin_value"
                 android:layout_marginTop="@dimen/standard_margin"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="@id/depth_rep_value"
                 app:layout_constraintTop_toBottomOf="@id/time_value"
                 tools:text="1293 km" />
@@ -145,6 +159,7 @@
                 style="@style/HeaderDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="@string/depth_title"
                 app:layout_constraintLeft_toLeftOf="@id/depth_value"
 
@@ -157,6 +172,7 @@
                 android:layout_height="@dimen/rep_wh"
                 android:layout_marginStart="@dimen/standard_margin"
                 android:contentDescription="@null"
+                android:focusable="false"
                 android:src="@drawable/mag_oval"
                 app:layout_constraintBottom_toTopOf="@id/mmi_value"
                 app:layout_constraintLeft_toLeftOf="@id/detal_divider"
@@ -169,6 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacer_margin_value"
                 android:layout_marginTop="@dimen/margin_title_top"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="@id/mmi_rep_value"
                 app:layout_constraintTop_toBottomOf="@id/depth_title"
                 tools:text="8.2" />
@@ -178,6 +195,7 @@
                 style="@style/HeaderDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="@string/mmi_title"
                 app:layout_constraintLeft_toLeftOf="@id/mmi_value"
 
@@ -193,6 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin_detail"
         android:contentDescription="@string/cd_main_fab"
+        android:nextFocusRight="@+id/twitter_fab"
         android:src="@drawable/ic_add_black_24dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -204,6 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/child_fab_left_m"
+        android:focusable="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/cardview_container"
         app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
@@ -216,6 +236,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_twitter"
+            android:focusable="true"
             android:src="@drawable/ic_twitter_logo_silhouette"
             android:visibility="invisible"
             app:fabSize="mini" />
@@ -226,6 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_bookmark"
+            android:focusable="true"
             android:src="@drawable/ic_save_black_24dp"
             android:visibility="invisible"
             app:fabSize="mini" />
@@ -236,6 +258,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_search"
+            android:focusable="true"
             android:src="@drawable/ic_search_black_24dp"
             android:visibility="invisible"
             app:fabSize="mini" />

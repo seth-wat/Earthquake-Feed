@@ -177,12 +177,21 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
                     fabContainer.startAnimation(fromRight);
                     isExpanded = false;
                     fabUtil.animateFabs();
+                    twitterFab.setFocusable(true);
+                    saveFab.setFocusable(true);
+                    searchFab.setFocusable(true);
+                    fabContainer.setFocusable(true);
                     return;
                 }
                 if (!shown) {
                     fabContainer.startAnimation(fromRight);
+                    fabContainer.setFocusable(true);
+                    twitterFab.setFocusable(true);
+                    saveFab.setFocusable(true);
+                    searchFab.setFocusable(true);
                     shown = true;
                 } else {
+
                    fabContainer.startAnimation(exitRight);
                    shown = false;
                 }
