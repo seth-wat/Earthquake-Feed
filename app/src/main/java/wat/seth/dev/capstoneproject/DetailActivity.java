@@ -27,8 +27,6 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.fragments.DetailValuesFragment;
 import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
 import wat.seth.dev.capstoneproject.utils.ColorUtils;
-import wat.seth.dev.capstoneproject.utils.ErrorUtil;
-import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback, TakeSnapShot,
@@ -59,9 +57,6 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         }
         mapContainer = findViewById(R.id.map_cotainer);
-        if (!NetworkUtils.hasInternet(this)) {
-            ErrorUtil.noInternet(mapContainer);
-        }
         Twitter.initialize(this);
 
         earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));

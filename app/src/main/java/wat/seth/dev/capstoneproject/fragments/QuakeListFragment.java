@@ -1,29 +1,20 @@
 package wat.seth.dev.capstoneproject.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -38,9 +29,7 @@ import wat.seth.dev.capstoneproject.MapActivity;
 import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.adapters.QuakeListAdapter;
 import wat.seth.dev.capstoneproject.data.Earthquake;
-import wat.seth.dev.capstoneproject.handlers.QueryBuilder;
 import wat.seth.dev.capstoneproject.loaders.ApiFetchLoader;
-import wat.seth.dev.capstoneproject.utils.ErrorUtil;
 import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 
 /**
