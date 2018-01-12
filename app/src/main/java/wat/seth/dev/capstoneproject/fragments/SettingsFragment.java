@@ -19,8 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import wat.seth.dev.capstoneproject.R;
-import wat.seth.dev.capstoneproject.handlers.HandleIt;
-import wat.seth.dev.capstoneproject.handlers.NotifMag;
+import wat.seth.dev.capstoneproject.handlers.EachLoop;
 import wat.seth.dev.capstoneproject.handlers.SearchMaxMag;
 import wat.seth.dev.capstoneproject.handlers.SearchMinMag;
 import wat.seth.dev.capstoneproject.handlers.DatePick;
@@ -33,10 +32,22 @@ import wat.seth.dev.capstoneproject.handlers.SearchSortBy;
  */
 
 public class SettingsFragment extends Fragment {
+    /*
+    Unfortunately when I designed this I did not think to fetch
+    SharedPreferences on a separate thread. Needs to be fixed todo
+     */
+    /*
+    Note: the activity had to be refactor and no longer uses the HandleIt class
+    because d-pad/keyboard will not trigger a touch event.
+     */
     private AdView mAdView;
     private ProgressBar exitProgressBar;
     private ProgressBar adviewProgressBar;
     private ScrollView scrollView;
+
+    SearchMaxMag searchMaxMag;
+    SearchMinMag searchMinMag;
+    SearchNumResults searchNumResults;
 
     public SettingsFragment() {
 
@@ -71,7 +82,7 @@ public class SettingsFragment extends Fragment {
         Button searchMinMagUpButton = view.findViewById(R.id.search_min_mag_up_button);
         Button searchMinMagDownButton = view.findViewById(R.id.search_min_mag_down_button);
         Button searchMaxMagUpButton = view.findViewById(R.id.search_max_mag_up_button);
-        Button searchMaxMagDownButton = view.findViewById(R.id.search_max_mag_down_button);
+        final Button searchMaxMagDownButton = view.findViewById(R.id.search_max_mag_down_button);
         Button searchStartDateButton = view.findViewById(R.id.search_start_date_button);
         Button searchEndDateButton = view.findViewById(R.id.search_end_date_button);
         Button searchMaxResultsUpButton = view.findViewById(R.id.search_max_results_up_button);
@@ -95,23 +106,51 @@ public class SettingsFragment extends Fragment {
         /*
         search min mag
          */
-        SearchMinMag searchMinMag = new SearchMinMag(getActivity(), searchMinMagView, 0.1, 0.1);
-        HandleIt handleSearchMinMagDecrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_DECREMENT);
-        HandleIt handleSearchMinMagIncrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_INCREMENT);
+        searchMinMag = new SearchMinMag(getActivity(), searchMinMagView, 0.1, 0.1);
+//        HandleIt handleSearchMinMagDecrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_DECREMENT);
+//        HandleIt handleSearchMinMagIncrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_INCREMENT);
+//
+//        searchMinMagDownButton.setOnTouchListener(handleSearchMinMagDecrement.getTouchListener());
+//        searchMinMagUpButton.setOnTouchListener(handleSearchMinMagIncrement.getTouchListener());
+        searchMinMagDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchMinMag.setType(EachLoop.TYPE_DECREMENT);
+                searchMinMag.eachLoop();
+            }
+        });
+        searchMinMagUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchMinMag.setType(EachLoop.TYPE_INCREMENT);
+                searchMinMag.eachLoop();
 
-        searchMinMagDownButton.setOnTouchListener(handleSearchMinMagDecrement.getTouchListener());
-        searchMinMagUpButton.setOnTouchListener(handleSearchMinMagIncrement.getTouchListener());
-
+            }
+        });
         /*
         search max mag
          */
-        SearchMaxMag searchMaxMag = new SearchMaxMag(getActivity(), searchMaxMagView, 0.1, 0.1);
-        HandleIt handleSearchMaxMagDecrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_DECREMENT);
-        HandleIt handleSearchMaxMagIncrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_INCREMENT);
+        searchMaxMag = new SearchMaxMag(getActivity(), searchMaxMagView, 0.1, 0.1);
+//        HandleIt handleSearchMaxMagDecrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_DECREMENT);
+//        HandleIt handleSearchMaxMagIncrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_INCREMENT);
+//
+////        searchMaxMagDownButton.setOnTouchListener(handleSearchMaxMagDecrement.getTouchListener());
+////        searchMaxMagUpButton.setOnTouchListener(handleSearchMaxMagIncrement.getTouchListener());
+        searchMaxMagDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchMaxMag.setType(EachLoop.TYPE_DECREMENT);
+                searchMaxMag.eachLoop();
+            }
+        });
+        searchMaxMagUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchMaxMag.setType(EachLoop.TYPE_INCREMENT);
+                searchMaxMag.eachLoop();
 
-        searchMaxMagDownButton.setOnTouchListener(handleSearchMaxMagDecrement.getTouchListener());
-        searchMaxMagUpButton.setOnTouchListener(handleSearchMaxMagIncrement.getTouchListener());
-
+            }
+        });
         /*
         search start date
          */
@@ -127,13 +166,28 @@ public class SettingsFragment extends Fragment {
         /*
         search num results
          */
-        SearchNumResults searchNumResults = new SearchNumResults(getActivity(), searchMaxResultsView, 5, 5);
-        HandleIt handleItResultsDecrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_DECREMENT);
-        HandleIt handleItResultsIncrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_INCREMENT);
+        searchNumResults = new SearchNumResults(getActivity(), searchMaxResultsView, 5, 5);
+//        HandleIt handleItResultsDecrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_DECREMENT);
+//        HandleIt handleItResultsIncrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_INCREMENT);
+//
+//        searchMaxResultsDownButton.setOnTouchListener(handleItResultsDecrement.getTouchListener());
+//        searchMaxResultsUpButton.setOnTouchListener(handleItResultsIncrement.getTouchListener());
 
-        searchMaxResultsDownButton.setOnTouchListener(handleItResultsDecrement.getTouchListener());
-        searchMaxResultsUpButton.setOnTouchListener(handleItResultsIncrement.getTouchListener());
+        searchMaxResultsDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchNumResults.setType(EachLoop.TYPE_DECREMENT);
+                searchNumResults.eachLoop();
+            }
+        });
+        searchMaxResultsUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchNumResults.setType(EachLoop.TYPE_INCREMENT);
+                searchNumResults.eachLoop();
 
+            }
+        });
         /*
         search order by
          */
