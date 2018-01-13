@@ -117,8 +117,8 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
          */
         magValue.setText(earthquake.getReadableMag());
         feltByValue.setText(String.valueOf(earthquake.getReadableFelt()));
-        String location = String.valueOf(earthquake.getLatitude()) + ", "
-                + String.valueOf(earthquake.getLongitude());
+        String location = String.valueOf(earthquake.getReadableLat()) + ", "
+                + String.valueOf(earthquake.getReadableLong());
         locationValue.setText(location);
         depthValue.setText(String.valueOf(earthquake.getReadableDepth(true)));
         mmiValue.setText(earthquake.getReadableMmi());

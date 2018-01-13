@@ -334,4 +334,23 @@ public class Earthquake {
         return new String(sB);
     }
 
+    public String getReadableLat() {
+        String lat = String.valueOf(latitude);
+        int index = lat.indexOf(".");
+        if (index != -1) {
+            int lastIndex = lat.length() > index + 5 ? index + 5 : lat.length();
+            return lat.substring(0, lastIndex);
+        }
+        return lat;
+    }
+    public String getReadableLong() {
+        String longi = String.valueOf(longitude);
+        int index = longi.indexOf(".");
+        if (index != -1) {
+            int lastIndex = longi.length() > index + 5 ? index + 5 : longi.length();
+            return longi.substring(0, lastIndex);
+        }
+        return longi;
+    }
+
 }
