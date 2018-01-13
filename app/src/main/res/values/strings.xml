@@ -143,5 +143,5 @@
     <!--widget-->
     <string name="widget_title">Today\'s Largest Earthquake</string>
     <!--twitter-->
-    <string name="twitter_share"></string>
+    <string name="twitter_share">earthquake near</string>
 </resources>
