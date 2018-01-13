@@ -97,7 +97,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-        cameraPosition = gM.getCameraPosition();
+        if (gM != null) {
+            cameraPosition = gM.getCameraPosition();
+        }
     }
 
     @Override

@@ -137,7 +137,9 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onPause() {
         super.onPause();
-        cameraPosition = gM.getCameraPosition();
+        if (gM != null) {
+            cameraPosition = gM.getCameraPosition();
+        }
     }
 
     @Override
