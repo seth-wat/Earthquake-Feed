@@ -61,7 +61,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
         earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
 
-        getSupportActionBar().setSubtitle(earthquake.getReadablePlaceDistance(true) + " of " + earthquake.getReadablePlace());
+        getSupportActionBar().setSubtitle(earthquake.getReadablePlaceDistance(true, getResources()) + " of " + earthquake.getReadablePlace());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*

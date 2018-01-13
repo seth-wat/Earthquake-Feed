@@ -121,9 +121,10 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         String location = String.valueOf(earthquake.getReadableLat()) + ", "
                 + String.valueOf(earthquake.getReadableLong());
         locationValue.setText(location);
-        depthValue.setText(String.valueOf(earthquake.getReadableDepth(true)));
-        mmiValue.setText(earthquake.getReadableMmi());
-        timeValue.setText(earthquake.getReadableLongDate() + " " + earthquake.getReadableTime());
+        depthValue.setText(String.valueOf(earthquake.getReadableDepth(true, getResources())));
+        mmiValue.setText(earthquake.getReadableMmi(getResources()));
+        timeValue.setText(earthquake.getReadableLongDate() +
+                getResources().getString(R.string.space) + earthquake.getReadableTime());
 
         /*
         Show visual representations

@@ -32,7 +32,7 @@ public class EarthquakeWidgetProvider extends AppWidgetProvider {
         if (earthquake != null) {
             views.setTextViewText(R.id.widget_mag, String.valueOf(earthquake.getMag()));
             views.setTextViewText(R.id.widget_place, earthquake.getReadablePlace());
-            views.setTextViewText(R.id.widget_place_distance, earthquake.getReadablePlaceDistance(true));
+            views.setTextViewText(R.id.widget_place_distance, earthquake.getReadablePlaceDistance(true, context.getResources()));
             views.setTextViewText(R.id.widget_time, earthquake.getReadableTime());
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra(DetailActivity.EARTHQUAKE_EXTRA, Parcels.wrap(earthquake));

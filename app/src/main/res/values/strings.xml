@@ -1,4 +1,5 @@
 <resources>
+    <string name="space">&#160;</string>
     <string name="app_name">Earthquake Feed</string>
     <string name="mag_content_desc">Colored circle representing magnitude.</string>
     <string name="ads_test_key">ca-app-pub-3940256099942544~3347511713</string>
@@ -144,4 +145,17 @@
     <string name="widget_title">Today\'s Largest Earthquake</string>
     <!--twitter-->
     <string name="twitter_share">earthquake near</string>
+    <!--List-->
+    <string name="retry_button">Try again</string>
+    <!--menu-->
+    <string name="options_title">options</string>
+    <!--display view-->
+    <string name="desc">descending</string>
+    <string name="asc">ascending</string>
+    <string name="date_display">date</string>
+    <!--earthquake-->
+    <string name="mmi_suffix">mmi</string>
+    <string name="km_suffix">km</string>
+    <string name="miles_suffix">mi</string>
+    <string name="miles">miles</string>
 </resources>
