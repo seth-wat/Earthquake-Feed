@@ -247,7 +247,7 @@
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_bookmark"
             android:focusable="true"
-            android:src="@drawable/ic_save_black_24dp"
+            android:src="@drawable/bookmark_add"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton

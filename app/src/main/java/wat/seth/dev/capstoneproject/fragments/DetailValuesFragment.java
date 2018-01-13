@@ -222,25 +222,24 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         Strange bug where loader.getId() was returning incorrect in onLoadFinished,
         this if block just represents switch case(SaveLoader.CHECK)
          */
+        Drawable remove = getResources().getDrawable(R.drawable.bookmark_remove, null);
+        Drawable add = getResources().getDrawable(R.drawable.bookmark_add, null);
         if (((SaveLoader) loader).wasCheck() && data != null && ((ArrayList<Earthquake>) data).size() != 0) {
             saved = true;
-            Drawable d = getResources().getDrawable(R.drawable.ic_saved_24dp, null);
-            saveFab.setImageDrawable(d);
+            saveFab.setImageDrawable(remove);
             return;
         }
         switch (loader.getId()) {
             case SaveLoader.SAVE:
                 if (data != null) {
                     saved = true;
-                    Drawable d = getResources().getDrawable(R.drawable.ic_saved_24dp, null);
-                    saveFab.setImageDrawable(d);
+                    saveFab.setImageDrawable(remove);
                     return;
                 }
             case SaveLoader.DELETE:
                 if (data != null && ((Integer) data) > 0) {
                     saved = false;
-                    Drawable d = getResources().getDrawable(R.drawable.ic_save_black_24dp, null);
-                    saveFab.setImageDrawable(d);
+                    saveFab.setImageDrawable(add);
                     return;
                 }
             default:
