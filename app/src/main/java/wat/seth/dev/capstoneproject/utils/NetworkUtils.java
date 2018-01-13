@@ -24,6 +24,7 @@ public final class NetworkUtils {
     public static final String BASE_QUERY = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake";
     public static final String WIDGET_QUERY = BASE_QUERY + "&orderby=magnitude&starttime=";
     public static final String TEST_QUERY = BASE_QUERY + "&starttime=2017-12-12&limit=20";
+    public static final String GOOGLE_QUERY = "http://www.google.com/#q=news of earthquake ";
 
 
     public static URL urlFromString(String url) {

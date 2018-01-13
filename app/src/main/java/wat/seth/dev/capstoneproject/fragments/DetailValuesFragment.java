@@ -35,6 +35,7 @@ import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
 import wat.seth.dev.capstoneproject.loaders.SaveLoader;
 import wat.seth.dev.capstoneproject.utils.ColorUtils;
 import wat.seth.dev.capstoneproject.utils.ExpandingFabUtil;
+import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 /**
@@ -163,7 +164,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.google.com/#q=" + earthquake.getPlace());
+                Uri uri = Uri.parse(NetworkUtils.GOOGLE_QUERY + earthquake.getReadablePlace());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
