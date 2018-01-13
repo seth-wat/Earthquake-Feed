@@ -1,5 +1,6 @@
 package wat.seth.dev.capstoneproject.fragments;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -145,7 +146,8 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
                 Parcelable p = Parcels.wrap(data);
                 Intent intent = new Intent(getContext(), MapActivity.class);
                 intent.putExtra(MapActivity.MAP_EARTHQUAKES_EXTRA, p);
-                getActivity().startActivity(intent);
+                Bundle b = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
+                getActivity().startActivity(intent, b);
             }
         });
     }

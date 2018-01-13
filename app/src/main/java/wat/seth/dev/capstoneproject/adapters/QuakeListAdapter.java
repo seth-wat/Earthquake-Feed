@@ -1,11 +1,13 @@
 package wat.seth.dev.capstoneproject.adapters;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,7 +59,8 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.putExtra(DetailActivity.EARTHQUAKE_EXTRA, Parcels.wrap(earthquakes.get(position)));
-                mContext.startActivity(intent);
+                Bundle b = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+                mContext.startActivity(intent, b);
             }
         });
     }
