@@ -19,5 +19,7 @@ Capstone project for Udacity. Earthquake feed is a earthqake synopsis aplication
 
 ## Configuration
  * Replace Twitter API and Google Map API keys in gradle.properties
- * https://apps.twitter.com/
- * https://developers.google.com/maps/documentation/android-api/start
+ 
+    https://apps.twitter.com/
+    
+    https://developers.google.com/maps/documentation/android-api/start
