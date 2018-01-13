@@ -3,28 +3,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:focusable="false"
+    android:descendantFocusability="afterDescendants"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryLight"
     android:orientation="vertical"
     tools:context="wat.seth.dev.capstoneproject.DetailActivity">
     <android.support.v7.widget.Toolbar
-        android:focusable="false"
+        android:descendantFocusability="afterDescendants"
         android:id="@+id/detail_toolbar"
         style="@style/ActionBarStyle"
         app:titleTextColor="@color/white"
         app:popupTheme="@style/AppTheme"
         app:subtitleTextColor="@color/lightGrey" />
     <FrameLayout
-        android:focusable="false"
+        android:descendantFocusability="blocksDescendants"
         android:id="@+id/map_cotainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/map_fragment_h"
         android:layout_weight="@integer/map_fragment_weight">
 
         <fragment
-            android:focusable="false"
             android:id="@+id/map_fragment"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
@@ -32,7 +31,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:focusable="true"
+        android:descendantFocusability="afterDescendants"
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_fragment_h"
