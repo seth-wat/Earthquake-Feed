@@ -142,4 +142,6 @@
     <string name="tb_settings">Search Settings</string>
     <!--widget-->
     <string name="widget_title">Today\'s Largest Earthquake</string>
+    <!--twitter-->
+    <string name="twitter_share"></string>
 </resources>

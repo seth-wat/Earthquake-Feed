@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import wat.seth.dev.capstoneproject.DetailActivity;
+import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.data.Earthquake;
 
 /**
@@ -34,7 +35,7 @@ public class SocialHelper {
         }
 
         TweetComposer.Builder builder = new TweetComposer.Builder(c)
-                .text(earthquake.getPlace())
+                .text(earthquake.getReadableMag() + " " + c.getResources().getString(R.string.twitter_share) + " " + earthquake.getReadablePlace())
                 .image(FileProvider.getUriForFile(c, "wat.seth.dev.capstoneproject.FileProvider", file));
         builder.show();
     }
