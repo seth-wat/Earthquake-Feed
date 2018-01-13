@@ -126,7 +126,9 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void captureMap(String type) {
         socialType = type;
-        gM.snapshot(this);
+        if (gM != null) {
+            gM.snapshot(this);
+        }
     }
 
     @Override
