@@ -36,12 +36,10 @@ public class SearchMaxMag extends EachLoop {
         if (getType() == TYPE_INCREMENT) {
             if (mag == 10) return;
             incrementRange(mag, incrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.format("%.1f", mag));
         } else {
             if (mag == 0) return;
             decrementRange(mag, decrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.format("%.1f", mag));
         }
     }
