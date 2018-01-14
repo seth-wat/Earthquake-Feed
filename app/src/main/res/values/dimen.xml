@@ -39,6 +39,7 @@
     <!--settings-->
     <dimen name="consume_h">100dp</dimen>
     <dimen name="void_ele">0dp</dimen>
+    <dimen name="half_spacer_margin">4dp</dimen>
     <dimen name="ad_margin">60dp</dimen>
     <dimen name="spacer_margin">8dp</dimen>
     <dimen name="summary_margin_bottom">20dp</dimen>
