@@ -207,7 +207,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/detail_options_fab"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin_detail"
@@ -223,12 +223,13 @@
         android:id="@+id/fab_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin_detail"
+        android:layout_marginStart="@dimen/child_fab_left_m"
         android:descendantFocusability="afterDescendants"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/cardview_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintBottom_toBottomOf="@id/cardview_container"
+        app:layout_constraintBottom_toTopOf="@id/detail_options_fab"
+        app:layout_constraintLeft_toRightOf="@id/detail_options_fab"
+        app:layout_constraintTop_toBottomOf="@id/detail_options_fab">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/twitter_fab"
@@ -237,6 +238,7 @@
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_twitter"
             android:focusable="true"
+            android:visibility="invisible"
             android:src="@drawable/ic_twitter_logo_silhouette"
             app:fabSize="mini" />
 
@@ -247,6 +249,7 @@
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_bookmark"
             android:focusable="true"
+            android:visibility="invisible"
             android:src="@drawable/bookmark_add"
             app:fabSize="mini" />
 
@@ -255,6 +258,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin_detail"
+            android:visibility="invisible"
             android:contentDescription="@string/cd_search"
             android:focusable="true"
             android:src="@drawable/ic_search_black_24dp"
