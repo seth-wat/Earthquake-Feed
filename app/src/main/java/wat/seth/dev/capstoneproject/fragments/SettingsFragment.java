@@ -117,6 +117,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchMinMag.setType(EachLoop.TYPE_DECREMENT);
                 searchMinMag.eachLoop();
+                searchMinMag.finish();
             }
         });
         searchMinMagUpButton.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +125,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchMinMag.setType(EachLoop.TYPE_INCREMENT);
                 searchMinMag.eachLoop();
+                searchMinMag.finish();
 
             }
         });
@@ -141,6 +143,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchMaxMag.setType(EachLoop.TYPE_DECREMENT);
                 searchMaxMag.eachLoop();
+                searchMaxMag.finish();
             }
         });
         searchMaxMagUpButton.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +151,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchMaxMag.setType(EachLoop.TYPE_INCREMENT);
                 searchMaxMag.eachLoop();
+                searchMaxMag.finish();
 
             }
         });
@@ -178,6 +182,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchNumResults.setType(EachLoop.TYPE_DECREMENT);
                 searchNumResults.eachLoop();
+                searchNumResults.finish();
             }
         });
         searchMaxResultsUpButton.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +190,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 searchNumResults.setType(EachLoop.TYPE_INCREMENT);
                 searchNumResults.eachLoop();
+                searchNumResults.finish();
 
             }
         });
