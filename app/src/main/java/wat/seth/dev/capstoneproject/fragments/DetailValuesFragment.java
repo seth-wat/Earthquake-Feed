@@ -181,7 +181,6 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
                 if (isExpanded) {
                     //Restore state of fab
                     mainFab.setImageDrawable(shrink);
-                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.red)));
                     fabContainer.startAnimation(fromRight);
                     isExpanded = false;
                     fabUtil.animateFabs();
@@ -190,7 +189,6 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
                 if (!shown) {
                     //update ui of main fab to reflect state
                     mainFab.setImageDrawable(shrink);
-                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.red)));
                     //animate sub fabs
                     fabContainer.startAnimation(fromRight);
                     // sub fabs are now shown
@@ -198,7 +196,6 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
                 } else {
                     mainFab.setImageDrawable(expand);
                     fabContainer.startAnimation(exitRight);
-                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
                     shown = false;
                 }
                 fabUtil.animateFabs();
