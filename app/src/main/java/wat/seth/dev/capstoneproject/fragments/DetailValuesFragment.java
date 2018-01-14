@@ -2,9 +2,9 @@ package wat.seth.dev.capstoneproject.fragments;
 
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -171,31 +172,34 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
             }
         });
 
+
+        final Drawable expand = ContextCompat.getDrawable(getContext(), R.drawable.plus);
+        final Drawable shrink = ContextCompat.getDrawable(getContext(), R.drawable.minus);
         mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isExpanded) {
                     //Restore state of fab
+                    mainFab.setImageDrawable(shrink);
+                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.red)));
                     fabContainer.startAnimation(fromRight);
                     isExpanded = false;
                     fabUtil.animateFabs();
-                    twitterFab.setFocusable(true);
-                    saveFab.setFocusable(true);
-                    searchFab.setFocusable(true);
-                    fabContainer.setFocusable(true);
                     return;
                 }
                 if (!shown) {
+                    //update ui of main fab to reflect state
+                    mainFab.setImageDrawable(shrink);
+                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.red)));
+                    //animate sub fabs
                     fabContainer.startAnimation(fromRight);
-                    fabContainer.setFocusable(true);
-                    twitterFab.setFocusable(true);
-                    saveFab.setFocusable(true);
-                    searchFab.setFocusable(true);
+                    // sub fabs are now shown
                     shown = true;
                 } else {
-
-                   fabContainer.startAnimation(exitRight);
-                   shown = false;
+                    mainFab.setImageDrawable(expand);
+                    fabContainer.startAnimation(exitRight);
+                    mainFab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
+                    shown = false;
                 }
                 fabUtil.animateFabs();
             }
