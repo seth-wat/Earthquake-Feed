@@ -14,21 +14,21 @@ import android.view.MenuItem;
 import wat.seth.dev.capstoneproject.adapters.LaunchScreenPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPager viewPager = findViewById(R.id.mlist);
+
         setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
         getSupportActionBar().setElevation(0.f);
-        ViewPager viewPager = findViewById(R.id.mlist);
+
         LaunchScreenPagerAdapter mAdapter = new LaunchScreenPagerAdapter(
                 getSupportFragmentManager(), this);
         viewPager.setAdapter(mAdapter);
-
-
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
     }
 
