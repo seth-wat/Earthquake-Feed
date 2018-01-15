@@ -36,10 +36,6 @@ public class SettingsFragment extends Fragment {
     Unfortunately when I designed this I did not think to fetch
     SharedPreferences on a separate thread. Needs to be fixed todo
      */
-    /*
-    Note: the activity had to be refactor and no longer uses the HandleIt class
-    because d-pad/keyboard will not trigger a touch event.
-     */
     private AdView mAdView;
     private ProgressBar exitProgressBar;
     private ProgressBar adviewProgressBar;
@@ -82,11 +78,11 @@ public class SettingsFragment extends Fragment {
         Button searchMinMagUpButton = view.findViewById(R.id.search_min_mag_up_button);
         Button searchMinMagDownButton = view.findViewById(R.id.search_min_mag_down_button);
         Button searchMaxMagUpButton = view.findViewById(R.id.search_max_mag_up_button);
-        final Button searchMaxMagDownButton = view.findViewById(R.id.search_max_mag_down_button);
+        Button searchMaxMagDownButton = view.findViewById(R.id.search_max_mag_down_button);
         Button searchStartDateButton = view.findViewById(R.id.search_start_date_button);
         Button searchEndDateButton = view.findViewById(R.id.search_end_date_button);
-        Button searchMaxResultsUpButton = view.findViewById(R.id.search_max_results_up_button);
-        Button searchMaxResultsDownButton = view.findViewById(R.id.search_max_results_down_button);
+        Button searchNumResultsUpButton = view.findViewById(R.id.search_max_results_up_button);
+        Button searchNumResultsDownButton = view.findViewById(R.id.search_max_results_down_button);
         Button searchOrderByButton = view.findViewById(R.id.search_order_by_button);
         Button searchSortbyButton = view.findViewById(R.id.search_sort_by_button);
 
@@ -98,20 +94,12 @@ public class SettingsFragment extends Fragment {
         adviewProgressBar = view.findViewById(R.id.adView_progress_bar);
         scrollView = view.findViewById(R.id.scroll_settings);
 
-        /*
-        Each SharedPreference has a custom class that handles updating the preference values and UI.
-        All SharedPreferences that both increment and decrement make use of the HandleIt class.
-        Handle it allows for continuous updating while a button is pressed.
 
         /*
         search min mag
          */
         searchMinMag = new SearchMinMag(getActivity(), searchMinMagView, 0.1, 0.1);
-//        HandleIt handleSearchMinMagDecrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_DECREMENT);
-//        HandleIt handleSearchMinMagIncrement = new HandleIt(searchMinMag, 1000, NotifMag.TYPE_INCREMENT);
-//
-//        searchMinMagDownButton.setOnTouchListener(handleSearchMinMagDecrement.getTouchListener());
-//        searchMinMagUpButton.setOnTouchListener(handleSearchMinMagIncrement.getTouchListener());
+
         searchMinMagDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,11 +121,7 @@ public class SettingsFragment extends Fragment {
         search max mag
          */
         searchMaxMag = new SearchMaxMag(getActivity(), searchMaxMagView, 0.1, 0.1);
-//        HandleIt handleSearchMaxMagDecrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_DECREMENT);
-//        HandleIt handleSearchMaxMagIncrement = new HandleIt(searchMaxMag, 1000, NotifMag.TYPE_INCREMENT);
-//
-////        searchMaxMagDownButton.setOnTouchListener(handleSearchMaxMagDecrement.getTouchListener());
-////        searchMaxMagUpButton.setOnTouchListener(handleSearchMaxMagIncrement.getTouchListener());
+
         searchMaxMagDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,6 +139,7 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+
         /*
         search start date
          */
@@ -171,13 +156,7 @@ public class SettingsFragment extends Fragment {
         search num results
          */
         searchNumResults = new SearchNumResults(getActivity(), searchMaxResultsView, 5, 5);
-//        HandleIt handleItResultsDecrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_DECREMENT);
-//        HandleIt handleItResultsIncrement = new HandleIt(searchNumResults, 1000, SearchNumResults.TYPE_INCREMENT);
-//
-//        searchMaxResultsDownButton.setOnTouchListener(handleItResultsDecrement.getTouchListener());
-//        searchMaxResultsUpButton.setOnTouchListener(handleItResultsIncrement.getTouchListener());
-
-        searchMaxResultsDownButton.setOnClickListener(new View.OnClickListener() {
+        searchNumResultsDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 searchNumResults.setType(EachLoop.TYPE_DECREMENT);
@@ -185,7 +164,7 @@ public class SettingsFragment extends Fragment {
                 searchNumResults.finish();
             }
         });
-        searchMaxResultsUpButton.setOnClickListener(new View.OnClickListener() {
+        searchNumResultsUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 searchNumResults.setType(EachLoop.TYPE_INCREMENT);
@@ -213,7 +192,7 @@ public class SettingsFragment extends Fragment {
         scrollView.startAnimation(fromTop);
 
         /*
-        Build and show add
+        Build and show ad
          */
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -236,7 +215,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //If the user exited the app via add and returned progress bar should be hidden
+        //If the user exited the app via ad and returned progress bar should be hidden
         exitProgressBar.setVisibility(View.INVISIBLE);
     }
 }

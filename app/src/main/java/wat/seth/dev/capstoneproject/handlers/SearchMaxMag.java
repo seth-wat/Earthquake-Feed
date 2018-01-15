@@ -15,7 +15,6 @@ public class SearchMaxMag extends EachLoop {
     /*
     This class updates search_max_mag preferences, it's related view,
     and provides behavior to be executed on touch events.
-
      */
     private double mag;
     private double incrementStep;

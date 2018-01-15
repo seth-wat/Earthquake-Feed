@@ -55,23 +55,6 @@ public class QueryBuilder {
         return builder.build().toString();
     }
 
-//    private boolean shouldReload(Map<String, ?> values) {
-//        Map<String, ?> temp = fetchPreferences();
-//        for (Map.Entry<String, ?> entry : values.entrySet()) {
-//            String tempValue;
-//            try {
-//                tempValue = temp.get(entry.getKey()).toString();
-//            } catch (IllegalStateException e) {
-//                return true;
-//            }
-//
-//            if (!tempValue.equals(entry.getValue().toString())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     private String get(@StringRes int key, @StringRes int def) {
         return sharedPreferences.getString(activity.getString(key), activity.getString(def));
     }
