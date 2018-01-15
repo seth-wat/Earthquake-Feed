@@ -17,7 +17,14 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
  */
 
 public class SocialHelper {
+    /*
+    Save image of the map and compose Tweet
+     */
     public static final String TWITTER = "twitter";
+
+    private SocialHelper() {
+
+    }
 
     public static void twitterShare(Bitmap b, Context c, Earthquake earthquake) {
         File path = new File(c.getFilesDir(), "images");

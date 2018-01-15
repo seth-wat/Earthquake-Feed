@@ -26,6 +26,9 @@ public final class NetworkUtils {
     public static final String TEST_QUERY = BASE_QUERY + "&starttime=2017-12-12&limit=20";
     public static final String GOOGLE_QUERY = "http://www.google.com/#q=news of earthquake ";
 
+    private NetworkUtils() {
+
+    }
 
     public static URL urlFromString(String url) {
         try {

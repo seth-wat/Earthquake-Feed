@@ -31,7 +31,9 @@ public class JsonUtils {
     public static final String FELT = "felt";
     public static final String MMI = "mmi";
 
+    private JsonUtils() {
 
+    }
     public static ArrayList<Earthquake> parseJson(String rawData) {
         if (rawData.isEmpty()) {
             return null;
