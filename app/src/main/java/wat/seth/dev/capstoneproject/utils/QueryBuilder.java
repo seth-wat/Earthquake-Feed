@@ -1,4 +1,4 @@
-package wat.seth.dev.capstoneproject.handlers;
+package wat.seth.dev.capstoneproject.utils;
 
 import android.app.Activity;
 import android.content.Context;
