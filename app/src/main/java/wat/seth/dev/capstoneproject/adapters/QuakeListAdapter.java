@@ -48,12 +48,12 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Earthquake earthquake = earthquakes.get(position);
+
         holder.mag.setText(String.valueOf(earthquake.getMag()));
         holder.place.setText(earthquake.getReadablePlace());
         holder.placeDistance.setText(earthquake.getReadablePlaceDistance(true, mContext.getResources()));
         holder.time.setText(earthquake.getReadableDate() +
                  mContext.getResources().getString(R.string.space) + earthquake.getReadableTime());
-
         holder.magRep.setColorFilter(ColorUtils.setMagColor(earthquake.getMag(), mContext));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
