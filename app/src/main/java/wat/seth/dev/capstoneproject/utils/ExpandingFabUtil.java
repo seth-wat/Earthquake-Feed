@@ -10,11 +10,12 @@ import java.util.ArrayList;
  */
 
 public class ExpandingFabUtil {
-    ArrayList<FloatingActionButton> fabList = new ArrayList<>();
-    ArrayList<AlphaAnimation> animations = new ArrayList<>();
-    boolean isShown;
     public static final int DURATION = 550;
     public static final int DELAY = 80;
+
+    private ArrayList<FloatingActionButton> fabList = new ArrayList<>();
+    private ArrayList<AlphaAnimation> animations = new ArrayList<>();
+    private boolean isShown;
 
     public ExpandingFabUtil(boolean b) {
         isShown = b;

@@ -22,8 +22,8 @@ public class SaveLoader extends AsyncTaskLoader {
     public static final int SAVE = 5556;
     public static final int DELETE = 5557;
 
-    Earthquake earthquake;
-    boolean wasCheck = false;
+    private Earthquake earthquake;
+    private boolean wasCheck = false;
 
     public SaveLoader(Context c, Earthquake earthquake) {
         super(c);

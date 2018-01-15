@@ -35,10 +35,10 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     public static final String EARTHQUAKE_EXTRA = "earthquake_extra";
     public static final String MAP_CAMERA_POSITION = "map_camera_position";
 
-    Earthquake earthquake;
-    GoogleMap gM;
-    CameraPosition cameraPosition;
-    String socialType;
+    private Earthquake earthquake;
+    private GoogleMap gM;
+    private CameraPosition cameraPosition;
+    private String socialType;
 
     FrameLayout mapContainer;
 

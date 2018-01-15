@@ -25,7 +25,7 @@ public class WidgetJobService extends JobService {
     public static final String EXTRA_EARTHQUAKE = "wat.seth.dev.capstoneproject.widget.EXTRA_EARTHQUAKE";
     public static final String ACTION_EARTHQUAKE = "wat.seth.dev.capstoneproject.widget.DATA";
     public static final int JOB_ID = 601304;
-    AsyncTask<Void, Void, Earthquake> backgroundTask;
+    private AsyncTask<Void, Void, Earthquake> backgroundTask;
 
     @Override
     public boolean onStartJob(final JobParameters job) {

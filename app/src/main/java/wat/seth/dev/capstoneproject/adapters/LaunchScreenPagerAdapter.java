@@ -15,7 +15,7 @@ import wat.seth.dev.capstoneproject.loaders.ApiFetchLoader;
  */
 
 public class LaunchScreenPagerAdapter extends FragmentPagerAdapter {
-    Context mContext;
+    private Context mContext;
 
     public LaunchScreenPagerAdapter(FragmentManager fm, Context context) {
         super(fm);

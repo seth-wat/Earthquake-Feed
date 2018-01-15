@@ -60,12 +60,12 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
     private FloatingActionButton twitterFab;
     private FloatingActionButton searchFab;
 
-    ExpandingFabUtil fabUtil;
+    private ExpandingFabUtil fabUtil;
     /*
     Interface called to take a snapshot of the map
     in DetailActivity and share.
      */
-    TakeSnapShot takeSnapShot;
+    private TakeSnapShot takeSnapShot;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

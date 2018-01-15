@@ -45,8 +45,8 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
     private TextView errorViewText;
     private ImageView errorImageView;
     private RecyclerView rv;
-    FloatingActionButton fab;
-    ProgressBar progressBar;
+    private FloatingActionButton fab;
+    private ProgressBar progressBar;
     private int loaderId;
     public static final String EXTRA_LOADER_ID = "extra_loader_id";
 

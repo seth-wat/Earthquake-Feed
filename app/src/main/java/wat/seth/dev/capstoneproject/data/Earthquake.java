@@ -39,17 +39,17 @@ public class Earthquake {
         this.depth = depth;
     }
 
-    String id;
-    int timeZone;
-    double mag;
-    String magType;
-    String place;
-    long time;
-    int felt;
-    double mmi; //intensity or shake
-    double longitude;
-    double latitude;
-    double depth;
+    private String id;
+    private int timeZone;
+    private double mag;
+    private String magType;
+    private String place;
+    private long time;
+    private int felt;
+    private double mmi; //intensity or shake
+    private double longitude;
+    private double latitude;
+    private double depth;
 
 
     public ContentValues toContentValues() {

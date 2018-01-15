@@ -17,7 +17,7 @@ import android.support.annotation.Nullable;
 
 public class QuakeContentProvider extends ContentProvider{
     public static final int QUAKE_TABLE_CODE = 1;
-    Database db;
+    private Database db;
 
     public UriMatcher buildUriMatcher() {
         UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);

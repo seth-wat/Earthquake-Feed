@@ -25,9 +25,9 @@ import wat.seth.dev.capstoneproject.utils.ColorUtils;
  */
 
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
-    ArrayList<Earthquake> earthquakes = new ArrayList<>();
-    Context mContext = null;
-    Activity activity;
+    private ArrayList<Earthquake> earthquakes = new ArrayList<>();
+    private Context mContext = null;
+    private Activity activity;
 
     public QuakeListAdapter(Context context, Activity activity) {
         mContext = context;

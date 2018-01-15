@@ -41,9 +41,9 @@ public class SettingsFragment extends Fragment {
     private ProgressBar adviewProgressBar;
     private ScrollView scrollView;
 
-    SearchMaxMag searchMaxMag;
-    SearchMinMag searchMinMag;
-    SearchNumResults searchNumResults;
+    private SearchMaxMag searchMaxMag;
+    private SearchMinMag searchMinMag;
+    private SearchNumResults searchNumResults;
 
     public SettingsFragment() {
 

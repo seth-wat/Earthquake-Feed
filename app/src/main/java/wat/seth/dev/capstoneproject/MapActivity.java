@@ -29,9 +29,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public static final String MAP_EARTHQUAKES_EXTRA = "map_earthquakes_extra";
     public static final String MAP_CAMERA_POSITION = "map_camera_position";
 
-    ArrayList<Earthquake> earthquakes = new ArrayList<>();
-    CameraPosition cameraPosition;
-    GoogleMap gM;
+    private ArrayList<Earthquake> earthquakes = new ArrayList<>();
+    private CameraPosition cameraPosition;
+    private GoogleMap gM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

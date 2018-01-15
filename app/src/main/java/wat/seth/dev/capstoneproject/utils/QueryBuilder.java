@@ -26,8 +26,8 @@ public class QueryBuilder {
     Class simply loads preferences and constructs query using them as params
     in the url.
      */
-    public Activity activity;
-    SharedPreferences sharedPreferences;
+    private Activity activity;
+    private SharedPreferences sharedPreferences;
 
     public QueryBuilder(Activity activity) {
         this.activity = activity;
