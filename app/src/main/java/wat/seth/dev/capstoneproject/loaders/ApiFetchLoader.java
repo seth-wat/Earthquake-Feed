@@ -23,9 +23,6 @@ public class ApiFetchLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
     Activity activity;
 
 
-    public ApiFetchLoader(Context context) {
-        super(context);
-    }
     public ApiFetchLoader(Context context, Activity activity) {
         super(context);
         this.activity = activity;
