@@ -3,7 +3,6 @@ package wat.seth.dev.capstoneproject.loaders;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.AsyncTaskLoader;
-import android.util.Log;
 
 import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.db.Contract;
@@ -14,11 +13,17 @@ import wat.seth.dev.capstoneproject.db.Database;
  */
 
 public class SaveLoader extends AsyncTaskLoader {
+    /*
+    Check if the earthquake exists in db,
+    Save earthquake in db,
+    delete earthquake from db
+     */
     public static final int CHECK = 5555;
     public static final int SAVE = 5556;
     public static final int DELETE = 5557;
+
     Earthquake earthquake;
-    boolean thisismadness = false;
+    boolean wasCheck = false;
 
     public SaveLoader(Context c, Earthquake earthquake) {
         super(c);
@@ -30,7 +35,7 @@ public class SaveLoader extends AsyncTaskLoader {
 
         switch (getId()) {
             case CHECK:
-                thisismadness = true;
+                wasCheck = true;
                 Cursor cu = Database.fetchQuake(getContext(), earthquake.getPlace(),
                         String.valueOf(earthquake.getTime()));
                 return Earthquake.fromCursor(cu);
@@ -45,7 +50,7 @@ public class SaveLoader extends AsyncTaskLoader {
     }
 
     public boolean wasCheck() {
-        return thisismadness;
+        return wasCheck;
     }
     @Override
     protected void onStartLoading() {

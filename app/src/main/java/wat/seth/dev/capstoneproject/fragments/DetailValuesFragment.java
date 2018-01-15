@@ -221,12 +221,12 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         /*
         Handles checking/saving/removing earthquake from db.
          */
+        Drawable remove = getResources().getDrawable(R.drawable.bookmark_remove, null);
+        Drawable add = getResources().getDrawable(R.drawable.bookmark_add, null);
         /*
         Strange bug where loader.getId() was returning incorrect in onLoadFinished,
         this if block just represents switch case(SaveLoader.CHECK)
          */
-        Drawable remove = getResources().getDrawable(R.drawable.bookmark_remove, null);
-        Drawable add = getResources().getDrawable(R.drawable.bookmark_add, null);
         if (((SaveLoader) loader).wasCheck() && data != null && ((ArrayList<Earthquake>) data).size() != 0) {
             saved = true;
             saveFab.setImageDrawable(remove);
@@ -269,10 +269,5 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         f.earthquake = e;
         f.takeSnapShot = capture;
         return f;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 }

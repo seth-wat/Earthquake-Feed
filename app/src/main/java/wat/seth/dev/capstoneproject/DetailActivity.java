@@ -47,23 +47,21 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        setSupportActionBar((Toolbar) findViewById(R.id.detail_toolbar));
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Twitter.initialize(this);
 
         if (savedInstanceState != null) {
             if (savedInstanceState.getParcelable(MAP_CAMERA_POSITION) != null) {
                 cameraPosition = Parcels.unwrap(savedInstanceState.getParcelable(MAP_CAMERA_POSITION));
             }
         }
-        mapContainer = findViewById(R.id.map_cotainer);
-        Twitter.initialize(this);
-
         earthquake = Parcels.unwrap((Parcelable)getIntent().getExtras().get(EARTHQUAKE_EXTRA));
-
-        getSupportActionBar().setSubtitle(earthquake.getReadablePlaceDistance(true, getResources()) + " of " + earthquake.getReadablePlace());
+        //Set-up action bar
+        setSupportActionBar((Toolbar) findViewById(R.id.detail_toolbar));
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setSubtitle(earthquake.getReadablePlaceDistance(true, getResources()) + " of " + earthquake.getReadablePlace());
+        //Get references
+        mapContainer = findViewById(R.id.map_cotainer);
         /*
         Add map fragment
          */
@@ -86,8 +84,9 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         //Slide map into view
         Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.enter_from_top);
         mapContainer.startAnimation(fromTop);
-
+        //Get reference to GoogleMap for saving sate
         gM = googleMap;
+        //Map marker setup
         LatLng location = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(location);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(ColorUtils.getMarkerColor(earthquake.getMag())));
@@ -129,11 +128,6 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         if (gM != null) {
             gM.snapshot(this);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
