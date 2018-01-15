@@ -213,7 +213,7 @@
         android:layout_margin="@dimen/fab_margin_detail"
         android:contentDescription="@string/cd_main_fab"
         android:nextFocusRight="@+id/twitter_fab"
-        android:src="@drawable/ic_add_black_24dp"
+        android:src="@drawable/plus"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -239,7 +239,7 @@
             android:contentDescription="@string/cd_twitter"
             android:focusable="true"
             android:visibility="invisible"
-            android:src="@drawable/ic_twitter_logo_silhouette"
+            android:src="@drawable/twitter"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton
@@ -261,7 +261,7 @@
             android:visibility="invisible"
             android:contentDescription="@string/cd_search"
             android:focusable="true"
-            android:src="@drawable/ic_search_black_24dp"
+            android:src="@drawable/search"
             app:fabSize="mini" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

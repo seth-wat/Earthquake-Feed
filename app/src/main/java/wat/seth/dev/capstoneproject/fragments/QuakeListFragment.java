@@ -126,7 +126,7 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
                 errorView.setVisibility(View.VISIBLE);
                 errorViewText.setText(getString(R.string.no_saved));
                 errorViewButton.setVisibility(View.INVISIBLE);
-                errorImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_bookmark_border_black_24dp));
+                errorImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.bookmark_background));
                 errorViewButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

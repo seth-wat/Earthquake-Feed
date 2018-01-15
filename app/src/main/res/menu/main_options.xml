@@ -5,6 +5,6 @@
         android:title="@string/options_title"
         android:id="@+id/settings"
         android:contentDescription="@string/cd_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
+        android:icon="@drawable/settings"
         app:showAsAction="always"/>
 </menu>
