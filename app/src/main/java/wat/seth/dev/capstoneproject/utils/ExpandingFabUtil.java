@@ -1,5 +1,7 @@
 package wat.seth.dev.capstoneproject.utils;
 
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.view.animation.AlphaAnimation;
 
@@ -15,10 +17,11 @@ public class ExpandingFabUtil {
 
     private ArrayList<FloatingActionButton> fabList = new ArrayList<>();
     private ArrayList<AlphaAnimation> animations = new ArrayList<>();
-    private boolean isShown;
+    private boolean isShown = false;
+    private FloatingActionButton mainFab;
 
-    public ExpandingFabUtil(boolean b) {
-        isShown = b;
+    public ExpandingFabUtil(FloatingActionButton mainFab) {
+        this.mainFab = mainFab;
     }
 
     public void appendFab(FloatingActionButton fab) {
@@ -58,6 +61,16 @@ public class ExpandingFabUtil {
             }
             isShown = !isShown;
         }
+    }
+
+    public void swapMainDrawable(final Drawable drawable) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mainFab.setImageDrawable(drawable);
+            }
+        }, 700);
     }
 
 

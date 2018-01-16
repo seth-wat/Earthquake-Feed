@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -138,7 +139,7 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         Handle FAB actions
          */
 
-        fabUtil = new ExpandingFabUtil(false);
+        fabUtil = new ExpandingFabUtil(mainFab);
         fabUtil.appendFab(twitterFab);
         fabUtil.appendFab(saveFab);
         fabUtil.appendFab(searchFab);
@@ -179,29 +180,27 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
             @Override
             public void onClick(View view) {
                 if (isExpanded) {
-                    //Restore state of fab
-                    mainFab.setImageDrawable(shrink);
+                    //restore state of fab if necessary
+                    fabUtil.swapMainDrawable(shrink);
                     fabContainer.startAnimation(fromRight);
-                    isExpanded = false;
                     fabUtil.animateFabs();
-                    twitterFab.setFocusable(true);
-                    saveFab.setFocusable(true);
-                    searchFab.setFocusable(true);
-                    fabContainer.setFocusable(true);
+                    isExpanded = false;
+                    //return out of this method if state was restored
                     return;
                 }
                 if (!shown) {
                     //update ui of main fab to reflect state
-                    mainFab.setImageDrawable(shrink);
-                    //animate sub fabs
+                    fabUtil.swapMainDrawable(shrink);
+                    //animate container containing sub fabs
                     fabContainer.startAnimation(fromRight);
                     // sub fabs are now shown
                     shown = true;
                 } else {
-                    mainFab.setImageDrawable(expand);
+                    fabUtil.swapMainDrawable(expand);
                     fabContainer.startAnimation(exitRight);
                     shown = false;
                 }
+                //animate sub fabs
                 fabUtil.animateFabs();
             }
         });
