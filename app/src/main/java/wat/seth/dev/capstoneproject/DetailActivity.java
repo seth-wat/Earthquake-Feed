@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,7 +42,8 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     private CameraPosition cameraPosition;
     private String socialType;
 
-    FrameLayout mapContainer;
+    private FrameLayout mapContainer;
+    private ProgressBar twitterProgressBar;
 
 
     @Override
@@ -62,6 +65,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setSubtitle(earthquake.getReadablePlaceDistance(true, getResources()) + " of " + earthquake.getReadablePlace());
         //Get references
         mapContainer = findViewById(R.id.map_cotainer);
+        twitterProgressBar = findViewById(R.id.twitter_progress_bar);
         /*
         Add map fragment
          */
@@ -124,6 +128,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
      */
     @Override
     public void captureMap(String type) {
+        twitterProgressBar.setVisibility(View.VISIBLE);
         socialType = type;
         if (gM != null) {
             gM.snapshot(this);
@@ -133,6 +138,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onPause() {
         super.onPause();
+        twitterProgressBar.setVisibility(View.INVISIBLE);
         if (gM != null) {
             cameraPosition = gM.getCameraPosition();
         }

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:descendantFocusability="afterDescendants"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryLight"
+    android:descendantFocusability="afterDescendants"
     android:orientation="vertical"
     tools:context="wat.seth.dev.capstoneproject.DetailActivity">
+
     <android.support.v7.widget.Toolbar
-        android:descendantFocusability="afterDescendants"
         android:id="@+id/detail_toolbar"
         style="@style/ActionBarStyle"
-        app:titleTextColor="@color/white"
+        android:descendantFocusability="afterDescendants"
         app:popupTheme="@style/AppTheme"
-        app:subtitleTextColor="@color/lightGrey" />
+        app:subtitleTextColor="@color/lightGrey"
+        app:titleTextColor="@color/white" />
+
     <FrameLayout
-        android:descendantFocusability="blocksDescendants"
         android:id="@+id/map_cotainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/map_fragment_h"
-        android:layout_weight="@integer/map_fragment_weight">
+        android:layout_weight="@integer/map_fragment_weight"
+        android:descendantFocusability="blocksDescendants">
 
         <fragment
             android:id="@+id/map_fragment"
@@ -31,11 +33,18 @@
     </FrameLayout>
 
     <FrameLayout
-        android:descendantFocusability="afterDescendants"
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_fragment_h"
-        android:layout_weight="@integer/detail_fragment_weight">
+        android:layout_weight="@integer/detail_fragment_weight"
+        android:descendantFocusability="afterDescendants">
 
+        <ProgressBar
+            android:id="@+id/twitter_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="4dp"
+            android:visibility="invisible" />
     </FrameLayout>
 </LinearLayout>
