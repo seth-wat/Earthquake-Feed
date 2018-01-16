@@ -1,10 +1,11 @@
 # Earthquake-Feed
-Capstone project for Udacity. Earthquake feed is a earthqake synopsis aplication.
+
+<img src="https://github.com/seth-wat/Earthquake-Feed/blob/polish/display-image-small.png">
 
 ## Features
-* Load recent and past earthquake occurrences from all over the world
+* Load recent and past earthquake occurrences from all over the world.
 * Enter search parameters to refine results. 
-* View the result set visually on a world map
+* View the result set visually on a world map.
 * View specific earthquake details.
 * Save earthquakes for offline access.
 * Share earthquakes.
