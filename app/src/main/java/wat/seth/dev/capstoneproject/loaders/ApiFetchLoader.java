@@ -11,7 +11,7 @@ import wat.seth.dev.capstoneproject.data.Earthquake;
 import wat.seth.dev.capstoneproject.db.Database;
 import wat.seth.dev.capstoneproject.utils.JsonUtils;
 import wat.seth.dev.capstoneproject.utils.NetworkUtils;
-import wat.seth.dev.capstoneproject.handlers.QueryBuilder;
+import wat.seth.dev.capstoneproject.utils.QueryBuilder;
 
 /**
  * Created by seth-wat on 12/14/2017.
@@ -20,12 +20,9 @@ import wat.seth.dev.capstoneproject.handlers.QueryBuilder;
 public class ApiFetchLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
     public static final int FETCH_FROM_API = 8907;
     public static final int FETCH_FROM_PROVIDER = 8908;
-    Activity activity;
+    private Activity activity;
 
 
-    public ApiFetchLoader(Context context) {
-        super(context);
-    }
     public ApiFetchLoader(Context context, Activity activity) {
         super(context);
         this.activity = activity;

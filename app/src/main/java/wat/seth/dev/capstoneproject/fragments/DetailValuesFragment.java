@@ -2,9 +2,9 @@ package wat.seth.dev.capstoneproject.fragments;
 
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ import wat.seth.dev.capstoneproject.interfaces.TakeSnapShot;
 import wat.seth.dev.capstoneproject.loaders.SaveLoader;
 import wat.seth.dev.capstoneproject.utils.ColorUtils;
 import wat.seth.dev.capstoneproject.utils.ExpandingFabUtil;
+import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 import wat.seth.dev.capstoneproject.utils.SocialHelper;
 
 /**
@@ -58,12 +60,12 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
     private FloatingActionButton twitterFab;
     private FloatingActionButton searchFab;
 
-    ExpandingFabUtil fabUtil;
+    private ExpandingFabUtil fabUtil;
     /*
     Interface called to take a snapshot of the map
     in DetailActivity and share.
      */
-    TakeSnapShot takeSnapShot;
+    private TakeSnapShot takeSnapShot;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,12 +119,13 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
          */
         magValue.setText(earthquake.getReadableMag());
         feltByValue.setText(String.valueOf(earthquake.getReadableFelt()));
-        String location = String.valueOf(earthquake.getLatitude()) + ", "
-                + String.valueOf(earthquake.getLongitude());
+        String location = String.valueOf(earthquake.getReadableLat()) + ", "
+                + String.valueOf(earthquake.getReadableLong());
         locationValue.setText(location);
-        depthValue.setText(String.valueOf(earthquake.getReadableDepth(true)));
-        mmiValue.setText(earthquake.getReadableMmi());
-        timeValue.setText(earthquake.getReadableLongDate() + " " + earthquake.getReadableTime());
+        depthValue.setText(String.valueOf(earthquake.getReadableDepth(true, getResources())));
+        mmiValue.setText(earthquake.getReadableMmi(getResources()));
+        timeValue.setText(earthquake.getReadableLongDate() +
+                getResources().getString(R.string.space) + earthquake.getReadableTime());
 
         /*
         Show visual representations
@@ -163,17 +166,21 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.google.com/#q=" + earthquake.getPlace());
+                Uri uri = Uri.parse(NetworkUtils.GOOGLE_QUERY + earthquake.getReadablePlace());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
         });
 
+
+        final Drawable expand = ContextCompat.getDrawable(getContext(), R.drawable.plus);
+        final Drawable shrink = ContextCompat.getDrawable(getContext(), R.drawable.minus);
         mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isExpanded) {
                     //Restore state of fab
+                    mainFab.setImageDrawable(shrink);
                     fabContainer.startAnimation(fromRight);
                     isExpanded = false;
                     fabUtil.animateFabs();
@@ -184,16 +191,16 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
                     return;
                 }
                 if (!shown) {
+                    //update ui of main fab to reflect state
+                    mainFab.setImageDrawable(shrink);
+                    //animate sub fabs
                     fabContainer.startAnimation(fromRight);
-                    fabContainer.setFocusable(true);
-                    twitterFab.setFocusable(true);
-                    saveFab.setFocusable(true);
-                    searchFab.setFocusable(true);
+                    // sub fabs are now shown
                     shown = true;
                 } else {
-
-                   fabContainer.startAnimation(exitRight);
-                   shown = false;
+                    mainFab.setImageDrawable(expand);
+                    fabContainer.startAnimation(exitRight);
+                    shown = false;
                 }
                 fabUtil.animateFabs();
             }
@@ -218,29 +225,28 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         /*
         Handles checking/saving/removing earthquake from db.
          */
+        Drawable remove = getResources().getDrawable(R.drawable.bookmark_remove, null);
+        Drawable add = getResources().getDrawable(R.drawable.bookmark_add, null);
         /*
         Strange bug where loader.getId() was returning incorrect in onLoadFinished,
         this if block just represents switch case(SaveLoader.CHECK)
          */
         if (((SaveLoader) loader).wasCheck() && data != null && ((ArrayList<Earthquake>) data).size() != 0) {
             saved = true;
-            Drawable d = getResources().getDrawable(R.drawable.ic_saved_24dp, null);
-            saveFab.setImageDrawable(d);
+            saveFab.setImageDrawable(remove);
             return;
         }
         switch (loader.getId()) {
             case SaveLoader.SAVE:
                 if (data != null) {
                     saved = true;
-                    Drawable d = getResources().getDrawable(R.drawable.ic_saved_24dp, null);
-                    saveFab.setImageDrawable(d);
+                    saveFab.setImageDrawable(remove);
                     return;
                 }
             case SaveLoader.DELETE:
                 if (data != null && ((Integer) data) > 0) {
                     saved = false;
-                    Drawable d = getResources().getDrawable(R.drawable.ic_save_black_24dp, null);
-                    saveFab.setImageDrawable(d);
+                    saveFab.setImageDrawable(add);
                     return;
                 }
             default:
@@ -267,10 +273,5 @@ public class DetailValuesFragment extends Fragment implements LoaderManager.Load
         f.earthquake = e;
         f.takeSnapShot = capture;
         return f;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 }

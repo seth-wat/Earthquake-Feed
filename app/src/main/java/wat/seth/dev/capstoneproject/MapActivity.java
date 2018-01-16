@@ -29,16 +29,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public static final String MAP_EARTHQUAKES_EXTRA = "map_earthquakes_extra";
     public static final String MAP_CAMERA_POSITION = "map_camera_position";
 
-    ArrayList<Earthquake> earthquakes = new ArrayList<>();
-    CameraPosition cameraPosition;
-    GoogleMap gM;
+    private ArrayList<Earthquake> earthquakes = new ArrayList<>();
+    private CameraPosition cameraPosition;
+    private GoogleMap gM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
         setSupportActionBar((Toolbar) findViewById(R.id.map_toolbar));
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getIntent() != null && getIntent().getParcelableExtra(MAP_EARTHQUAKES_EXTRA) != null) {
@@ -59,6 +60,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         gM = googleMap;
         LatLng loc = new LatLng(0, 0);
+        //Mark map with each earthquake.
         for (int i = 0; i < earthquakes.size(); i++) {
             Earthquake e = earthquakes.get(i);
             loc = new LatLng(e.getLatitude(), e.getLongitude());
@@ -71,6 +73,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         if (cameraPosition != null) {
+            //camera position was restored
             googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         } else {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 4.f));
@@ -81,13 +84,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        //launch details
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.EARTHQUAKE_EXTRA, Parcels.wrap(marker.getTag()));
         startActivity(intent);
         return false;
     }
 
-        @Override
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(MAP_EARTHQUAKES_EXTRA, Parcels.wrap(earthquakes));
@@ -97,7 +101,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-        cameraPosition = gM.getCameraPosition();
+        if (gM != null) {
+            cameraPosition = gM.getCameraPosition();
+        }
     }
 
     @Override

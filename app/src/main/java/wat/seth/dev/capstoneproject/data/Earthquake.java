@@ -1,6 +1,8 @@
 package wat.seth.dev.capstoneproject.data;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -12,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import wat.seth.dev.capstoneproject.R;
 import wat.seth.dev.capstoneproject.db.Contract;
 
 /**
@@ -36,17 +39,17 @@ public class Earthquake {
         this.depth = depth;
     }
 
-    String id;
-    int timeZone;
-    double mag;
-    String magType;
-    String place;
-    long time;
-    int felt;
-    double mmi; //intensity or shake
-    double longitude;
-    double latitude;
-    double depth;
+    private String id;
+    private int timeZone;
+    private double mag;
+    private String magType;
+    private String place;
+    private long time;
+    private int felt;
+    private double mmi; //intensity or shake
+    private double longitude;
+    private double latitude;
+    private double depth;
 
 
     public ContentValues toContentValues() {
@@ -193,17 +196,20 @@ public class Earthquake {
         return String.valueOf(mag) + " " + magType;
     }
 
-    public String getReadableMmi() {
+    public String getReadableMmi(Resources res) {
         if (mmi == 0.0) {
-            return String.valueOf(mmi).substring(0, 1) + " mmi";
+            return String.valueOf(mmi).substring(0, 1) + res.getString(R.string.space) +
+                    res.getString(R.string.mmi_suffix);
         }
 
-        return String.valueOf(mmi) + " mmi";
+        return String.valueOf(mmi) + res.getString(R.string.space) +
+                res.getString(R.string.mmi_suffix);
     }
 
-    public String getReadableDepth(boolean imperial) {
+    public String getReadableDepth(boolean imperial, Resources res) {
         if (!imperial) {
-            return String.valueOf(depth) + " km";
+            return String.valueOf(depth) + res.getString(R.string.space) +
+                    res.getString(R.string.km_suffix);
         }
         double kiloToMi = 0.62137119;
         double depthMi = depth * kiloToMi;
@@ -214,7 +220,7 @@ public class Earthquake {
         int grabLastIndex = depthString.indexOf(".") + 3 > depthString.length() ?
                 depthString.length() : depthString.indexOf(".") + 3;
         String formattedDepth = depthString.substring(0, grabLastIndex);
-        return formattedDepth + " mi";
+        return formattedDepth + res.getString(R.string.space) + res.getString(R.string.miles_suffix);
     }
 
     public String getReadableFelt() {
@@ -233,7 +239,7 @@ public class Earthquake {
         return placeName;
     }
 
-    public String getReadablePlaceDistance(boolean imperial) {
+    public String getReadablePlaceDistance(boolean imperial, Resources res) {
 
         if (!place.contains("km")) {
             /*
@@ -243,7 +249,7 @@ public class Earthquake {
             return "";
         }
 
-        String suffix = imperial ? "miles" : "km";
+        String suffix = imperial ? res.getString(R.string.miles) : res.getString(R.string.km_suffix);
 
 
         int distanceEndIndex = place.indexOf("k") - 1 == 0 ? 1 : place.indexOf("k");
@@ -332,6 +338,25 @@ public class Earthquake {
         sB.append(", ");
         sB.append(date.get(Calendar.YEAR));
         return new String(sB);
+    }
+
+    public String getReadableLat() {
+        String lat = String.valueOf(latitude);
+        int index = lat.indexOf(".");
+        if (index != -1) {
+            int lastIndex = lat.length() > index + 5 ? index + 5 : lat.length();
+            return lat.substring(0, lastIndex);
+        }
+        return lat;
+    }
+    public String getReadableLong() {
+        String longi = String.valueOf(longitude);
+        int index = longi.indexOf(".");
+        if (index != -1) {
+            int lastIndex = longi.length() > index + 5 ? index + 5 : longi.length();
+            return longi.substring(0, lastIndex);
+        }
+        return longi;
     }
 
 }

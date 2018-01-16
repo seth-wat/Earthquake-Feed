@@ -207,12 +207,13 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/detail_options_fab"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin_detail"
         android:contentDescription="@string/cd_main_fab"
         android:nextFocusRight="@+id/twitter_fab"
-        android:src="@drawable/ic_add_black_24dp"
+        android:src="@drawable/plus"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -237,8 +238,8 @@
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_twitter"
             android:focusable="true"
-            android:src="@drawable/ic_twitter_logo_silhouette"
             android:visibility="invisible"
+            android:src="@drawable/twitter"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton
@@ -248,8 +249,8 @@
             android:layout_margin="@dimen/fab_margin_detail"
             android:contentDescription="@string/cd_bookmark"
             android:focusable="true"
-            android:src="@drawable/ic_save_black_24dp"
             android:visibility="invisible"
+            android:src="@drawable/bookmark_add"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton
@@ -257,10 +258,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin_detail"
+            android:visibility="invisible"
             android:contentDescription="@string/cd_search"
             android:focusable="true"
-            android:src="@drawable/ic_search_black_24dp"
-            android:visibility="invisible"
+            android:src="@drawable/search"
             app:fabSize="mini" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

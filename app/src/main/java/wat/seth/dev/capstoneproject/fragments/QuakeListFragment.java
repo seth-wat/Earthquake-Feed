@@ -1,5 +1,6 @@
 package wat.seth.dev.capstoneproject.fragments;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -9,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.support.v7.preference.Preference;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,16 +38,15 @@ import wat.seth.dev.capstoneproject.utils.NetworkUtils;
 /*
  Fragment that contains the recent or saved list of earthquakes.
  */
-public class QuakeListFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Earthquake>>,
-        Preference.OnPreferenceChangeListener {
+public class QuakeListFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Earthquake>> {
     private QuakeListAdapter mAdapter;
     private FrameLayout errorView;
     private Button errorViewButton;
     private TextView errorViewText;
     private ImageView errorImageView;
     private RecyclerView rv;
-    FloatingActionButton fab;
-    ProgressBar progressBar;
+    private FloatingActionButton fab;
+    private ProgressBar progressBar;
     private int loaderId;
     public static final String EXTRA_LOADER_ID = "extra_loader_id";
 
@@ -68,6 +67,8 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
         /*
         The loader is behaving incorrectly when returning from SettingsActivity and no internet
         connection, unfortunately without a big rewrite loader needs to be reset here. TODO
+
+        I think this has something to do with FragmentPagerAdapter.
         */
         getActivity().getSupportLoaderManager().restartLoader(loaderId, null, this);
         super.onResume();
@@ -90,12 +91,15 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
         errorViewButton = view.findViewById(R.id.error_retry_button);
         errorViewText = view.findViewById(R.id.error_display_message);
         errorImageView = view.findViewById(R.id.error_image_view);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(mAdapter);
         fab = view.findViewById(R.id.world_map_fab);
         progressBar = view.findViewById(R.id.list_progress_bar);
+
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.setAdapter(mAdapter);
+
         getActivity().getSupportLoaderManager().initLoader(
                 loaderId, null, this);
+
         return view;
     }
 
@@ -125,7 +129,7 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
                 errorView.setVisibility(View.VISIBLE);
                 errorViewText.setText(getString(R.string.no_saved));
                 errorViewButton.setVisibility(View.INVISIBLE);
-                errorImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_bookmark_border_black_24dp));
+                errorImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.bookmark_background));
                 errorViewButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -136,6 +140,7 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
             }
             return;
         }
+        //end error checking code
         errorView.setVisibility(View.INVISIBLE);
         mAdapter.setEarthquakes(data);
 
@@ -145,7 +150,8 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
                 Parcelable p = Parcels.wrap(data);
                 Intent intent = new Intent(getContext(), MapActivity.class);
                 intent.putExtra(MapActivity.MAP_EARTHQUAKES_EXTRA, p);
-                getActivity().startActivity(intent);
+                Bundle b = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
+                getActivity().startActivity(intent, b);
             }
         });
     }
@@ -166,9 +172,4 @@ public class QuakeListFragment extends Fragment implements LoaderManager.LoaderC
         outState.putInt(EXTRA_LOADER_ID, loaderId);
     }
 
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-        return true;
-    }
 }

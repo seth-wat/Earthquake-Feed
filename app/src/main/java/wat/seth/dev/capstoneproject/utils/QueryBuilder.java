@@ -1,4 +1,4 @@
-package wat.seth.dev.capstoneproject.handlers;
+package wat.seth.dev.capstoneproject.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,8 +26,8 @@ public class QueryBuilder {
     Class simply loads preferences and constructs query using them as params
     in the url.
      */
-    public Activity activity;
-    SharedPreferences sharedPreferences;
+    private Activity activity;
+    private SharedPreferences sharedPreferences;
 
     public QueryBuilder(Activity activity) {
         this.activity = activity;
@@ -54,23 +54,6 @@ public class QueryBuilder {
 
         return builder.build().toString();
     }
-
-//    private boolean shouldReload(Map<String, ?> values) {
-//        Map<String, ?> temp = fetchPreferences();
-//        for (Map.Entry<String, ?> entry : values.entrySet()) {
-//            String tempValue;
-//            try {
-//                tempValue = temp.get(entry.getKey()).toString();
-//            } catch (IllegalStateException e) {
-//                return true;
-//            }
-//
-//            if (!tempValue.equals(entry.getValue().toString())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     private String get(@StringRes int key, @StringRes int def) {
         return sharedPreferences.getString(activity.getString(key), activity.getString(def));

@@ -14,6 +14,10 @@ import wat.seth.dev.capstoneproject.R;
 
 public class ColorUtils {
 
+    private ColorUtils() {
+
+    }
+
     public static ColorFilter setMagColor(double mag, Context mContext) {
         if (mag <= 1) {
             return new PorterDuffColorFilter(ContextCompat.getColor(mContext, R.color.mag_0), PorterDuff.Mode.SRC);

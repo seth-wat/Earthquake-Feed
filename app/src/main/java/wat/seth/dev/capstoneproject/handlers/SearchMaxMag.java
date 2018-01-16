@@ -15,7 +15,6 @@ public class SearchMaxMag extends EachLoop {
     /*
     This class updates search_max_mag preferences, it's related view,
     and provides behavior to be executed on touch events.
-
      */
     private double mag;
     private double incrementStep;
@@ -36,12 +35,10 @@ public class SearchMaxMag extends EachLoop {
         if (getType() == TYPE_INCREMENT) {
             if (mag == 10) return;
             incrementRange(mag, incrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.format("%.1f", mag));
         } else {
             if (mag == 0) return;
             decrementRange(mag, decrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.format("%.1f", mag));
         }
     }

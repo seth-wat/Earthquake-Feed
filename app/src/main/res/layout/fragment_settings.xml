@@ -80,16 +80,18 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:background="@drawable/arrow_down_selector"
                 android:contentDescription="@string/cd_decrease_min_mag"
                 android:nextFocusForward="@id/search_max_mag_up_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_min_mag_title" />
+                app:layout_constraintTop_toTopOf="@id/search_min_mag_title" />
 
             <Button
                 android:id="@+id/search_min_mag_up_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginRight="@dimen/half_spacer_margin"
                 android:background="@drawable/arrow_up_selector"
                 android:contentDescription="@string/cd_increase_min_mag"
                 android:nextFocusRight="@id/search_min_mag_down_button"
@@ -140,18 +142,20 @@
                 android:id="@+id/search_max_mag_down_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/arrow_down_selector"
                 android:contentDescription="@string/cd_decrease_max_mag"
                 android:focusable="true"
                 android:nextFocusDown="@id/search_start_date_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_max_mag_title" />
+                app:layout_constraintTop_toTopOf="@id/search_max_mag_title" />
 
             <Button
                 android:id="@+id/search_max_mag_up_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginRight="@dimen/half_spacer_margin"
                 android:background="@drawable/arrow_up_selector"
                 android:contentDescription="@string/cd_increase_max_mag"
                 android:focusable="true"
@@ -202,12 +206,13 @@
                 android:id="@+id/search_start_date_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/calendar_selector"
                 android:contentDescription="@string/cd_start_date"
                 android:nextFocusDown="@id/search_end_date_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_start_date_title" />
+                app:layout_constraintTop_toTopOf="@id/search_start_date_title" />
             <!--search start date end-->
             <FrameLayout
                 android:id="@+id/third_split_search"
@@ -253,11 +258,12 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:background="@drawable/calendar_selector"
                 android:contentDescription="@string/cd_end_date"
                 android:nextFocusDown="@id/search_max_results_up_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_end_date_title" />
+                app:layout_constraintTop_toTopOf="@id/search_end_date_title" />
             <!--search end date end-->
             <FrameLayout
                 android:id="@+id/fourth_split_search"
@@ -303,17 +309,19 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:background="@drawable/arrow_down_selector"
                 android:contentDescription="@string/cd_decrease_max_results"
                 android:focusable="true"
                 android:nextFocusDown="@id/search_order_by_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_max_results_title" />
+                app:layout_constraintTop_toTopOf="@id/search_max_results_title" />
 
             <Button
                 android:id="@+id/search_max_results_up_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginRight="@dimen/half_spacer_margin"
                 android:background="@drawable/arrow_up_selector"
                 android:contentDescription="@string/cd_increase_max_results"
                 android:nextFocusRight="@id/search_max_results_down_button"
@@ -363,12 +371,13 @@
                 android:id="@+id/search_order_by_button"
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginEnd="@dimen/button_end_margin"
                 android:background="@drawable/swap_selector"
                 android:contentDescription="@string/cd_sort_by"
                 android:nextFocusDown="@id/search_sort_by_button"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_order_by_title" />
+                app:layout_constraintTop_toTopOf="@id/search_order_by_title" />
             <!--search order by end-->
             <FrameLayout
                 android:id="@+id/sixth_split_search"
@@ -414,11 +423,12 @@
                 android:layout_width="@dimen/location_button_wh"
                 android:layout_height="@dimen/location_button_wh"
                 android:layout_marginEnd="@dimen/button_end_margin"
+                android:layout_marginTop="@dimen/standard_margin"
                 android:background="@drawable/swap_selector"
                 android:contentDescription="@string/order_by"
                 android:nextFocusDown="@id/adView"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_sort_by_title" />
+                app:layout_constraintTop_toTopOf="@id/search_sort_by_title" />
 
             <View
                 android:layout_width="match_parent"

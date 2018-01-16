@@ -72,9 +72,9 @@ public class SearchSortBy {
 
     private void display() {
         if (current.isEmpty()) {
-            displayView.setText("descending");
+            displayView.setText(activity.getResources().getString(R.string.desc));
         } else {
-            displayView.setText("ascending");
+            displayView.setText(activity.getResources().getString(R.string.asc));
         }
     }
 

@@ -35,12 +35,10 @@ public class SearchNumResults extends EachLoop {
         if (getType() == TYPE_INCREMENT) {
             if (results == 500) return;
             incrementRange(results, incrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.valueOf(results));
         } else {
             if (results == 0) return;
             decrementRange(results, decrementStep);
-            displayView.playSoundEffect(android.view.SoundEffectConstants.CLICK);
             displayView.setText(String.valueOf(results));
         }
     }

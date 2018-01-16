@@ -71,7 +71,7 @@ public class SearchOrderBy {
 
     private void display() {
         if (current.equals(DATE_VALUE)) {
-            displayView.setText("date");
+            displayView.setText(activity.getResources().getString(R.string.date_display));
         } else {
             displayView.setText(MAG_VALUE);
         }

@@ -1,12 +1,10 @@
 package wat.seth.dev.capstoneproject.adapters;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.support.v4.content.ContextCompat;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +25,9 @@ import wat.seth.dev.capstoneproject.utils.ColorUtils;
  */
 
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
-    ArrayList<Earthquake> earthquakes = new ArrayList<>();
-    Context mContext = null;
-    Activity activity;
+    private ArrayList<Earthquake> earthquakes = new ArrayList<>();
+    private Context mContext = null;
+    private Activity activity;
 
     public QuakeListAdapter(Context context, Activity activity) {
         mContext = context;
@@ -46,18 +44,20 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Earthquake earthquake = earthquakes.get(position);
+
         holder.mag.setText(String.valueOf(earthquake.getMag()));
         holder.place.setText(earthquake.getReadablePlace());
-        holder.placeDistance.setText(earthquake.getReadablePlaceDistance(true));
-        holder.time.setText(earthquake.getReadableDate() + " " + earthquake.getReadableTime());
-
+        holder.placeDistance.setText(earthquake.getReadablePlaceDistance(true, mContext.getResources()));
+        holder.time.setText(earthquake.getReadableDate() +
+                 mContext.getResources().getString(R.string.space) + earthquake.getReadableTime());
         holder.magRep.setColorFilter(ColorUtils.setMagColor(earthquake.getMag(), mContext));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.putExtra(DetailActivity.EARTHQUAKE_EXTRA, Parcels.wrap(earthquakes.get(position)));
-                mContext.startActivity(intent);
+                Bundle b = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+                mContext.startActivity(intent, b);
             }
         });
     }

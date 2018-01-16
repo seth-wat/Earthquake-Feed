@@ -102,16 +102,7 @@ public class DatePick implements DatePickerDialog.OnDateSetListener {
         stringBuilder.append(dayString);
         return new String(stringBuilder);
     }
-    private String getSaveDate() {
-        //Formats string to display/store
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(year);
-        stringBuilder.append("-");
-        stringBuilder.append(month + 1);
-        stringBuilder.append("-");
-        stringBuilder.append(day + 1);
-        return new String(stringBuilder);
-    }
+
     @Override
     public void onDateSet(DatePicker datePicker, int y, int m, int d) {
         //Update UI and SharedPreferences

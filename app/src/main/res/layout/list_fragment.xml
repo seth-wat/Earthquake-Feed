@@ -32,7 +32,7 @@
                 android:layout_height="128dp"
                 android:contentDescription="@null"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_error_outline_black_24dp" />
+                android:src="@drawable/error_circle" />
 
             <TextView
                 android:id="@+id/error_display_message"
@@ -50,7 +50,7 @@
                 android:contentDescription="@string/cd_retry"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/colorAccent"
-                android:text="Try again" />
+                android:text="@string/retry_button" />
         </LinearLayout>
     </FrameLayout>
 
@@ -68,5 +68,5 @@
         android:contentDescription="@string/cd_world_map"
         android:layout_gravity="bottom|right"
         android:layout_margin="8dp"
-        android:src="@drawable/ic_map_black_24dp" />
+        android:src="@drawable/map" />
 </FrameLayout>
