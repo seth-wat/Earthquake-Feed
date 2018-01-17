@@ -1,9 +1,9 @@
-# Earthquake-Feed
+# Earthquake Feed
 
 <img src="https://github.com/seth-wat/Earthquake-Feed/blob/polish/display-image-small.png">
 
 ## Summary
-Earthquake Feed is an Android app that provides access and storage for exploring earthquake occurances. 
+Earthquake Feed is an Android app that provides access and storage for exploring earthquake occurrences. Fluid UI/UX was accomplished using `Vector Drawables`, `Transitions Framework`, `View Animations`, and the Material Design guidelines.  
 
 ## Features
 * Load recent and past earthquake occurrences from all over the world.
